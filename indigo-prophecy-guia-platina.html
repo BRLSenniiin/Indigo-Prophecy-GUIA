@@ -1,0 +1,1763 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Indigo Prophecy — Guia de Platina PT-BR</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap"
+  rel="stylesheet"
+/>
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0a0714;
+    --bg-card: #120d24;
+    --bg-section: #170f2e;
+    --border: #241a44;
+    --border-glow: #33215e;
+
+    --indigo: #6d3cff;
+    --indigo-dim: #1c0f42;
+    --indigo-light: #b79cff;
+
+    --cyan: #35d0e6;
+    --cyan-dim: #072a30;
+    --cyan-light: #9aeaf5;
+
+    --gold: #f4c752;
+    --gold-dim: #3a2c08;
+    --gold-light: #ffe4a0;
+
+    --silver: #c7cdea;
+    --silver-dim: #1c2038;
+    --silver-light: #eceffb;
+
+    --bronze: #d98a4a;
+    --bronze-dim: #331f0c;
+    --bronze-light: #f0b077;
+
+    --red: #ff4d6d;
+    --red-dim: #3a0a18;
+
+    --green: #33e6a0;
+
+    --text: #e9e6fb;
+    --text-dim: #6a63a0;
+    --text-muted: #2a2150;
+
+    font-display: swap;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    min-height: 100vh;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Manrope', 'Segoe UI', system-ui, sans-serif;
+    font-size: 15px;
+    overflow-x: hidden;
+    font-display: swap;
+    position: relative;
+  }
+.wallpaper {
+  position: fixed;
+  inset: 0;
+  background:
+    linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,12)),
+    url("Images/Wallpaper.webp");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  z-index: -1;
+}
+.hdr-logo {
+  display: block;
+  max-width: 320px;
+  width: 60%;
+  margin: 0 auto 4px;
+  filter: drop-shadow(0 0 20px rgba(0,224,96,0.53));
+}
+
+  /* Snow / atmosphere layers */
+  #atm-layer {
+    position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background:
+      radial-gradient(ellipse 60% 45% at 15% 0%, rgba(109, 60, 255, 0.22) 0%, transparent 60%),
+      radial-gradient(ellipse 55% 45% at 90% 100%, rgba(53, 208, 230, 0.14) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 35% at 90% 5%, rgba(244, 199, 82, 0.05) 0%, transparent 60%);
+  }
+  #grid-layer {
+    position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: 0.04;
+    background-image:
+      linear-gradient(rgba(109, 60, 255, 0.6) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(109, 60, 255, 0.6) 1px, transparent 1px);
+    background-size: 46px 46px;
+  }
+  #snow-layer {
+    position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+  }
+  .snowflake {
+    position: absolute; top: -10px; border-radius: 50%;
+    background: rgba(199, 205, 234, 0.55);
+    animation: fall linear infinite;
+    will-change: transform;
+  }
+  @keyframes fall {
+    from { transform: translate3d(0, -10px, 0); opacity: 0.8; }
+    to { transform: translate3d(0, 100vh, 0); opacity: 0.1; }
+  }
+  #core-top {
+    position: fixed; top: 0; left: 0; right: 0; height: 2px; z-index: 100;
+    background: linear-gradient(90deg, var(--indigo), var(--cyan), var(--gold), var(--indigo));
+    box-shadow: 0 0 14px rgba(109, 60, 255, 0.7), 0 0 5px rgba(53, 208, 230, 0.5);
+  }
+
+  .wrap { position: relative; z-index: 1; max-width: 940px; margin: 0 auto; padding: 26px 16px 60px; }
+
+  /* HEADER */
+  .hdr { text-align: center; margin-bottom: 26px; }
+  .hdr-studio {
+    font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 5px;
+    color: var(--text-muted); margin-bottom: 10px; text-transform: uppercase;
+  }
+  .hdr-title {
+    font-family: 'Bebas Neue', sans-serif; font-size: clamp(38px, 9vw, 68px);
+    font-weight: 400; letter-spacing: 4px; line-height: 1;
+    background: linear-gradient(135deg, var(--indigo-light), var(--cyan-light), var(--gold-light));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    filter: drop-shadow(0 0 26px rgba(109, 60, 255, 0.5));
+  }
+  .hdr-title2 {
+    font-family: 'Bebas Neue', sans-serif; font-size: clamp(14px, 3vw, 20px);
+    letter-spacing: 6px; color: var(--text-dim); margin-top: 2px;
+  }
+  .hdr-sub {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-dim);
+    margin-top: 10px; letter-spacing: 2px;
+  }
+  .hdr-pills { display: flex; justify-content: center; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+  .pill {
+    font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 1.5px;
+    padding: 3px 10px; border: 1px solid; border-radius: 20px; background: transparent;
+  }
+
+  /* TABS */
+  .tabs {
+    display: flex; gap: 4px; margin-bottom: 22px; overflow-x: auto; scrollbar-width: none;
+    touch-action: pan-x; background: var(--bg-card); border-radius: 12px;
+    border: 1px solid var(--border); padding: 4px; position: sticky; top: 0; z-index: 50;
+  }
+  .tabs::-webkit-scrollbar { display: none; }
+  .tab-btn {
+    flex: 0 0 auto; padding: 10px 16px; background: transparent; border: 1px solid transparent;
+    border-radius: 8px; color: var(--text-dim); cursor: pointer; font-family: 'Manrope', sans-serif;
+    font-weight: 700; font-size: 12px; letter-spacing: 1px; transition: color .15s, background .15s, border-color .15s;
+    white-space: nowrap;
+  }
+  .tab-btn.active {
+    background: rgba(109, 60, 255, 0.16); border-color: var(--indigo); color: var(--indigo-light);
+    box-shadow: 0 0 10px rgba(109, 60, 255, 0.25);
+  }
+  .tab-btn:hover:not(.active) { color: var(--text); }
+
+  .panel { display: none; content-visibility: auto; contain: content; }
+  .panel.active { display: block; }
+
+  .mono-label {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 3px; margin-bottom: 10px;
+  }
+
+  /* STATS GRID */
+  .stats-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 8px; margin-bottom: 18px; }
+  .stat-card {
+    background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px;
+    padding: 12px 10px; text-align: center; border-top: 2px solid;
+  }
+  .stat-icon { font-size: 18px; margin-bottom: 4px; }
+  .stat-val { font-family: 'JetBrains Mono', monospace; font-size: 15px; font-weight: 700; }
+  .stat-lbl {
+    font-family: 'JetBrains Mono', monospace; font-size: 8.5px; color: var(--text-muted);
+    letter-spacing: 1px; margin-top: 2px; text-transform: uppercase;
+  }
+
+  /* DIFFICULTY */
+  .diff-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 16px; margin-bottom: 14px; }
+  .diff-bar { display: flex; gap: 4px; margin-bottom: 6px; }
+  .diff-seg { flex: 1; height: 10px; border-radius: 20px; }
+  .diff-labels { display: flex; justify-content: space-between; font-family: 'JetBrains Mono', monospace; font-size: 9px; color: var(--text-muted); }
+  .diff-body { font-size: 12.5px; color: var(--text-dim); margin-top: 10px; line-height: 1.7; }
+
+  /* ALERTS */
+  .alert { border-radius: 8px; padding: 14px; margin-bottom: 14px; border-left: 4px solid; }
+  .alert-title { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 2px; margin-bottom: 8px; }
+  .alert-body { font-size: 12.5px; color: var(--text); line-height: 1.9; }
+
+  .links-card { background: var(--bg-card); border: 1px solid var(--border-glow); border-radius: 8px; padding: 12px; }
+  .link-row { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--indigo-light); margin-bottom: 4px; }
+  .link-row span { color: var(--text-dim); }
+
+  /* TROPHY FILTERS */
+  .trophy-filters { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 12px; }
+  .trophy-filter {
+    padding: 4px 12px; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 1px;
+    border: 1px solid var(--border); background: var(--bg-card); color: var(--text-dim);
+    border-radius: 20px; cursor: pointer; transition: color .15s, background .15s, border-color .15s;
+  }
+  .trophy-filter.active { border-color: var(--indigo); background: rgba(109, 60, 255, 0.18); color: var(--indigo-light); }
+
+  .unverified-banner {
+    background: rgba(53, 208, 230, 0.07); border: 1px solid rgba(53, 208, 230, 0.3);
+    border-left: 4px solid var(--cyan); border-radius: 8px; padding: 12px 14px; margin-bottom: 16px;
+    font-size: 12px; line-height: 1.8; color: var(--text);
+  }
+  .unverified-banner strong {
+    color: var(--cyan-light); font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    letter-spacing: 2px; display: block; margin-bottom: 6px;
+  }
+
+  /* TROPHY CARDS */
+  #trophy-list { content-visibility: auto; contain: content; }
+  .t-card { margin-bottom: 5px; }
+  .t-header {
+    width: 100%; text-align: left; padding: 10px 14px; background: var(--bg-card);
+    border: 1px solid var(--border); border-radius: 8px; cursor: pointer; font-family: 'Manrope', sans-serif;
+    display: flex; align-items: center; gap: 10px; transition: background .15s, border-color .15s;
+  }
+  .t-header.open { border-radius: 8px 8px 0 0; }
+  .t-badge {
+    font-family: 'JetBrains Mono', monospace; font-size: 9px; padding: 1px 7px; letter-spacing: 1px;
+    border-radius: 20px; border: 1px solid; flex-shrink: 0;
+  }
+  .t-attn-badge {
+    font-family: 'JetBrains Mono', monospace; font-size: 8px; padding: 1px 6px; letter-spacing: .5px;
+    border-radius: 20px; background: rgba(244, 199, 82, 0.12); border: 1px solid rgba(244, 199, 82, 0.4);
+    color: var(--gold); flex-shrink: 0;
+  }
+  .t-name { font-size: 13px; font-weight: 700; }
+  .t-sub { font-family: 'Manrope', sans-serif; font-size: 11px; color: var(--text-muted); margin-top: 2px; line-height: 1.4; }
+  .t-arrow { color: var(--text-muted); flex-shrink: 0; font-size: 12px; margin-left: auto; }
+  .t-body { border: 1px solid; border-top: none; border-radius: 0 0 8px 8px; padding: 10px 14px; display: none; }
+  .t-body.open { display: block; }
+  .t-chapter {
+    font-family: 'JetBrains Mono', monospace; font-size: 9.5px; color: var(--cyan-light);
+    letter-spacing: .5px; margin-bottom: 6px; text-transform: uppercase;
+  }
+  .t-how { font-size: 12.5px; color: var(--text); line-height: 1.7; }
+  .t-tip {
+    font-size: 11px; color: var(--gold-light); padding: 7px 10px; margin-top: 8px;
+    background: rgba(244, 199, 82, 0.08); border-radius: 6px; border-left: 3px solid rgba(244, 199, 82, 0.5);
+  }
+
+  /* ROADMAP / CHECKLIST */
+  .progress-wrap { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 14px 16px; margin-bottom: 16px; }
+  .progress-top { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px; }
+  .progress-count { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--indigo-light); }
+  .progress-bar-bg { height: 10px; background: var(--bg-section); border-radius: 20px; overflow: hidden; border: 1px solid var(--border); }
+  .progress-bar-fill {
+    height: 100%; background: linear-gradient(90deg, var(--indigo), var(--cyan));
+    border-radius: 20px; transition: width .3s ease; width: 0%;
+  }
+
+  /* ═══════════════ CAMINHOS (árvore de decisões interativa) ═══════════════ */
+  .caminhos-app {
+    height: 78vh;
+    min-height: 520px;
+    max-height: 720px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: #0a0716;
+    margin: 0 -16px;
+  }
+  .caminhos-app, .caminhos-app * { -webkit-tap-highlight-color: transparent; }
+
+  .cm-header {
+    background: linear-gradient(180deg, var(--bg-section) 0%, #0a0716 100%);
+    padding: 10px 14px;
+    border-bottom: 2px solid rgba(109, 60, 255, 0.2);
+    display: flex; flex-direction: column; gap: 8px;
+    z-index: 10; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.8);
+  }
+  .cm-header-top { display: flex; justify-content: space-between; align-items: center; }
+  .cm-title-group h2 {
+    font-family: 'Bebas Neue', sans-serif; font-size: 0.85rem; letter-spacing: 1px;
+    color: var(--cyan); text-transform: uppercase; text-shadow: 0 0 8px rgba(53, 208, 230, 0.5);
+  }
+  .cm-title-group span { font-size: 0.65rem; color: var(--gold); display: block; font-weight: 700; }
+  .cm-hud-panel {
+    display: flex; align-items: center; justify-content: space-between;
+    background: rgba(13, 21, 39, 0.9); padding: 6px 10px; border-radius: 6px; border: 1px solid var(--border);
+  }
+  .cm-sanity-meter { display: flex; align-items: center; gap: 8px; }
+  .cm-sanity-label { font-size: 0.7rem; font-weight: 700; color: var(--text-dim); text-transform: uppercase; }
+  .cm-sanity-bar-bg {
+    width: 90px; height: 8px; background: var(--bg-section); border: 1px solid #3a2c6e;
+    border-radius: 2px; overflow: hidden;
+  }
+  .cm-sanity-bar-fill {
+    height: 100%; width: 50%;
+    background: linear-gradient(90deg, var(--red) 0%, var(--gold) 50%, var(--gold) 100%);
+    transition: width 0.4s ease-in-out;
+  }
+  .cm-sanity-value {
+    font-family: 'Bebas Neue', sans-serif; font-size: 0.8rem; font-weight: 700;
+    color: var(--cyan); min-width: 35px;
+  }
+  .cm-btn-reset {
+    background: rgba(255, 77, 109, 0.15); border: 1px solid var(--red); color: var(--red);
+    padding: 4px 10px; border-radius: 4px; font-weight: 700; font-size: 0.7rem;
+    cursor: pointer; letter-spacing: 0.5px;
+  }
+
+  .cm-chapter-picker {
+    position: absolute; top: 10px; left: 10px; z-index: 6; width: 210px;
+    display: flex; align-items: center; gap: 6px;
+    background: rgba(13, 21, 39, 0.95); backdrop-filter: blur(6px);
+    padding: 6px 8px; border-radius: 6px; border: 1px solid var(--border);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.7);
+  }
+  .cm-picker-label { font-family: 'Bebas Neue', sans-serif; font-size: 0.6rem; color: var(--text-dim); letter-spacing: 0.5px; white-space: nowrap; writing-mode: vertical-rl; text-orientation: mixed; }
+  .cm-picker-body { display: flex; flex-direction: column; align-items: center; flex: 1; min-width: 0; }
+  .cm-picker-arrow { background: none; border: none; color: var(--cyan); font-size: 0.65rem; cursor: pointer; padding: 1px; line-height: 1; transition: opacity 0.15s; }
+  .cm-picker-arrow.arrow-disabled { opacity: 0.18; pointer-events: none; }
+  .cm-picker-viewport { width: 100%; height: 78px; overflow: hidden; }
+  .cm-picker-list { display: flex; flex-direction: column; transition: transform 0.2s ease; }
+  .cm-picker-item {
+    height: 26px; width: 100%; display: flex; align-items: center; justify-content: center; font-size: 0.63rem;
+    color: var(--text-dim); cursor: pointer; text-align: center; padding: 0 4px;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .cm-picker-item.active-chapter { color: var(--cyan); font-weight: 700; }
+  .cm-picker-item.locked-chapter { color: var(--text-muted); }
+  .cm-picker-flash {
+    position: absolute; right: 10px; top: -8px; background: var(--border); border: 1px solid var(--red);
+    color: var(--red); font-size: 0.6rem; font-weight: 700; padding: 2px 6px; border-radius: 3px;
+  }
+
+  .cm-zoom-controls {
+    position: absolute; bottom: 14px; right: 14px; z-index: 6; display: flex; align-items: center; gap: 4px;
+    background: rgba(13, 21, 39, 0.95); backdrop-filter: blur(6px); border: 1px solid var(--border);
+    border-radius: 8px; padding: 4px 6px; box-shadow: 0 4px 14px rgba(0, 0, 0, 0.7);
+  }
+  .cm-zoom-btn {
+    background: var(--bg-section); border: 1px solid #3a2c6e; color: var(--cyan);
+    width: 24px; height: 24px; border-radius: 5px; font-size: 0.85rem; font-weight: 700;
+    cursor: pointer; display: flex; align-items: center; justify-content: center; line-height: 1;
+  }
+  .cm-zoom-btn.cm-zoom-reset { font-size: 0.7rem; color: var(--text-dim); }
+  .cm-zoom-val { font-family: 'JetBrains Mono', monospace; font-size: 0.62rem; color: var(--text); min-width: 32px; text-align: center; }
+
+  #cm-workspace {
+    flex: 1; position: relative; overflow: auto; background-color: #0a0716;
+    background-image:
+      radial-gradient(rgba(53, 208, 230, 0.08) 1px, transparent 1px),
+      linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    background-size: 20px 20px, 60px 60px, 60px 60px;
+    -webkit-overflow-scrolling: touch;
+    cursor: grab;
+  }
+  #cm-workspace.cm-grabbing { cursor: grabbing; }
+  svg#cm-svg-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; }
+  path.cm-connection { stroke: var(--border); stroke-width: 2; fill: none; transition: stroke 0.3s; }
+  path.cm-connection.active { stroke: var(--green); stroke-width: 2.5; filter: drop-shadow(0px 0px 3px var(--green)); }
+  path.cm-connection.tier-green { stroke: var(--green); filter: drop-shadow(0px 0px 3px var(--green)); }
+  path.cm-connection.tier-yellow { stroke: var(--gold); filter: drop-shadow(0px 0px 3px var(--gold)); }
+  path.cm-connection.tier-orange { stroke: var(--bronze); filter: drop-shadow(0px 0px 3px var(--bronze)); }
+  path.cm-connection.tier-red { stroke: var(--red); filter: drop-shadow(0px 0px 3px var(--red)); }
+  path.cm-connection.gameover { stroke: var(--red); stroke-width: 2.5; }
+  path.cm-connection.victory { stroke: var(--gold); stroke-width: 2.5; }
+  path.cm-connection.asylum { stroke: var(--indigo-light); stroke-width: 2.5; }
+
+  #cm-nodes-container {
+    position: absolute; padding: 24px 16px; display: flex; flex-direction: row; gap: 48px;
+    align-items: center; min-height: 100%; min-width: max-content; z-index: 2;
+    transform-origin: top left; transition: transform 0.15s ease-out;
+  }
+  .cm-tree-column { display: flex; flex-direction: column; gap: 16px; justify-content: center; }
+  .cm-node-card {
+    background: rgba(13, 21, 39, 0.96); border: 1px solid var(--border); border-left: 3px solid #3a2c6e;
+    border-radius: 6px; width: 195px; padding: 10px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(4px); transition: all 0.2s ease; position: relative;
+  }
+  .cm-node-card.selected { border-color: var(--cyan); border-left-color: var(--cyan); box-shadow: 0 0 12px rgba(53, 208, 230, 0.3); }
+  .cm-node-card.dimmed-node { opacity: 0.45; filter: grayscale(40%); }
+  .cm-node-card.gameover-node { border-left-color: var(--red); }
+  .cm-node-card.gameover-node.selected { border-color: var(--red); }
+  .cm-node-card.victory-node { border-left-color: var(--gold); }
+  .cm-node-card.victory-node.selected { border-color: var(--gold); }
+  .cm-node-card.asylum-node { border-left-color: var(--indigo-light); }
+  .cm-node-card.asylum-node.selected { border-color: var(--indigo-light); box-shadow: 0 0 12px rgba(183, 156, 255, 0.35); }
+  .cm-node-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
+  .cm-node-id { font-family: 'Bebas Neue', sans-serif; font-size: 0.55rem; color: var(--text-dim); }
+  .cm-sanity-tag { font-family: 'Bebas Neue', sans-serif; font-size: 0.6rem; font-weight: 700; padding: 1px 4px; border-radius: 2px; }
+  .cm-tag-pos { background: rgba(51, 230, 160, 0.15); color: var(--gold-light); }
+  .cm-tag-neg { background: rgba(255, 77, 109, 0.15); color: var(--red); }
+  .cm-tag-neutral { background: rgba(148, 163, 184, 0.1); color: var(--text-dim); }
+  .cm-trophy-badge {
+    display: flex; align-items: center; gap: 4px; background: rgba(244, 199, 82, 0.12);
+    border: 1px solid rgba(244, 199, 82, 0.4); color: var(--gold-light); padding: 3px 6px;
+    border-radius: 4px; font-size: 0.62rem; font-weight: 700; margin-bottom: 6px; line-height: 1.1;
+  }
+  .cm-node-title { font-size: 0.82rem; font-weight: 700; color: var(--text); margin-bottom: 4px; line-height: 1.1; }
+  .cm-node-text { font-size: 0.72rem; color: var(--text-dim); line-height: 1.25; margin-bottom: 8px; }
+  .cm-node-options { display: flex; flex-direction: column; gap: 5px; }
+  .cm-option-btn {
+    background: var(--bg-card); border: 1px solid var(--border); color: var(--text); padding: 6px 8px;
+    border-radius: 4px; font-size: 0.7rem; font-weight: 600; text-align: left; cursor: pointer;
+    display: flex; justify-content: space-between; align-items: center; line-height: 1.2; transition: all 0.2s ease;
+  }
+  .cm-option-btn:active { background: rgba(53, 208, 230, 0.2); border-color: var(--cyan); }
+  .cm-option-btn.chosen { background: rgba(53, 208, 230, 0.15); border-color: var(--cyan); color: var(--cyan); }
+  .cm-option-btn.chosen:hover { background: rgba(255, 77, 109, 0.2); border-color: var(--red); color: var(--red); }
+  .cm-option-btn.locked { background: rgba(15, 23, 42, 0.6); border: 1px solid var(--border); color: var(--text-muted); cursor: not-allowed; opacity: 0.65; }
+  .cm-option-btn.locked .cm-lock-icon { font-size: 0.75rem; }
+  .cm-status-msg { font-family: 'Bebas Neue', sans-serif; font-size: 0.65rem; font-weight: 700; padding: 4px; border-radius: 3px; text-align: center; }
+  .cm-status-msg.gameover { background: rgba(255, 77, 109, 0.2); color: var(--red); border: 1px solid var(--red); }
+  .cm-status-msg.victory { background: rgba(244, 199, 82, 0.2); color: var(--gold-light); border: 1px solid var(--gold); }
+  .cm-status-msg.asylum { background: rgba(109, 60, 255, 0.2); color: var(--indigo-light); border: 1px solid var(--indigo-light); }
+  .cm-convergence-note { background: rgba(53, 208, 230, 0.08); border: 1px dashed var(--cyan); border-radius: 6px; padding: 8px 10px; font-size: 0.66rem; line-height: 1.4; }
+  .cm-conv-title { font-family: 'Bebas Neue', sans-serif; font-size: 0.65rem; color: var(--cyan); letter-spacing: 0.5px; margin-bottom: 4px; }
+  .cm-conv-row { margin-top: 3px; }
+  .cm-conv-row.cm-conv-follow { color: var(--cyan-light); }
+  .cm-conv-row.cm-conv-locked { color: var(--text-dim); }
+
+  .attn-list { margin-bottom: 10px; }
+  .attn-card {
+    background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 14px 16px;
+    margin-bottom: 10px; border-left: 3px solid var(--gold);
+  }
+  .attn-title { font-size: 13px; font-weight: 700; color: var(--gold-light); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .attn-body { font-size: 12px; color: var(--text-dim); line-height: 1.7; }
+
+  /* TAROT CARDS */
+  #tarot-list { content-visibility: auto; contain: content; }
+  .tarot-card {
+    background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px;
+    margin-bottom: 6px; border-left: 3px solid var(--indigo);
+    display: flex; gap: 12px; align-items: flex-start;
+  }
+  .tarot-card.unverified { border-left-color: var(--red); }
+  .tarot-num {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--indigo-light);
+    background: rgba(109,60,255,.12); border: 1px solid rgba(109,60,255,.3); border-radius: 20px;
+    width: 26px; height: 26px; flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+  }
+  .tarot-card.unverified .tarot-num { color: var(--red); background: rgba(255,77,109,.1); border-color: rgba(255,77,109,.35); }
+  .tarot-chapter {
+    font-family: 'JetBrains Mono', monospace; font-size: 9.5px; color: var(--cyan-light);
+    letter-spacing: .5px; text-transform: uppercase; margin-bottom: 2px;
+  }
+  .tarot-who { font-size: 11px; color: var(--text-muted); margin-bottom: 3px; }
+  .tarot-loc { font-size: 12.5px; color: var(--text); line-height: 1.5; }
+  .tarot-flag {
+    font-family: 'JetBrains Mono', monospace; font-size: 8px; letter-spacing: .5px; color: var(--red);
+    border: 1px solid rgba(255,77,109,.4); background: rgba(255,77,109,.08); border-radius: 4px;
+    padding: 0 5px; display: inline-block; margin-top: 4px;
+  }
+
+  .foot {
+    text-align: center; margin-top: 48px; font-family: 'JetBrains Mono', monospace; font-size: 9px;
+    color: var(--text-muted); letter-spacing: 2px; line-height: 1.8;
+  }
+
+  strong.indigo { color: var(--indigo-light); }
+  strong.gold { color: var(--gold); }
+  strong.red { color: var(--red); }
+  strong.cyan { color: var(--cyan-light); }
+
+  @media (max-width: 600px) {
+    .stats-grid { grid-template-columns: repeat(auto-fill, minmax(112px, 1fr)); }
+  }
+</style>
+</head>
+<body>
+  
+  <div class="wallpaper"></div>
+  <div id="atm-layer"></div>
+  <div id="grid-layer"></div>
+  <div id="snow-layer"></div>
+  <div id="core-top"></div>
+
+  <div class="wrap">
+    <!-- HEADER -->
+    <div class="hdr">
+      <div class="hdr-studio">QUANTIC DREAM · AVENTURA NARRATIVA / QTE · 2005 (PS4: 2015)</div>
+      <img src="Images/Logo.webp" alt="Indigo Prophecy" class="hdr-logo">
+      <div class="hdr-sub">GUIA DE PLATINA PT-BR</div>
+      <div class="hdr-pills">
+        <span class="pill" style="border-color: rgba(51,230,160,.5); color: var(--green)">TEM PLATINA</span>
+        <span class="pill" style="border-color: rgba(109,60,255,.4); color: var(--indigo-light)">49 TROFÉUS</span>
+        <span class="pill" style="border-color: rgba(53,208,230,.4); color: var(--cyan-light)">100% OFFLINE</span>
+        <span class="pill" style="border-color: rgba(244,199,82,.4); color: var(--gold)">5/10 DIFICULDADE</span>
+      </div>
+    </div>
+
+    <!-- TABS -->
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="overview">🔮 Visão Geral</button>
+      <button class="tab-btn" data-tab="roadmap">🗺️ Caminhos</button>
+      <button class="tab-btn" data-tab="trophies">🏆 Troféus</button>
+      <button class="tab-btn" data-tab="perdiveis">⚠️ Perdíveis</button>
+      <button class="tab-btn" data-tab="tarot">🃏 Cartas de Tarô</button>
+    </div>
+
+    <!-- ══════════════ OVERVIEW ══════════════ -->
+    <div class="panel active" id="panel-overview">
+      <div class="stats-grid">
+        <div class="stat-card" style="border-top-color: rgba(51,230,160,.6)">
+          <div class="stat-icon">🏆</div>
+          <div class="stat-val" style="color: var(--green)">Sim</div>
+          <div class="stat-lbl">Tem Platina</div>
+        </div>
+        <div class="stat-card" style="border-top-color: rgba(109,60,255,.6)">
+          <div class="stat-icon">🎯</div>
+          <div class="stat-val" style="color: var(--indigo-light)">49</div>
+          <div class="stat-lbl">Total Troféus</div>
+        </div>
+        <div class="stat-card" style="border-top-color: rgba(244,199,82,.6)">
+          <div class="stat-icon">🥇</div>
+          <div class="stat-val" style="color: var(--gold)">2</div>
+          <div class="stat-lbl">Ouros</div>
+        </div>
+        <div class="stat-card" style="border-top-color: rgba(199,205,234,.6)">
+          <div class="stat-icon">🥈</div>
+          <div class="stat-val" style="color: var(--silver)">6</div>
+          <div class="stat-lbl">Pratas</div>
+        </div>
+        <div class="stat-card" style="border-top-color: rgba(217,138,74,.6)">
+          <div class="stat-icon">🥉</div>
+          <div class="stat-val" style="color: var(--bronze)">40</div>
+          <div class="stat-lbl">Bronzes</div>
+        </div>
+        <div class="stat-card" style="border-top-color: rgba(53,208,230,.6)">
+          <div class="stat-icon">⏱️</div>
+          <div class="stat-val" style="color: var(--cyan-light)">15-20h</div>
+          <div class="stat-lbl">Tempo Estimado</div>
+        </div>
+        <div class="stat-card" style="border-top-color: rgba(109,60,255,.6)">
+          <div class="stat-icon">🔁</div>
+          <div class="stat-val" style="color: var(--indigo-light)">1 (2-3★)</div>
+          <div class="stat-lbl">Playthroughs</div>
+        </div>
+        <div class="stat-card" style="border-top-color: rgba(255,77,109,.5)">
+          <div class="stat-icon">🃏</div>
+          <div class="stat-val" style="color: var(--red)">?</div>
+          <div class="stat-lbl">Cartas de Tarô*</div>
+        </div>
+        <div class="stat-card" style="border-top-color: rgba(64,58,110,.6)">
+          <div class="stat-icon">📊</div>
+          <div class="stat-val" style="color: var(--text-dim)">~2%</div>
+          <div class="stat-lbl">% Platinaram</div>
+        </div>
+      </div>
+
+      <!-- Difficulty -->
+      <div class="diff-card">
+        <div class="mono-label" style="color: var(--indigo-light)">DIFICULDADE ESTIMADA</div>
+        <div class="diff-bar" id="diff-bar"></div>
+        <div class="diff-labels">
+          <span>1 TRIVIAL</span>
+          <span style="color: var(--indigo-light)">5/10 — MÉDIA</span>
+          <span>10 BRUTAL</span>
+        </div>
+        <div class="diff-body">
+          Nenhuma sequência é mecanicamente difícil — o jogo é baseado em QTEs (Quick Time Events)
+          generosos e possui <strong class="indigo">vidas extras</strong> via crucifixos. A dificuldade real
+          está em <strong class="indigo">organizar as runs</strong>: alguns troféus exigem estados narrativos
+          opostos (não dá pra ter os dois no mesmo playthrough) e o troféu de <strong class="gold">completar tudo
+          no Difícil</strong> pode ser instável via seleção de capítulo.
+        </div>
+      </div>
+
+      <!-- CRITICAL WARNING: Road Less Traveled -->
+      <div class="alert" style="background: rgba(244,199,82,.07); border-color: rgba(244,199,82,.3); border-left-color: var(--gold)">
+        <div class="alert-title" style="color: var(--gold)">🥇 "O CAMINHO MENOS PERCORRIDO" — CUIDADO COM O DIFÍCIL</div>
+        <div class="alert-body">
+          Este troféu de Ouro exige <strong class="gold">completar todos os capítulos no modo Difícil</strong>.
+          Ele é conhecido por não desbloquear corretamente quando os capítulos são refeitos via seleção de capítulo
+          fora de ordem. O caminho mais seguro é definir o Difícil <strong class="gold">desde o menu inicial</strong>
+          e jogar a campanha inteira de forma contínua, do início ao fim, nessa dificuldade.
+        </div>
+      </div>
+
+      <!-- CRITICAL WARNING: All Endings -->
+      <div class="alert" style="background: rgba(109,60,255,.07); border-color: rgba(109,60,255,.28); border-left-color: var(--indigo)">
+        <div class="alert-title" style="color: var(--indigo-light)">🥇 "TODOS OS FINAIS" — 3 FINAIS MUTUAMENTE EXCLUSIVOS</div>
+        <div class="alert-body">
+          O capítulo final tem <strong class="indigo">3 finais possíveis</strong> (Futuro Brilhante, Futuro Congelado,
+          Futuro Incerto) e só é possível ver um por vez. Depois de terminar o jogo, use a
+          <strong class="indigo">seleção de capítulo</strong> para refazer o capítulo final mais duas vezes, fazendo
+          escolhas diferentes a cada vez, até ver os três.
+        </div>
+      </div>
+
+      <!-- CRITICAL WARNING: Obsessive -->
+      <div class="alert" style="background: rgba(53,208,230,.07); border-color: rgba(53,208,230,.28); border-left-color: var(--cyan)">
+        <div class="alert-title" style="color: var(--cyan-light)">🥈 "OBCECADO" — COLETE AS CARTAS NUMA ÚNICA RUN</div>
+        <div class="alert-body">
+          Colecionar todas as Cartas de Tarô costuma funcionar melhor quando feito
+          <strong class="cyan">dentro de um único playthrough completo</strong> em vez de via seleção de capítulo —
+          jogadores relatam inconsistência ao tentar reunir as cartas espalhando a coleta entre capítulos avulsos.
+        </div>
+      </div>
+
+      <!-- UNVERIFIED DATA NOTICE -->
+      <div class="alert" style="background: rgba(255,77,109,.07); border-color: rgba(255,77,109,.3); border-left-color: var(--red)">
+        <div class="alert-title" style="color: var(--red)">⚠️ DADOS NÃO VERIFICADOS NESTE GUIA</div>
+        <div class="alert-body">
+          A <strong class="red">contagem exata de Cartas de Tarô</strong> colecionáveis não pôde ser confirmada com
+          segurança nas fontes consultadas — por isso aparece como "?" no card acima em vez de um número inventado.
+          Além disso, os <strong class="red">nomes e descrições dos 49 troféus em PT-BR</strong> são traduções
+          próprias fiéis ao texto oficial em inglês (confirmado via PSNProfiles, TrueTrophies, PlayStationTrophies e
+          AbsolutCheats) — não a string literal do Exophase em português, que não foi possível acessar para este
+          título. A contagem de troféus e a distribuição por tipo (1 Platina, 2 Ouro, 6 Prata, 40 Bronze) estão
+          confirmadas e corretas.
+        </div>
+      </div>
+
+      <!-- Links -->
+      <div class="links-card">
+        <div class="mono-label" style="color: var(--indigo-light)">🔗 FONTES PARA VERIFICAR</div>
+        <div class="link-row">▸ PSNProfiles: <span>psnprofiles.com/trophies/5131-indigo-prophecy</span></div>
+        <div class="link-row">▸ TrueTrophies: <span>truetrophies.com/game/FAHRENHEIT--Indigo-Prophecy/trophies</span></div>
+        <div class="link-row">▸ PlayStationTrophies.org: <span>playstationtrophies.org/game/indigo-prophecy/guide/</span></div>
+        <div class="link-row">▸ Exophase: <span>exophase.com (busque "Indigo Prophecy")</span></div>
+      </div>
+    </div>
+    <!-- /overview -->
+
+    <!-- ══════════════ CAMINHOS (árvore de decisões) ══════════════ -->
+    <div class="panel" id="panel-roadmap">
+      <div style="font-size: 12px; color: var(--text-dim); margin-bottom: 14px; line-height: 1.6">
+        Explore como cada escolha dentro de um capítulo afeta o estado mental de Lucas e quais troféus
+        cada rota prepara, trava ou conquista — em <strong class="indigo">tempo real</strong>, sem precisar
+        alternar entre guias de texto separados. Comece pelo capítulo <strong class="cyan">"O Assassinato"</strong>;
+        os demais capítulos no seletor ainda estão sendo montados e aparecem marcados como
+        <strong class="gold">🔒 Em breve</strong>.
+      </div>
+
+      <div class="caminhos-app">
+        <div class="cm-header">
+          <div class="cm-header-top">
+            <div class="cm-title-group">
+              <h2>INDIGO PROPHECY — CAMINHOS</h2>
+              <span>🏆 ROTEIRO DA PLATINA INTEGRADO</span>
+            </div>
+            <button class="cm-btn-reset" onclick="cmResetNarrative()">RESETAR</button>
+          </div>
+          <div class="cm-hud-panel">
+            <div class="cm-sanity-meter">
+              <span class="cm-sanity-label">SANIDADE</span>
+              <div class="cm-sanity-bar-bg"><div id="cm-sanity-fill" class="cm-sanity-bar-fill"></div></div>
+            </div>
+            <span id="cm-sanity-val" class="cm-sanity-value">50%</span>
+            <span id="cm-wrecked-tag" style="display:none;font-family:'JetBrains Mono',monospace;font-size:0.6rem;font-weight:700;color:var(--indigo-light);background:rgba(183,156,255,0.14);border:1px solid var(--indigo-light);border-radius:3px;padding:2px 5px;margin-left:6px;">🏥 ARRASADO</span>
+          </div>
+        </div>
+
+        <div id="cm-workspace">
+          <svg id="cm-svg-canvas"></svg>
+          <div id="cm-nodes-container"></div>
+
+          <div class="cm-chapter-picker">
+            <span class="cm-picker-label">CAPÍTULO</span>
+            <div class="cm-picker-body">
+              <button id="cm-picker-up" class="cm-picker-arrow" onclick="cmPickerScroll(-1)" aria-label="Rolar pra cima">▲</button>
+              <div class="cm-picker-viewport"><div id="cm-picker-list" class="cm-picker-list"></div></div>
+              <button id="cm-picker-down" class="cm-picker-arrow" onclick="cmPickerScroll(1)" aria-label="Rolar pra baixo">▼</button>
+            </div>
+            <div id="cm-picker-flash" class="cm-picker-flash" style="display:none;">🔒 Em breve</div>
+          </div>
+
+          <div class="cm-zoom-controls">
+            <span id="cm-zoom-val" class="cm-zoom-val">100%</span>
+            <button class="cm-zoom-btn cm-zoom-reset" onclick="cmZoomReset()" aria-label="Resetar zoom">⟲</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /roadmap -->
+
+    <!-- ══════════════ TROPHIES ══════════════ -->
+    <div class="panel" id="panel-trophies">
+      <div class="unverified-banner">
+        <strong>ℹ️ NOME E DESCRIÇÃO OFICIAIS EM PT-BR (EXOPHASE)</strong>
+        Nome e descrição de cada troféu abaixo são o texto oficial em português do Brasil usado pelo
+        Exophase. A lista está em <strong>ordem de avanço natural do jogo</strong> (mesma ordem oficial de
+        desbloqueio), do primeiro capítulo até os troféus de pós-créditos e finais — quem tem mais
+        importância desde o início vem primeiro. Tipo (Ouro/Prata/Bronze), capítulo de referência e as dicas
+        de "como conseguir" são complementos deste guia, confirmados via múltiplas fontes.
+      </div>
+      <div class="trophy-filters" id="trophy-filters"></div>
+      <div id="trophy-list"></div>
+    </div>
+    <!-- /trophies -->
+
+    <!-- ══════════════ PERDÍVEIS ══════════════ -->
+    <div class="panel" id="panel-perdiveis">
+      <div class="unverified-banner" style="border-left-color: var(--green); background: rgba(51,230,160,.06); border-color: rgba(51,230,160,.3)">
+        <strong style="color: var(--green)">✅ NENHUM TROFÉU É PERMANENTEMENTE PERDÍVEL</strong>
+        Indigo Prophecy libera a <strong>seleção de capítulos</strong> desde o início, então tecnicamente nada se
+        perde para sempre. Os itens abaixo não são perdíveis de verdade — são <strong>pontos de atenção especial</strong>
+        onde escolhas de um playthrough bloqueiam um troféu oposto até você refazer aquele trecho separadamente.
+      </div>
+      <div class="attn-list" id="attn-list"></div>
+    </div>
+    <!-- /perdiveis -->
+
+    <!-- ══════════════ TAROT ══════════════ -->
+    <div class="panel" id="panel-tarot">
+      <div class="unverified-banner" style="border-left-color: var(--cyan); background: rgba(53,208,230,.06); border-color: rgba(53,208,230,.3)">
+        <strong style="color: var(--cyan-light)">🃏 31 CARTAS NA CAMPANHA + 200 PONTOS DE BÔNUS NOS CRÉDITOS</strong>
+        Cada carta abaixo mostra o <strong>capítulo oficial</strong> (numeração interna do jogo entre colchetes),
+        <strong>quem a encontra</strong> e <strong>quantos pontos ela vale</strong>. Os pontos são usados no menu
+        Bônus para desbloquear arte da galeria (2 pts/imagem), trilha sonora (5 pts/faixa) e vídeos (20 pts/vídeo)
+        — todos troféus de Prata — e servem de "moeda" para o troféu "Obsessivo". <strong class="cyan">Nenhuma carta
+        é obrigatória para a Platina</strong>: dá pra pular quem não quiser, já que os troféus de Prata não exigem
+        coletar 100% delas.
+      </div>
+      <div id="tarot-list"></div>
+    </div>
+    <!-- /tarot -->
+
+    <div class="foot">
+      🔮 INDIGO PROPHECY · GUIA DE PLATINA PT-BR · 49 TROFÉUS 🔮<br />
+      NOMES/DESCRIÇÕES TRADUZIDOS PELO GUIA · CONFIRME NO EXOPHASE.COM / PSNPROFILES.COM
+    </div>
+  </div>
+
+  <script>
+    // ═══════════════════════════════════════════════
+    //  DATA — Contagem, tipo e capítulo confirmados via múltiplas fontes (PSNProfiles,
+    //  TrueTrophies, PlayStationTrophies.org, AbsolutCheats). Nome/descrição em PT-BR
+    //  são tradução própria do texto oficial em inglês (verified: true = dado numérico
+    //  e classificação confirmados; a REDAÇÃO em si não é a string oficial do Exophase-BR).
+    // ═══════════════════════════════════════════════
+    const TROFEUS = [
+      { id: 1, nome: 'Mestre em Indigo Prophecy', desc: 'Desbloqueie todos os troféus (o uso de trapaças desativa todos os troféus).', tipo: 'platina', icon: '🔮', capitulo: 'Final do jogo', how: 'Desbloqueia automaticamente assim que todos os outros 48 troféus forem conquistados, sem uso de cheats/trainers em nenhum momento da conta.', tip: 'Deixe por último — não precisa "buscar" ele diretamente.' },
+
+      { id: 2, nome: 'Da Morte, Surge a Vida', desc: 'Adquira um crucifixo para ganhar uma vida extra.', tipo: 'bronze', icon: '✝️', capitulo: '"Confissão" (ou qualquer capítulo com crucifixo)', how: 'Markus tenta lhe dar um crucifixo durante "Confissão" — basta aceitar. Há vários outros pelo jogo (ex: gaveta da mesa de Lucas em "Realidade Alternativa").', tip: 'Praticamente impossível de perder — aparece cedo e em vários pontos.' },
+      { id: 3, nome: 'Paredes Acolchoadas', desc: 'Lucas foi enviado ao hospício.', tipo: 'bronze', icon: '🏥', capitulo: 'Estado mental de Lucas', how: 'Deixe o estado mental de Lucas cair até "Destruído" ao longo da história (evite atividades que restauram sanidade). É o oposto de "Não Há Escapatória".', tip: 'Faça isso numa run separada de "Não Há Escapatória" — os dois exigem decisões opostas.' },
+      { id: 4, nome: 'Não Há Escapatória', desc: 'Lucas se entregou à polícia.', tipo: 'bronze', icon: '🚔', capitulo: '"O Dia Seguinte" / "Confissão"', how: 'Mantenha o estado mental de Lucas estável/saudável ao longo da história para que ele decida se entregar em vez de surtar.', tip: 'É o resultado "padrão" da maioria das runs cuidadosas.' },
+      { id: 5, nome: 'Resignação', desc: 'Carla devolveu sua arma e seu distintivo.', tipo: 'bronze', icon: '🎖️', capitulo: '"Prestação de Contas"', how: 'Leve o estado mental de Carla a "Destruído". O jeito mais rápido é entrar e sair repetidamente do arquivo em "Prestação de Contas", falhando de propósito a QTE de respiração — cada falha reduz bastante a sanidade.', tip: 'Uma vez destruída, a cena de Carla pedindo demissão dispara sozinha.' },
+      { id: 6, nome: 'Em Busca de Temperaturas Mais Quentes', desc: 'Tyler saiu do emprego e partiu para a Flórida com Samantha.', tipo: 'bronze', icon: '🌴', capitulo: 'Setup em "O Assassinato"/"Investigação", conclui em "Trabalho Policial"', how: 'Não esconda a faca como Lucas em "O Assassinato" e reduza o estado mental de Tyler durante "Investigação"; o desfecho acontece em "Trabalho Policial".', tip: 'Conflita narrativamente com "Carma" — são estados diferentes do arco de Tyler.' },
+      { id: 7, nome: 'Trânsito Público', desc: 'Lucas fugiu da cena do crime no metrô.', tipo: 'bronze', icon: '🚇', capitulo: '"O Assassinato"', how: 'Depois de lidar com a cena do crime na lanchonete, saia e siga até a entrada do metrô — descer as escadas dispara o troféu.', tip: null },
+      { id: 8, nome: 'A Intuição de uma Mulher', desc: 'Carla encontrou uma faca no banheiro e sangue do lado de fora da lanchonete durante "Investigação".', tipo: 'bronze', icon: '🔎', capitulo: '"Investigação"', how: 'Como Carla, vá ao banheiro e examine a faca no chão. Depois saia pela porta da frente e examine a poça de sangue entre a porta e o carro.', tip: null },
+      { id: 9, nome: 'Encobrir', desc: 'Lucas convenceu o policial a não revistar o quarto depois de falhar em esconder os lençóis ensanguentados durante "O Dia Seguinte".', tipo: 'bronze', icon: '🛏️', capitulo: '"O Dia Seguinte"', how: 'Falhe deliberadamente a QTE de esconder os lençóis e, na conversa seguinte com o policial, escolha as falas que o convencem a não revistar o quarto.', tip: null },
+      { id: 10, nome: 'Ao Resgate', desc: 'Lucas salvou a criança durante "Confissão".', tipo: 'bronze', icon: '🧊', capitulo: '"Confissão"', how: 'Após a conversa com Markus, Lucas tem uma visão de uma criança se afogando no gelo — corra e mergulhe, complete a QTE de resgate e depois a de RCP.', tip: null },
+      { id: 11, nome: 'Para Cima, Para Baixo e Para os Lados', desc: 'Carla fez 5 manobras de ioiô "volta ao mundo" sem errar a sequência durante "Trabalho Policial".', tipo: 'bronze', icon: '🪀', capitulo: '"Trabalho Policial"', how: 'Interaja com o ioiô na mesa de Carla e complete a sequência de QTE "around-the-world" 5 vezes seguidas sem errar.', tip: null },
+      { id: 12, nome: 'Pane', desc: 'Lucas fugiu dos ácaros e chegou ao elevador sem perder nenhum movimento em tela durante "Realidade Alternativa".', tipo: 'bronze', icon: '🐜', capitulo: '"Realidade Alternativa"', how: 'Durante a sequência de fuga dos ácaros gigantes, acerte todos os comandos de movimento exibidos na tela sem errar nenhum até chegar ao elevador.', tip: null },
+      { id: 13, nome: 'Testemunho Confiável', desc: 'Kate fez um retrato falado muito parecido com Lucas durante "Tyler & Kate".', tipo: 'bronze', icon: '🖼️', capitulo: '"Tyler & Kate"', how: 'Durante a montagem do retrato falado, escolha as opções de características que mais se aproximam da aparência real de Lucas.', tip: null },
+      { id: 14, nome: 'Preparação Mental', desc: 'A saúde mental de Lucas subiu para 55 antes de Tiffany chegar durante "Amor Perdido".', tipo: 'bronze', icon: '🧠', capitulo: '"Amor Perdido"', how: 'Antes de Tiffany chegar, use o saco de pancadas, toque violão/amplificador, ouça música no som, use o banheiro e beba leite/tome o remédio no quarto para somar pontos de saúde mental.', tip: 'Faça o máximo de atividades possível — cada uma soma alguns pontos.' },
+      { id: 15, nome: 'Boa Jogada', desc: 'Lucas convenceu Tiffany a passar a noite durante "Amor Perdido".', tipo: 'bronze', icon: '💜', capitulo: '"Amor Perdido"', how: 'Escolha as falas mais receptivas/positivas na conversa com Tiffany ao longo do encontro para convencê-la a ficar.', tip: null },
+      { id: 16, nome: 'Fim de Jogo', desc: 'Lucas salvou os três garotos escondidos antes que o tempo acabasse durante "Esconde-Esconde".', tipo: 'bronze', icon: '🏭', capitulo: '"Esconde-Esconde" (flashback)', how: 'No flashback do hangar em chamas, encontre e salve os três garotos escondidos antes que o cronômetro se esgote, evitando os guardas pelo caminho.', tip: null },
+      { id: 17, nome: 'Já Teve o Suficiente?', desc: 'Carla venceu a revanche contra Tyler durante "Combate Amistoso".', tipo: 'bronze', icon: '🥊', capitulo: '"Combate Amistoso"', how: 'Vença a sequência de QTEs da revanche de luta contra Tyler nesta cena.', tip: null },
+      { id: 18, nome: 'Respiração Calma', desc: 'Carla encontrou o arquivo de Kirsten sem entrar em pânico durante "Prestação de Contas".', tipo: 'bronze', icon: '📁', capitulo: '"Prestação de Contas"', how: 'No arquivo, complete a QTE de controle de respiração sem falhar nenhuma vez enquanto procura o arquivo de Kirsten.', tip: 'É o oposto do que você faz de propósito para "Resignação" — não misture as duas runs.' },
+      { id: 19, nome: 'Só Estava Tentando Ajudar', desc: 'Tyler encontrou o livro para Takeo, mas não revelou sua profissão.', tipo: 'bronze', icon: '📚', capitulo: '"Prestação de Contas" (trecho de Tyler)', how: 'Na livraria, escolha as falas que evitam revelar que Tyler é policial, depois examine o livro na mesa sob a escada para descobrir o nome do autor e localizar o livro pedido.', tip: null },
+      { id: 20, nome: 'Introspecção', desc: 'Lucas resistiu à sessão de hipnose de Agatha durante "Agatha".', tipo: 'bronze', icon: '🌀', capitulo: '"Agatha"', how: 'Complete toda a sequência de QTE da hipnose de Agatha sem errar nenhum comando.', tip: null },
+      { id: 21, nome: 'Contraterrorista', desc: 'Carla durou 100 segundos no estande de tiro com pelo menos 80% de precisão durante "Perguntas e Balas".', tipo: 'bronze', icon: '🎯', capitulo: '"Perguntas e Balas"', how: 'No estande de tiro, mantenha pelo menos 80% de acerto pelos 100 segundos completos da sequência.', tip: null },
+      { id: 22, nome: 'Faça o Que Eu Digo, Mas Não Faça o Que Eu Faço', desc: 'Tyler provocou Jeffrey e venceu o jogo de basquete durante "Dobrar ou Desistir".', tipo: 'bronze', icon: '🏀', capitulo: '"Dobrar ou Desistir"', how: 'Escolha as falas de provocação disponíveis contra Jeffrey e depois vença a sequência de QTE do jogo de basquete.', tip: null },
+      { id: 23, nome: 'Amor Fraterno', desc: 'Marcus puxou Lucas de volta da sacada durante "A Tempestade".', tipo: 'bronze', icon: '🌩️', capitulo: '"A Tempestade"', how: 'Depois das QTEs com Lucas na sacada, controlando Markus, force a porta (3 tentativas) e complete a QTE de L1/R1 para puxar Lucas de volta.', tip: null },
+      { id: 24, nome: 'Siga o Mestre', desc: 'Carla descobriu a origem do marcador de páginas na internet e foi ao banco durante "Mau Presságio".', tipo: 'bronze', icon: '💻', capitulo: '"Mau Presságio" (trecho de Carla)', how: 'Como Carla, pesquise a origem do marcador de páginas na internet e depois vá até o banco indicado.', tip: null },
+      { id: 25, nome: 'Preto no Branco', desc: 'Tyler descobriu a origem do marcador de páginas ao examinar o jornal e foi ao banco durante "Mau Presságio".', tipo: 'bronze', icon: '📰', capitulo: '"Mau Presságio" (trecho de Tyler)', how: 'Como Tyler, examine o jornal para achar a origem do marcador de páginas e siga até o banco.', tip: 'Este e "Siga o Mestre" são de personagens diferentes na mesma cena — dá pra pegar os dois na mesma run.' },
+      { id: 26, nome: 'Criminoso Sutil', desc: 'Lucas escondeu as provas sem levantar suspeita durante "Cara a Cara".', tipo: 'bronze', icon: '🕵️', capitulo: '"Cara a Cara"', how: 'Esconda todas as evidências comprometedoras nesta cena sem que nenhuma ação levante suspeita.', tip: null },
+      { id: 27, nome: 'Quem Não Tem Chave, Abre com Faca', desc: 'Lucas forçou a gaiola com uma faca durante "De Volta a Agatha".', tipo: 'bronze', icon: '🔓', capitulo: '"De Volta a Agatha"', how: 'Use a faca para forçar a abertura da gaiola de pássaros nesta cena.', tip: null },
+      { id: 28, nome: 'Lendo nas Entrelinhas', desc: 'Carla ligou "A Tempestade" (peça de Shakespeare) a duas provas diferentes durante "Feliz Aniversário".', tipo: 'bronze', icon: '📜', capitulo: '"Feliz Aniversário"', how: 'Nesta mesma cena, conecte a referência à peça "A Tempestade" a duas evidências diferentes coletadas ao longo da investigação.', tip: null },
+      { id: 29, nome: 'Comer sem Pagar', desc: 'Carla usou a lista telefônica e a lista de táxis para incriminar Lucas no assassinato durante "Feliz Aniversário".', tipo: 'bronze', icon: '☎️', capitulo: '"Feliz Aniversário"', how: 'Cruze as informações da lista telefônica com a lista de corridas de táxi para identificar Lucas como suspeito nesta cena.', tip: 'Requer setup específico feito em capítulos anteriores — mais confiável numa run única do que via seleção de capítulo.' },
+      { id: 30, nome: 'Fuga Impecável', desc: 'Lucas escapou da polícia sem falhar em nenhuma sequência de ação durante "Confronto".', tipo: 'bronze', icon: '🏃', capitulo: '"Confronto"', how: 'Complete toda a sequência de fuga da polícia sem falhar nenhuma QTE.', tip: null },
+      { id: 31, nome: 'Calma e Tranquilidade', desc: 'Lucas abriu a janela de Tiffany sem quebrar o vidro e não alertou Tyler sobre seu esconderijo durante "A Fugitiva".', tipo: 'bronze', icon: '🤫', capitulo: '"A Fugitiva"', how: 'Abra a janela do banheiro de Tiffany com cuidado (entre a pia e o chuveiro) sem quebrar o vidro, e evite ações que alertem Tyler sobre onde Lucas está escondido.', tip: null },
+      { id: 32, nome: 'Falta de Energia', desc: 'Carla chegou à sala de controle sem entrar em pânico durante "Janos".', tipo: 'bronze', icon: '🔌', capitulo: '"Janos"', how: 'Chegue à sala de controle desta cena sem falhar as QTEs de tensão/pânico ao longo do caminho.', tip: null },
+      { id: 33, nome: 'Poderes Sobrenaturais', desc: 'O Dr. Kuriakin ensinou Lucas sobre os Oráculos antes de sua morte durante "Encontro com Kuriakin".', tipo: 'bronze', icon: '📖', capitulo: '"Encontro com Kuriakin"', how: 'Converse com o Dr. Kuriakin explorando os tópicos sobre os Oráculos antes de a cena avançar para o desfecho dele.', tip: null },
+      { id: 34, nome: 'Outro Clã?', desc: 'Lucas viu toda a visão do Oráculo durante "O Clã".', tipo: 'bronze', icon: '👁️', capitulo: '"O Clã"', how: 'Deixe a visão do Oráculo se desenrolar por completo nesta cena, sem interrompê-la.', tip: null },
+      { id: 35, nome: 'Por Pouco', desc: 'Marcus sobreviveu durante "Perigo e Onipresença".', tipo: 'bronze', icon: '⚠️', capitulo: '"Perigo e Onipresença"', how: 'Complete as QTEs desta cena com sucesso para que Markus sobreviva ao perigo apresentado.', tip: null },
+      { id: 36, nome: 'Um Aliado Confiável', desc: 'Carla não sacou a arma contra Lucas e formou uma aliança durante "O Pacto".', tipo: 'bronze', icon: '🤝', capitulo: '"O Pacto"', how: 'Nas escolhas de diálogo/ação desta cena, opte por não sacar a arma contra Lucas, levando à formação da aliança entre os dois.', tip: null },
+      { id: 37, nome: 'Carma', desc: 'Tyler deixou a força policial e foi para a Flórida depois que Carla mentiu para ele durante "Congelado até os Ossos".', tipo: 'bronze', icon: '❄️', capitulo: '"Congelado até os Ossos"', how: 'Escolha a opção de Carla mentir para Tyler nesta cena, levando-o a pedir demissão e partir para a Flórida.', tip: 'Estado alternativo ao de "Em Busca de Temperaturas Mais Quentes" — exige uma run separada com escolha oposta.' },
+      { id: 38, nome: 'Voto de Confiança', desc: 'Lucas escapou do Oráculo e dos helicópteros da polícia sem perder nenhuma vida durante "Onde Está Jade".', tipo: 'prata', icon: '🚁', capitulo: '"Onde Está Jade"', how: 'Complete toda a sequência de fuga (Oráculo + helicópteros da polícia) sem falhar nenhuma QTE que custe uma vida.', tip: 'Tenha crucifixos extras guardados como margem de segurança antes de começar esta cena.' },
+      { id: 39, nome: 'Previsão do Tempo', desc: 'Carla consertou o rádio quebrado, mas recebeu más notícias durante "Bogart".', tipo: 'bronze', icon: '📻', capitulo: '"Bogart"', how: 'Conserte o rádio quebrado nesta cena interagindo com os componentes corretos — a notícia ruim vem automaticamente na sequência.', tip: null },
+      { id: 40, nome: 'Um Futuro Brilhante', desc: 'Lucas entregou Jade ao altar.', tipo: 'prata', icon: '🌅', capitulo: 'Capítulo final (final "bom")', how: 'No capítulo final, complete com sucesso as QTEs contra o Oráculo e os atiradores, e leve Jade até o altar você mesmo como Lucas.', tip: 'Um dos 3 finais possíveis — mutuamente exclusivo com os outros dois na mesma run.' },
+      { id: 41, nome: 'Um Futuro Frio', desc: 'A Criatura Ciborgue entregou Jade ao altar.', tipo: 'bronze', icon: '🥶', capitulo: 'Capítulo final (final alternativo)', how: 'Passe as QTEs do Oráculo, mas falhe propositalmente as QTEs seguintes — a Criatura Ciborgue assume e leva Jade ao altar.', tip: 'Refaça o capítulo final via seleção de capítulo para ver este desfecho depois de já ter visto outro.' },
+      { id: 42, nome: 'Um Futuro Incerto', desc: 'O Oráculo entregou Jade ao altar.', tipo: 'bronze', icon: '🌫️', capitulo: 'Capítulo final (final alternativo)', how: 'Falhe as QTEs contra o Oráculo e não troque para Carla durante a sequência cronometrada com opção de troca — o próprio Oráculo leva Jade ao altar.', tip: null },
+      { id: 43, nome: 'A Via Menos Usada', desc: 'Complete todos os capítulos no modo Difícil.', tipo: 'ouro', icon: '🥇', capitulo: 'Campanha inteira no Difícil', how: 'Selecione o modo Difícil no início e jogue a campanha completa do começo ao fim nessa dificuldade, sem trocar de dificuldade no meio do caminho.', tip: 'Evite depender de seleção de capítulo para este — prefira uma run contínua e genuína.' },
+      { id: 44, nome: 'Saideira', desc: 'Colete a carta de Tarô bônus após os créditos.', tipo: 'bronze', icon: '🎴', capitulo: 'Após os créditos finais', how: 'Depois de ver os créditos rolarem uma vez, uma carta de Tarô bônus fica disponível para coleta.', tip: null },
+      { id: 45, nome: 'Obsessivo', desc: 'Colecione todas as Cartas de Tarô.', tipo: 'prata', icon: '🃏', capitulo: 'Espalhadas pela campanha', how: 'Procure e colete as Cartas de Tarô escondidas em cenários ao longo de toda a campanha, de preferência numa única run.', tip: 'Quantidade exata não confirmada nas fontes consultadas — ver aviso "NÃO VERIFICADO" na Visão Geral.' },
+      { id: 46, nome: 'Venda de Arte', desc: 'Desbloqueie toda a arte da Galeria.', tipo: 'prata', icon: '🖼️', capitulo: 'Menu de bônus', how: 'Use os pontos de bônus obtidos ao coletar Cartas de Tarô para desbloquear todas as artes da Galeria no menu de extras.', tip: null },
+      { id: 47, nome: 'Audiófilo', desc: 'Desbloqueie todas as trilhas sonoras.', tipo: 'prata', icon: '🎵', capitulo: 'Menu de bônus', how: 'Use os pontos de bônus das Cartas de Tarô para desbloquear todas as faixas de trilha sonora no menu de extras.', tip: null },
+      { id: 48, nome: 'Cinemática', desc: 'Desbloqueie todos os vídeos/filmes bônus.', tipo: 'prata', icon: '🎥', capitulo: 'Menu de bônus', how: 'Use os pontos de bônus das Cartas de Tarô para desbloquear todos os vídeos bônus no menu de extras.', tip: 'Colete o máximo de cartas possível para garantir pontos suficientes para os quatro troféus de bônus (Arte, Trilha, Vídeos e Obsessivo).' },
+      { id: 49, nome: 'Todos os Finais', desc: 'Veja todos os finais.', tipo: 'ouro', icon: '🎬', capitulo: 'Após ver os 3 finais', how: 'Desbloqueia automaticamente depois de ver "Um Futuro Brilhante", "Um Futuro Frio" e "Um Futuro Incerto" — não precisa assistir aos finais "ruins" adicionais, só esses três.', tip: 'Salve no mesmo perfil a cada replay do capítulo final para o jogo registrar os três.' },
+    ];
+
+    const TIPO_STYLE = {
+      platina:  { bg: 'rgba(233,230,251,0.16)', border: '#e9e6fb', label: 'PLATINA', text: '#ffffff', iconUrl: 'https://gamefaqs.gamespot.com/a/images/achievement/psn-4.png' },
+      ouro:     { bg: 'rgba(244,199,82,0.16)',  border: '#f4c752', label: 'OURO',    text: '#ffe4a0', iconUrl: 'https://gamefaqs.gamespot.com/a/images/achievement/psn-3.png' },
+      prata:    { bg: 'rgba(199,205,234,0.14)', border: '#c7cdea', label: 'PRATA',   text: '#eceffb', iconUrl: 'https://gamefaqs.gamespot.com/a/images/achievement/psn-2.png' },
+      bronze:   { bg: 'rgba(217,138,74,0.16)',  border: '#d98a4a', label: 'BRONZE',  text: '#f0b077', iconUrl: 'https://gamefaqs.gamespot.com/a/images/achievement/psn-1.png' },
+    };
+
+    // Trechos de atenção especial — não são perdíveis de verdade (há seleção de capítulo),
+    // mas exigem escolhas opostas em runs diferentes.
+    const ATENCAO_ESPECIAL = [
+      { titulo: '"A Via Menos Usada" (Difícil)', icon: '🥇', texto: 'Decisão que precisa ser tomada antes mesmo do Capítulo 1: escolha o modo Difícil já no menu inicial. Esse troféu de Ouro é relatado como instável quando obtido via seleção de capítulo fora de ordem — prefira uma campanha inteira jogada de forma contínua e genuína nessa dificuldade.' },
+      { titulo: '"Paredes Acolchoadas" ↔ "Não Há Escapatória"', icon: '🏥', texto: 'Desfechos opostos do estado mental de Lucas, moldados por escolhas desde os primeiros capítulos. Faça uma run levando a sanidade dele a "Destruído" (Paredes Acolchoadas) e outra mantendo-a estável (Não Há Escapatória).' },
+      { titulo: '"Em Busca de Temperaturas Mais Quentes" ↔ "Carma"', icon: '🌴', texto: 'Dois desfechos diferentes para o arco de Tyler, com setup já nos capítulos "O Assassinato"/"Investigação" e ligados a decisões distintas de Carla em cenas separadas mais à frente. Não dá pra garantir os dois na mesma sequência de escolhas sem revisitar cenas via seleção de capítulo.' },
+      { titulo: '"Obsessivo" (Cartas de Tarô)', icon: '🃏', texto: 'As Cartas de Tarô ficam espalhadas do início ao fim da campanha. Colete-as dentro de uma única run principal em vez de tentar reunir o conjunto completo espalhando a coleta entre sessões de seleção de capítulo.' },
+      { titulo: 'Os 3 Finais do Capítulo Final', icon: '🎬', texto: '"Um Futuro Brilhante", "Um Futuro Frio" e "Um Futuro Incerto" só podem ser vistos um de cada vez. Termine o jogo normalmente e depois refaça o capítulo final duas vezes via seleção de capítulo, escolhendo desfechos diferentes.' },
+      { titulo: '"Saideira" (carta bônus)', icon: '🎴', texto: 'É literalmente o último ponto de atenção do jogo: fácil de esquecer, pois a carta bônus só aparece disponível DEPOIS que os créditos finais rolarem pela primeira vez.' },
+    ];
+
+    // Localizações das Cartas de Tarô — cruzadas entre um guia detalhado da comunidade Steam
+    // (capítulo oficial, quantidade e valor em pontos de cada carta) e a fandom wiki do jogo.
+    // Números de capítulo entre colchetes = numeração interna oficial do jogo.
+    const TAROT_CARDS = [
+      { num: 1, capitulo: '[Cap. 2] "Investigação"', valor: 20, quem: 'Carla Valenti', local: 'Depois de passar pela ambulância e pelo semáforo com a caixa de coleta de correio (perto de um ponto de ônibus), a carta fica em frente a uma escada logo à frente.' },
+      { num: 2, capitulo: '[Cap. 3] "O Dia Seguinte"', valor: 10, quem: 'Lucas Kane', local: 'Na sacada do apartamento, do lado esquerdo, depois da cutscene com o corvo.' },
+      { num: 3, capitulo: '[Cap. 3] "O Dia Seguinte"', valor: 5, quem: 'Lucas Kane', local: 'Na cozinha, dentro do armário que abre com um puxão pra baixo — pegue antes que a contagem regressiva de outra cutscene comece.' },
+      { num: 4, capitulo: '[Cap. 4] "Confissão"', valor: 20, quem: 'Lucas Kane', local: 'Vire 90° à direita de frente pra estátua (sem se aproximar do Markus ainda) e siga pelo caminho curvo até o fim.' },
+      { num: 5, capitulo: '[Cap. 5] "Trabalho Policial"', valor: 10, quem: 'Carla Valenti', local: 'Entre pelo detector de metais da direita e siga até o canto superior direito da sala.' },
+      { num: 6, capitulo: '[Cap. 5] "Trabalho Policial"', valor: 5, quem: 'Carla Valenti', local: 'Na gaveta da própria mesa da Carla (sente-se e abra a gaveta antes de usar o telefone).' },
+      { num: 7, capitulo: '[Cap. 5] "Trabalho Policial"', valor: 10, quem: 'Tyler Miles', local: 'No banheiro do Tyler — vire 90° à direita ao entrar.' },
+      { num: 8, capitulo: '[Cap. 6] "Realidade Alternativa"', valor: 10, quem: 'Lucas Kane', local: 'Do lado oposto às pias e ao espelho, ao sair do boxe do banheiro.' },
+      { num: 9, capitulo: '[Cap. 6] "Realidade Alternativa"', valor: 5, quem: 'Lucas Kane', local: 'Na área de cubículos do escritório (use o minimapa no canto superior esquerdo — o ponto vermelho é onde NÃO ir ainda).' },
+      { num: 10, capitulo: '[Cap. 6] "Realidade Alternativa"', valor: 10, quem: 'Lucas Kane', local: 'Segunda carta na mesma área de cubículos, perto da primeira.' },
+      { num: 11, capitulo: '[Cap. 9] "Amor Perdido"', valor: 5, quem: 'Lucas Kane', local: 'No mesmo armário da cozinha usado antes no apartamento do Lucas.' },
+      { num: 12, capitulo: '[Cap. 10] "Esconde-Esconde"', valor: 5, quem: 'Lucas Kane', local: 'No fim de um caminho curto sem saída, logo depois do ponto inicial.' },
+      { num: 13, capitulo: '[Cap. 11] "Combate Amistoso"', valor: 10, quem: 'Carla Valenti / Tyler Miles', local: 'Atrás do ringue de boxe — pegue antes de começar o treino/luta.' },
+      { num: 14, capitulo: '[Cap. 13] "Prestação de Contas" (Carla)', valor: 10, quem: 'Carla Valenti', local: 'Bem ao lado de onde você começa a cena, quase impossível de não ver.' },
+      { num: 15, capitulo: '[Cap. 14] "Prestação de Contas" (Tyler)', valor: 20, quem: 'Tyler Miles', local: 'No canto à esquerda do Tyler, logo no início da cena.' },
+      { num: 16, capitulo: '[Cap. 14] "Prestação de Contas" (Tyler)', valor: 20, quem: 'Tyler Miles', local: 'Só aparece depois de entregar o livro certo pro Takeo (autor "De Gruttola", 3º andar, estantes brancas) — surge ao pé da escada de saída.' },
+      { num: 17, capitulo: '[Cap. 15] "Agatha"', valor: 5, quem: 'Lucas Kane', local: 'Girando no chão da cozinha da casa da Agatha.' },
+      { num: 18, capitulo: '[Cap. 15] "Agatha"', valor: 20, quem: 'Lucas Kane', local: 'Atrás da banheira de metal, no banheiro da Agatha (acesso pelo quarto dela).' },
+      { num: 19, capitulo: '[Cap. 19] "Mau Presságio"', valor: 10, quem: 'Carla Valenti', local: 'No canto perto de uma balança, atrás de alguns móveis, de frente pra banheira.' },
+      { num: 20, capitulo: '[Cap. 19] "Mau Presságio"', valor: 5, quem: 'Tyler Miles', local: 'Em cima de uma mesa, entre os dois pilares do meio e do fundo da sala.' },
+      { num: 21, capitulo: '[Cap. 20] "Cara a Cara"', valor: 10, quem: 'Lucas Kane', local: 'Na gaveta direita da própria mesa do Lucas — o capítulo já começa bem ali.' },
+      { num: 22, capitulo: '[Cap. 21] "De Volta a Agatha"', valor: 10, quem: 'Lucas Kane', local: 'No quarto da Agatha, seguindo o mesmo caminho da visita anterior.' },
+      { num: 23, capitulo: '[Cap. 22] "Feliz Aniversário"', valor: 20, quem: 'Carla Valenti', local: 'Na borda da mesa mais à direita, perto de duas máquinas de venda automática e caixas empilhadas.' },
+      { num: 24, capitulo: '[Cap. 28] "Sabão, Sangue e Pistas"', valor: 10, quem: 'Carla Valenti / Tyler Miles', local: 'Dentro de um cesto de roupa suja na lavanderia, girando junto com a roupa.' },
+      { num: 25, capitulo: '[Cap. 29] "A Fugitiva"', valor: 20, quem: 'Lucas Kane', local: 'Na calçada do outro lado da rua, perto de duas lixeiras e uma cerca — pegue ANTES de escalar a cerca, pois não dá pra voltar depois.' },
+      { num: 26, capitulo: '[Cap. 29] "A Fugitiva"', valor: 5, quem: 'Lucas Kane', local: 'No armário da cozinha do apartamento da Tiffany — pegue antes da TV ligar e ela voltar pra casa, ou fica inacessível.' },
+      { num: 27, capitulo: '[Cap. 30] "Janos"', valor: 10, quem: 'Carla Valenti', local: 'Num beco sem saída com cinco portas, seguindo reto desde o início da cena.' },
+      { num: 28, capitulo: '[Cap. 31] "Encontro com Kuriakin"', valor: 5, quem: 'Lucas Kane', local: 'Vire 90° à esquerda da entrada da exposição e siga até o canto perto de uma vitrine.' },
+      { num: 29, capitulo: '[Cap. 35] "Destino nas Colinas Russas"', valor: 20, quem: 'Lucas Kane', local: 'Vá até um mendigo perto do início, vire 90° à esquerda dele e siga reto.' },
+      { num: 30, capitulo: '[Cap. 42] "Onde Está Jade"', valor: 10, quem: 'Lucas Kane', local: 'Girando em cima do criado-mudo, no quarto com duas garotas sentadas nas camas (primeira porta à esquerda).' },
+      { num: 31, capitulo: '[Cap. 43] "Bogart"', valor: 20, quem: 'Lucas Kane', local: 'Em frente a um vagão de trem parado, virando à esquerda ao sair do elevador.' },
+      { num: 32, capitulo: 'Após os créditos finais', valor: 200, quem: '—', local: 'Ao ver os créditos rolarem pela primeira vez, o jogo libera automaticamente um bônus de 200 pontos (a mesma recompensa ligada ao troféu "Saideira").' },
+    ];
+
+    // ═══════════════════════════════════════════════
+    //  CAMINHOS — árvore de decisões interativa (capítulo "O Assassinato")
+    //  Todo identificador aqui usa o prefixo cm/CM_ pra nunca colidir com o
+    //  resto do script do guia (TROFEUS, ATENCAO_ESPECIAL, TAROT_CARDS etc.)
+    // ═══════════════════════════════════════════════
+    const CM_NARRATIVE_TREE = {
+      level1: [
+        {
+          id: "start",
+          title: "1. Banheiro",
+          text: "Lucas volta a si, em choque, no banheiro da lanchonete — acabou de cometer um assassinato.",
+          delta: 0,
+          options: [
+            { label: "Arrastar corpo p/ cabine", target: "corpo" },
+            { label: "Sair coberto de sangue", target: "sair_sujo" },
+            { label: "Olhar pela janela", target: "janela" }
+          ]
+        }
+      ],
+      level2: [
+        {
+          id: "corpo",
+          title: "2. Esconder Corpo",
+          text: "Corpo escondido dentro da cabine do banheiro. Contribui pro estado mental (sem troféu próprio).",
+          delta: 5,
+          options: [
+            { label: "Limpar o chão com esfregão", target: "mopa" },
+            { label: "Sair sem se limpar", target: "sair_sujo" }
+          ]
+        },
+        {
+          id: "janela",
+          title: "Olhar Janela",
+          text: "Lucas perde tempo e um pouco de estabilidade mental parado na janela.",
+          delta: -5,
+          options: [
+            { label: "Arrastar corpo", target: "corpo" }
+          ]
+        },
+        {
+          id: "sair_sujo",
+          title: "Sair Sujo de Sangue",
+          text: "Levanta a suspeita do policial que está na lanchonete.",
+          delta: -20,
+          options: [
+            { label: "Sair pela frente", target: "go_frente" },
+            { label: "Correr p/ fundos", target: "fuga_fundos" }
+          ]
+        }
+      ],
+      level3: [
+        {
+          id: "mopa",
+          title: "3. Limpar Sangue",
+          text: "Usa o esfregão para limpar a poça de sangue no chão. Contribui pro estado mental (sem troféu próprio).",
+          delta: 5,
+          options: [
+            { label: "Lavar rosto na pia", target: "pia_direita" }
+          ]
+        },
+        {
+          id: "go_frente",
+          title: "GAME OVER: Preso",
+          text: "O policial percebe a mancha de sangue assim que Lucas cruza a porta.",
+          type: "gameover",
+          delta: 0
+        },
+        {
+          id: "fuga_fundos",
+          title: "Fuga Imediata",
+          text: "Lucas foge sem deixar o corpo exposto, mas deixou pistas pelo caminho.",
+          type: "victory",
+          delta: 0
+        }
+      ],
+      level4: [
+        {
+          id: "pia_direita",
+          title: "4. Lavar Rosto",
+          text: "Lava o sangue do rosto na pia da direita. Contribui pro estado mental (sem troféu próprio).",
+          delta: 5,
+          options: [
+            { label: "Ocultar faca e pegar moeda", target: "faca_moeda" }
+          ]
+        }
+      ],
+      level5: [
+        {
+          id: "faca_moeda",
+          title: "5. Evidências & Moeda",
+          text: "Joga a faca na lixeira e recolhe a moeda da cabine telefônica. Onde a faca fica escondida é sorteado pelo jogo — isso é checado em \"Investigação\" (prepara 🔗 \"Intuição Feminina\"). Atenção: esconder a faca também TRAVA 🏆 \"Em Busca de Temperaturas Mais Quentes\" nesta run (esse troféu exige justamente NÃO escondê-la).",
+          delta: 10,
+          options: [
+            { label: "Ir para o salão", target: "salao" }
+          ]
+        }
+      ],
+      level6: [
+        {
+          id: "salao",
+          title: "6. Salão da Lanchonete",
+          text: "O policial toma café no balcão principal.",
+          delta: 0,
+          converge: true,
+          options: [
+            { label: "Tocar Jukebox (Usar Moeda)", target: "jukebox" },
+            { label: "Puxar assunto c/ Policial", target: "go_policial" },
+            { label: "Explorar riscos extras", target: "riscos_extras" },
+            { label: "Ficar parado demora demais", target: "go_tempo" }
+          ]
+        }
+      ],
+      level7: [
+        {
+          id: "go_policial",
+          title: "Papo Arriscado",
+          text: "Puxar assunto com o policial é arriscado, mas não te prende na hora — só te deixa mais perto do limite de sanidade.",
+          delta: -10,
+          options: [
+            { label: "Seguir para a jukebox", target: "jukebox" }
+          ]
+        },
+        {
+          id: "riscos_extras",
+          title: "Mais Riscos no Salão",
+          text: "Outras interações opcionais na área de mesas — todas arriscam a sanidade sem trazer nenhum ganho.",
+          delta: 0,
+          options: [
+            { label: "Ligar pro Markus no orelhão", target: "telefone" },
+            { label: "Falar c/ garçonete", target: "garconete" },
+            { label: "Falar c/ cliente perto do orelhão", target: "cliente_orelhao" },
+            { label: "Ir até o fundo do poço", target: "fundo_poco" }
+          ]
+        },
+        {
+          id: "go_tempo",
+          title: "GAME OVER: Descoberta",
+          text: "Lucas demora demais no salão. O policial vai até o banheiro, acha o corpo e nota o sangue na roupa dele antes que dê tempo de sair.",
+          type: "gameover",
+          delta: -10
+        }
+      ],
+      level8: [
+        {
+          id: "telefone",
+          title: "Orelhão dos Fundos",
+          text: "Lucas liga pro irmão, Markus, que não atende. Necessário pra preparar 🔗 \"Comer sem Pagar\" (só fecha lá na frente, em \"Feliz Aniversário!\", e só se você sair de TÁXI aqui).",
+          delta: -5,
+          options: [
+            { label: "Seguir para a jukebox", target: "jukebox" }
+          ]
+        },
+        {
+          id: "garconete",
+          title: "Conversa com a Garçonete",
+          text: "Puxar assunto à toa só deixa Lucas mais nervoso.",
+          delta: -5,
+          options: [
+            { label: "Seguir para a jukebox", target: "jukebox" }
+          ]
+        },
+        {
+          id: "cliente_orelhao",
+          title: "Cliente Perto do Orelhão",
+          text: "Conversa desnecessária com o cliente sentado perto do telefone.",
+          delta: -5,
+          options: [
+            { label: "Seguir para a jukebox", target: "jukebox" }
+          ]
+        },
+        {
+          id: "fundo_poco",
+          title: "Ir até o Fundo do Poço",
+          text: "Lucas acumula de propósito uma sequência de decisões ruins: olhar pela janela, falar com a garçonete, falar com o cliente, encarar o policial e tentar sair sem pagar a conta. Esse combo é pesado o bastante pra garantir \"Arrasado\" mesmo que você tenha feito a rota limpa antes.",
+          delta: -60,
+          options: [
+            { label: "Ver Lucas surtar", target: "paredes_acolchoadas" }
+          ]
+        }
+      ],
+      level9: [
+        {
+          id: "jukebox",
+          title: "7. Jukebox Tocando",
+          text: "Insere a moeda na jukebox pra tocar uma música e acalmar a mente. Contribui pro estado mental (sem troféu próprio).",
+          delta: 5,
+          converge: true,
+          options: [
+            { label: "Comer, beber café e pagar", target: "refeicao" }
+          ]
+        },
+        {
+          id: "paredes_acolchoadas",
+          title: "🏥 Lucas Surta",
+          text: "O estado mental de Lucas chega a \"Arrasado\" e ele tem um surto. A cena então mostra Lucas já internado no manicômio.",
+          type: "asylum",
+          trophy: "🏆 \"Paredes Acolchoadas\"",
+          delta: 0
+        }
+      ],
+      level10: [
+        {
+          id: "refeicao",
+          title: "8. Refeição & Pagamento",
+          text: "Come, bebe algo e paga a conta pra garçonete. Contribui pro estado mental (sem troféu próprio).",
+          delta: 15,
+          options: [
+            { label: "Sair p/ Metrô", target: "victory_metro" },
+            { label: "Sair p/ Táxi", target: "victory_taxi" }
+          ]
+        }
+      ],
+      level11: [
+        {
+          id: "victory_metro",
+          title: "ROTA: Metrô",
+          text: "Lucas foge da cena do crime pelo metrô — sem rastro pra polícia seguir. Atenção: essa saída TRAVA 🔗 \"Comer sem Pagar\" nesta run (ele exige sair de táxi).",
+          type: "victory",
+          trophy: "🏆 \"Trânsito Público\"",
+          delta: 10
+        },
+        {
+          id: "victory_taxi",
+          title: "ROTA: Táxi",
+          text: "Lucas foge de táxi — uma rota rastreável, mas sem punição imediata. Se você ligou pro Markus no orelhão antes de sair, essa rota mantém 🔗 \"Comer sem Pagar\" vivo (fecha lá em \"Feliz Aniversário!\").",
+          type: "victory",
+          delta: 10
+        }
+      ]
+    };
+
+    // Lista de capítulos pra navegação futura — só "O Assassinato" tem árvore
+    // implementada por enquanto. Pra ligar um novo capítulo: monte o bloco no
+    // CM_NARRATIVE_TREE, marque available:true aqui, e trate em cmSelectChapter().
+    const CM_CHAPTERS = [
+      { id: "murder", name: "1. O Assassinato", available: true },
+      { id: "investigacao", name: "2. Investigação", available: false },
+      { id: "dia_seguinte", name: "3. O Dia Seguinte", available: false },
+      { id: "confissao", name: "4. Confissão", available: false },
+      { id: "trabalho_policial", name: "5. Trabalho Policial", available: false },
+      { id: "realidade_alt", name: "6. Realidade Alternativa", available: false },
+      { id: "tyler_kate", name: "7. Tyler & Kate", available: false },
+      { id: "amor_perdido", name: "8. Amor Perdido", available: false },
+      { id: "esconde_esconde", name: "9. Esconde-Esconde", available: false },
+      { id: "combate_amistoso", name: "10. Combate Amistoso", available: false },
+      { id: "prestacao_carla", name: "11. Prestação de Contas (Carla)", available: false },
+      { id: "prestacao_tyler", name: "12. Prestação de Contas (Tyler)", available: false },
+      { id: "agatha", name: "13. Agatha", available: false },
+      { id: "mau_pressagio", name: "14. Mau Presságio", available: false },
+      { id: "cara_a_cara", name: "15. Cara a Cara", available: false },
+      { id: "volta_agatha", name: "16. De Volta a Agatha", available: false },
+      { id: "feliz_aniversario", name: "17. Feliz Aniversário!", available: false },
+      { id: "confronto", name: "18. Confronto", available: false },
+      { id: "fugitiva", name: "19. A Fugitiva", available: false },
+      { id: "janos", name: "20. Janos", available: false },
+      { id: "kuriakin", name: "21. Encontro com Kuriakin", available: false },
+      { id: "jade", name: "22. Onde Está Jade", available: false },
+      { id: "bogart", name: "23. Bogart", available: false },
+      { id: "final", name: "24. Capítulo Final", available: false }
+    ];
+
+    // ═══════════════════════════════════════════════
+    //  STATE
+    // ═══════════════════════════════════════════════
+    let filterType = 'all';
+    let openTrophy = null;
+
+    // ═══════════════════════════════════════════════
+    //  TABS
+    // ═══════════════════════════════════════════════
+    document.querySelectorAll('.tab-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab-btn').forEach((b) => b.classList.remove('active'));
+        document.querySelectorAll('.panel').forEach((p) => p.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById('panel-' + btn.dataset.tab).classList.add('active');
+      });
+    });
+
+    // ═══════════════════════════════════════════════
+    //  SNOWFALL (GPU-only, transform/opacity)
+    // ═══════════════════════════════════════════════
+    (function buildSnow() {
+      const layer = document.getElementById('snow-layer');
+      const frag = document.createDocumentFragment();
+      const count = window.innerWidth < 640 ? 18 : 32;
+      for (let i = 0; i < count; i++) {
+        const flake = document.createElement('div');
+        flake.className = 'snowflake';
+        const size = 2 + Math.random() * 3;
+        flake.style.width = size + 'px';
+        flake.style.height = size + 'px';
+        flake.style.left = Math.random() * 100 + '%';
+        flake.style.animationDuration = (8 + Math.random() * 12) + 's';
+        flake.style.animationDelay = (Math.random() * 12) + 's';
+        frag.appendChild(flake);
+      }
+      layer.appendChild(frag);
+    })();
+
+    // ═══════════════════════════════════════════════
+    //  DIFFICULTY BAR
+    // ═══════════════════════════════════════════════
+    (function buildDiffBar() {
+      const bar = document.getElementById('diff-bar');
+      const frag = document.createDocumentFragment();
+      for (let i = 0; i < 10; i++) {
+        const seg = document.createElement('div');
+        seg.className = 'diff-seg';
+        seg.style.background = i < 5 ? 'var(--indigo)' : 'var(--border)';
+        frag.appendChild(seg);
+      }
+      bar.appendChild(frag);
+    })();
+
+    // ═══════════════════════════════════════════════
+    //  TROPHIES (single DOM injection + event delegation)
+    // ═══════════════════════════════════════════════
+    (function buildTrophyFilters() {
+      const filters = document.getElementById('trophy-filters');
+      const counts = { all: TROFEUS.length };
+      TROFEUS.forEach((t) => (counts[t.tipo] = (counts[t.tipo] || 0) + 1));
+      const defs = [
+        { key: 'all', label: `TODOS (${counts.all})` },
+        { key: 'platina', label: `PLATINA (${counts.platina || 0})` },
+        { key: 'ouro', label: `OURO (${counts.ouro || 0})` },
+        { key: 'prata', label: `PRATA (${counts.prata || 0})` },
+        { key: 'bronze', label: `BRONZE (${counts.bronze || 0})` },
+      ];
+      const html = defs.map((d) =>
+        `<button class="trophy-filter${d.key === 'all' ? ' active' : ''}" data-filter="${d.key}">${d.label}</button>`
+      ).join('');
+      filters.innerHTML = html;
+
+      filters.addEventListener('click', (e) => {
+        const btn = e.target.closest('.trophy-filter');
+        if (!btn) return;
+        filterType = btn.dataset.filter;
+        filters.querySelectorAll('.trophy-filter').forEach((b) => b.classList.remove('active'));
+        btn.classList.add('active');
+        renderTrophies();
+      });
+    })();
+
+    function renderTrophies() {
+      const list = document.getElementById('trophy-list');
+      const filtered = filterType === 'all' ? TROFEUS : TROFEUS.filter((t) => t.tipo === filterType);
+
+      const html = filtered.map((t) => {
+        const ts = TIPO_STYLE[t.tipo] || TIPO_STYLE.bronze;
+        const isOpen = openTrophy === t.id;
+        return `
+      <div class="t-card">
+        <button class="t-header${isOpen ? ' open' : ''}" data-id="${t.id}"
+          style="${isOpen ? `background:${ts.border}14;border-color:${ts.border};` : ''}">
+          <span style="font-size:18px;flex-shrink:0;">${t.icon}</span>
+          <div style="flex:1;min-width:0;">
+            <div style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:2px;align-items:center;">
+              <img src="${ts.iconUrl}" alt="${ts.label}" width="16" height="16" style="display:inline-block;flex-shrink:0;" onerror="this.style.display='none';" />
+              <span class="t-badge" style="background:${ts.bg};border-color:${ts.border};color:${ts.text};">${ts.label}</span>
+              ${t.tip ? '<span class="t-attn-badge">ATENÇÃO</span>' : ''}
+            </div>
+            <div class="t-name" style="color:${ts.text};">${t.nome}</div>
+            <div class="t-sub">${t.desc}</div>
+          </div>
+          <span class="t-arrow">${isOpen ? '▲' : '▼'}</span>
+        </button>
+        <div class="t-body${isOpen ? ' open' : ''}" style="background:${ts.border}0a;border-color:${ts.border}25;">
+          <div class="t-chapter">📍 ${t.capitulo}</div>
+          <div class="t-how">${t.how}</div>
+          ${t.tip ? `<div class="t-tip">💡 ${t.tip}</div>` : ''}
+        </div>
+      </div>
+    `;
+      }).join('');
+      list.innerHTML = html;
+    }
+    renderTrophies();
+
+    document.getElementById('trophy-list').addEventListener('click', (e) => {
+      const hdr = e.target.closest('.t-header');
+      if (!hdr) return;
+      const id = Number(hdr.dataset.id);
+      openTrophy = openTrophy === id ? null : id;
+      renderTrophies();
+    });
+
+    // ═══════════════════════════════════════════════
+    //  ATENÇÃO ESPECIAL (aba Perdíveis)
+    // ═══════════════════════════════════════════════
+    (function renderAttn() {
+      const wrap = document.getElementById('attn-list');
+      const html = ATENCAO_ESPECIAL.map((a) => `
+        <div class="attn-card">
+          <div class="attn-title">${a.icon} ${a.titulo}</div>
+          <div class="attn-body">${a.texto}</div>
+        </div>
+      `).join('');
+      wrap.innerHTML = html;
+    })();
+
+    // ═══════════════════════════════════════════════
+    //  CARTAS DE TARÔ (aba Cartas de Tarô)
+    // ═══════════════════════════════════════════════
+    (function renderTarot() {
+      const wrap = document.getElementById('tarot-list');
+      const html = TAROT_CARDS.map((c) => `
+        <div class="tarot-card">
+          <div class="tarot-num">${c.num}</div>
+          <div style="flex:1;min-width:0;">
+            <div class="tarot-chapter">📍 ${c.capitulo} <span style="color:var(--gold-light);">· ${c.valor} pts</span></div>
+            <div class="tarot-who">${c.quem}</div>
+            ${c.local ? `<div class="tarot-loc">${c.local}</div>` : ''}
+          </div>
+        </div>
+      `).join('');
+      wrap.innerHTML = html;
+    })();
+
+    // ═══════════════════════════════════════════════
+    //  CAMINHOS — motor da árvore de decisões
+    // ═══════════════════════════════════════════════
+    let cmActivePath = ["start"];
+    let cmSelectedChapterId = "murder";
+    let cmPickerIndex = 0;
+    const CM_PICKER_VISIBLE = 3;
+    const CM_PICKER_ITEM_H = 26;
+    let cmPickerFlashTimeout = null;
+
+    let cmZoomLevel = 1;
+    const CM_ZOOM_MIN = 0.5;
+    const CM_ZOOM_MAX = 1.3;
+    const CM_WRECKED_THRESHOLD = 15;
+
+    // Aplica um novo nível de zoom mantendo o ponto (clientX, clientY) da tela
+    // fixo visualmente — é o que faz o zoom "seguir o cursor/dedos" em vez de
+    // sempre encolher/crescer a partir do canto superior esquerdo.
+    function cmZoomAt(newLevel, clientX, clientY) {
+      const workspace = document.getElementById("cm-workspace");
+      const container = document.getElementById("cm-nodes-container");
+      const clamped = Math.min(CM_ZOOM_MAX, Math.max(CM_ZOOM_MIN, newLevel));
+      if (clamped === cmZoomLevel) return;
+
+      const wsRect = workspace.getBoundingClientRect();
+      const mouseX = clientX - wsRect.left;
+      const mouseY = clientY - wsRect.top;
+
+      // Ponto do conteúdo (sem escala) que está embaixo do cursor/dedos agora
+      const contentX = (workspace.scrollLeft + mouseX) / cmZoomLevel;
+      const contentY = (workspace.scrollTop + mouseY) / cmZoomLevel;
+
+      cmZoomLevel = clamped;
+      container.style.transform = `scale(${cmZoomLevel})`;
+      document.getElementById("cm-zoom-val").textContent = `${Math.round(cmZoomLevel * 100)}%`;
+
+      // Reposiciona o scroll pra o mesmo ponto do conteúdo continuar embaixo do cursor/dedos
+      workspace.scrollLeft = contentX * cmZoomLevel - mouseX;
+      workspace.scrollTop = contentY * cmZoomLevel - mouseY;
+
+      setTimeout(cmDrawConnections, 160);
+    }
+
+    function cmZoomReset() {
+      const workspace = document.getElementById("cm-workspace");
+      const wsRect = workspace.getBoundingClientRect();
+      cmZoomAt(1, wsRect.left + wsRect.width / 2, wsRect.top + wsRect.height / 2);
+    }
+
+    // ── Zoom por roda do mouse (desktop) ──
+    function cmSetupWheelZoom() {
+      const workspace = document.getElementById("cm-workspace");
+      workspace.addEventListener("wheel", (e) => {
+        e.preventDefault();
+        const step = e.deltaY < 0 ? 0.08 : -0.08;
+        cmZoomAt(+(cmZoomLevel + step).toFixed(2), e.clientX, e.clientY);
+      }, { passive: false });
+    }
+
+    // ── Zoom por pinça (celular/tablet) ──
+    function cmSetupPinchZoom() {
+      const workspace = document.getElementById("cm-workspace");
+      let pinchStartDist = null;
+      let pinchStartLevel = 1;
+
+      function touchDistance(touches) {
+        const dx = touches[0].clientX - touches[1].clientX;
+        const dy = touches[0].clientY - touches[1].clientY;
+        return Math.sqrt(dx * dx + dy * dy);
+      }
+      function touchMidpoint(touches) {
+        return {
+          x: (touches[0].clientX + touches[1].clientX) / 2,
+          y: (touches[0].clientY + touches[1].clientY) / 2
+        };
+      }
+
+      workspace.addEventListener("touchstart", (e) => {
+        if (e.touches.length === 2) {
+          pinchStartDist = touchDistance(e.touches);
+          pinchStartLevel = cmZoomLevel;
+        }
+      }, { passive: true });
+
+      workspace.addEventListener("touchmove", (e) => {
+        if (e.touches.length === 2 && pinchStartDist) {
+          e.preventDefault();
+          const newDist = touchDistance(e.touches);
+          const ratio = newDist / pinchStartDist;
+          const mid = touchMidpoint(e.touches);
+          cmZoomAt(+(pinchStartLevel * ratio).toFixed(2), mid.x, mid.y);
+        }
+      }, { passive: false });
+
+      workspace.addEventListener("touchend", (e) => {
+        if (e.touches.length < 2) pinchStartDist = null;
+      }, { passive: true });
+    }
+
+    // ── Clicar e arrastar com o mouse no PC (mesmo efeito do dedo no celular) ──
+    // Usa Pointer Events filtrando pointerType "mouse" pra não conflitar com o
+    // toque/pinça no celular, que já rolam nativamente ou via cmSetupPinchZoom.
+    function cmSetupDragPan() {
+      const workspace = document.getElementById("cm-workspace");
+      const DRAG_THRESHOLD = 4;
+      let isDown = false;
+      let dragMoved = false;
+      let startX = 0, startY = 0, startScrollLeft = 0, startScrollTop = 0;
+
+      workspace.addEventListener("pointerdown", (e) => {
+        if (e.pointerType !== "mouse" || e.button !== 0) return;
+        isDown = true;
+        dragMoved = false;
+        startX = e.clientX;
+        startY = e.clientY;
+        startScrollLeft = workspace.scrollLeft;
+        startScrollTop = workspace.scrollTop;
+        workspace.classList.add("cm-grabbing");
+      });
+
+      window.addEventListener("pointermove", (e) => {
+        if (!isDown || e.pointerType !== "mouse") return;
+        const dx = e.clientX - startX;
+        const dy = e.clientY - startY;
+        if (!dragMoved && (Math.abs(dx) > DRAG_THRESHOLD || Math.abs(dy) > DRAG_THRESHOLD)) {
+          dragMoved = true;
+        }
+        if (dragMoved) {
+          workspace.scrollLeft = startScrollLeft - dx;
+          workspace.scrollTop = startScrollTop - dy;
+        }
+      });
+
+      window.addEventListener("pointerup", (e) => {
+        if (!isDown || e.pointerType !== "mouse") return;
+        isDown = false;
+        workspace.classList.remove("cm-grabbing");
+        if (dragMoved) {
+          // Suprime o clique que viria logo em seguida, pra não disparar sem
+          // querer um botão de opção que ficou embaixo do cursor no arraste.
+          const suppressNextClick = (evt) => {
+            evt.stopPropagation();
+            evt.preventDefault();
+          };
+          workspace.addEventListener("click", suppressNextClick, { capture: true, once: true });
+        }
+      });
+    }
+
+    function cmRenderPicker() {
+      const list = document.getElementById("cm-picker-list");
+      list.innerHTML = CM_CHAPTERS.map(ch => {
+        let cls = "cm-picker-item";
+        if (ch.id === cmSelectedChapterId) cls += " active-chapter";
+        if (!ch.available) cls += " locked-chapter";
+        return `<div class="${cls}" onclick="cmSelectChapter('${ch.id}')">${ch.name}</div>`;
+      }).join("");
+      list.style.transform = `translateY(-${cmPickerIndex * CM_PICKER_ITEM_H}px)`;
+
+      const upBtn = document.getElementById("cm-picker-up");
+      const downBtn = document.getElementById("cm-picker-down");
+      const maxIndex = CM_CHAPTERS.length - CM_PICKER_VISIBLE;
+      upBtn.classList.toggle("arrow-disabled", cmPickerIndex <= 0);
+      downBtn.classList.toggle("arrow-disabled", cmPickerIndex >= maxIndex);
+    }
+
+    function cmPickerScroll(dir) {
+      const maxIndex = CM_CHAPTERS.length - CM_PICKER_VISIBLE;
+      cmPickerIndex = Math.min(Math.max(cmPickerIndex + dir, 0), maxIndex);
+      cmRenderPicker();
+    }
+
+    function cmSelectChapter(id) {
+      const ch = CM_CHAPTERS.find(c => c.id === id);
+      if (!ch) return;
+      if (!ch.available) {
+        const flash = document.getElementById("cm-picker-flash");
+        flash.style.display = "block";
+        clearTimeout(cmPickerFlashTimeout);
+        cmPickerFlashTimeout = setTimeout(() => { flash.style.display = "none"; }, 1800);
+        return;
+      }
+      cmSelectedChapterId = id;
+      cmRenderPicker();
+      cmResetNarrative();
+    }
+
+    function cmCalculateSanity() {
+      let sanity = 50;
+      cmActivePath.forEach(id => {
+        const node = cmFindNodeById(id);
+        if (node && node.delta) sanity += node.delta;
+      });
+      return Math.min(Math.max(sanity, 0), 100);
+    }
+
+    // Sanidade acumulada até (e incluindo) o node no índice `uptoIndex` de cmActivePath.
+    // Usada pra colorir cada trecho da linha de acordo com o risco NAQUELE ponto da
+    // rota, não só um verde fixo do início ao fim.
+    function cmSanityAtIndex(uptoIndex) {
+      let sanity = 50;
+      for (let i = 0; i <= uptoIndex && i < cmActivePath.length; i++) {
+        const node = cmFindNodeById(cmActivePath[i]);
+        if (node && node.delta) sanity += node.delta;
+      }
+      return Math.min(Math.max(sanity, 0), 100);
+    }
+
+    // Verde (Tranquilo) → Amarelo (Mais ou menos) → Laranja (Perto do erro).
+    // Vermelho fica reservado pro desfecho de fato falho (game over/asylum),
+    // tratado à parte em cmDrawConnections.
+    function cmSanityTierClass(sanity) {
+      if (sanity >= 70) return "tier-green";
+      if (sanity >= 40) return "tier-yellow";
+      if (sanity >= 16) return "tier-orange";
+      return "tier-red";
+    }
+
+    function cmUpdateHUD() {
+      const currentSanity = cmCalculateSanity();
+      const fill = document.getElementById("cm-sanity-fill");
+      const val = document.getElementById("cm-sanity-val");
+      const wreckedTag = document.getElementById("cm-wrecked-tag");
+
+      fill.style.width = `${currentSanity}%`;
+      val.textContent = `${currentSanity}%`;
+
+      if (currentSanity >= 70) val.style.color = "var(--gold-light)";
+      else if (currentSanity >= 35) val.style.color = "var(--gold)";
+      else val.style.color = "var(--red)";
+
+      if (wreckedTag) {
+        wreckedTag.style.display = currentSanity <= CM_WRECKED_THRESHOLD ? "inline-block" : "none";
+      }
+    }
+
+    // Verifica se sourceId -> targetId é o PASSO EXATO dado no caminho ativo
+    // (não apenas se os dois ids aparecem em algum lugar do array, o que
+    // acenderia várias linhas ao mesmo tempo em nodes de convergência como a jukebox)
+    function cmIsEdgeActive(sourceId, targetId) {
+      for (let i = 0; i < cmActivePath.length - 1; i++) {
+        if (cmActivePath[i] === sourceId && cmActivePath[i + 1] === targetId) return true;
+      }
+      return false;
+    }
+
+    // Em nodes de convergência (várias rotas diferentes desembocam no mesmo lugar,
+    // ex: jukebox), avisa quais troféus a run atual ainda está perseguindo e quais
+    // já ficaram travados, com base no que foi escolhido até aqui em cmActivePath.
+    // Para replicar esse padrão em outro capítulo: marque o node de destino com
+    // `converge: true` e adicione as condições relevantes aqui.
+    function cmGetConvergenceNote(node) {
+      if (!node.converge) return null;
+
+      if (node.id === "jukebox") {
+        const seguindo = [];
+        const travados = [];
+
+        seguindo.push('🔗 "Intuição Feminina" (setup já garantido — resolve em "Investigação")');
+
+        if (cmActivePath.includes("telefone")) {
+          seguindo.push('🔗 "Comer sem Pagar" (lembre-se: precisa sair de TÁXI lá na frente)');
+        }
+
+        travados.push('🏆 "Em Busca de Temperaturas Mais Quentes" (exigia não esconder a faca)');
+
+        let html = `<div class="cm-convergence-note">`;
+        html += `<div class="cm-conv-title">📍 Ponto de Convergência</div>`;
+        if (seguindo.length) {
+          html += `<div class="cm-conv-row cm-conv-follow">Esse ponto segue a rota para: ${seguindo.join("; ")}. Fique atento.</div>`;
+        }
+        if (travados.length) {
+          html += `<div class="cm-conv-row cm-conv-locked">Já travado nesta run: ${travados.join("; ")}.</div>`;
+        }
+        html += `</div>`;
+        return html;
+      }
+
+      return null;
+    }
+
+    function cmRenderGraph() {
+      const container = document.getElementById("cm-nodes-container");
+      container.innerHTML = "";
+
+      Object.keys(CM_NARRATIVE_TREE).forEach((levelKey) => {
+        const column = document.createElement("div");
+        column.className = "cm-tree-column";
+
+        CM_NARRATIVE_TREE[levelKey].forEach(node => {
+          const isSelected = cmActivePath.includes(node.id);
+          const nodeIndex = cmActivePath.indexOf(node.id);
+          const hasDecisionBeenMade = nodeIndex !== -1 && nodeIndex < cmActivePath.length - 1;
+          const chosenTarget = hasDecisionBeenMade ? cmActivePath[nodeIndex + 1] : null;
+
+          const isGameOver = node.type === "gameover";
+          const isVictory = node.type === "victory";
+          const isAsylum = node.type === "asylum";
+
+          let statusClass = "";
+          if (isGameOver) statusClass = "gameover-node";
+          if (isVictory) statusClass = "victory-node";
+          if (isAsylum) statusClass = "asylum-node";
+
+          if (isSelected) statusClass += " selected";
+          else statusClass += " dimmed-node";
+
+          let sanityTag = "";
+          if (node.delta > 0) sanityTag = `<span class="cm-sanity-tag cm-tag-pos">+${node.delta}</span>`;
+          else if (node.delta < 0) sanityTag = `<span class="cm-sanity-tag cm-tag-neg">${node.delta}</span>`;
+          else sanityTag = `<span class="cm-sanity-tag cm-tag-neutral">0</span>`;
+
+          let trophyHTML = "";
+          if (node.trophy) {
+            trophyHTML = `<div class="cm-trophy-badge"><span>${node.trophy}</span></div>`;
+          }
+
+          const card = document.createElement("div");
+          card.className = `cm-node-card ${statusClass}`;
+          card.id = node.id;
+
+          let optionsHTML = "";
+          if (node.options && node.options.length > 0) {
+            optionsHTML = `<div class="cm-node-options">` +
+              node.options.map(opt => {
+                const isOptionChosen = chosenTarget === opt.target;
+                const isOptionLocked = !isSelected || (hasDecisionBeenMade && !isOptionChosen);
+
+                if (isOptionChosen) {
+                  return `
+                    <button class="cm-option-btn chosen"
+                            title="Clique para desativar e testar outras rotas de troféu"
+                            onclick="cmSelectBranch('${node.id}', '${opt.target}')">
+                      <span>${opt.label}</span>
+                      <span>✓</span>
+                    </button>`;
+                } else if (isOptionLocked) {
+                  return `
+                    <button class="cm-option-btn locked" disabled title="Desative a escolha ativa acima para reabrir este caminho">
+                      <span>${opt.label}</span>
+                      <span class="cm-lock-icon">🔒</span>
+                    </button>`;
+                } else {
+                  return `
+                    <button class="cm-option-btn"
+                            onclick="cmSelectBranch('${node.id}', '${opt.target}')">
+                      <span>${opt.label}</span>
+                      <span>➔</span>
+                    </button>`;
+                }
+              }).join("") +
+              `</div>`;
+          } else if (isGameOver) {
+            optionsHTML = `<div class="cm-status-msg gameover">❌ FIM DE JOGO</div>`;
+          } else if (isVictory) {
+            optionsHTML = `<div class="cm-status-msg victory">🏆 CONCLUÍDO</div>`;
+          } else if (isAsylum) {
+            optionsHTML = `<div class="cm-status-msg asylum">🏥 CONCLUÍDO</div>`;
+          }
+
+          card.innerHTML = `
+            <div class="cm-node-header">
+              <span class="cm-node-id">${node.id.toUpperCase()}</span>
+              ${sanityTag}
+            </div>
+            ${trophyHTML}
+            <div class="cm-node-title">${node.title}</div>
+            <div class="cm-node-text">${node.text}</div>
+            ${optionsHTML}
+          `;
+
+          column.appendChild(card);
+
+          if (isSelected) {
+            const noteHTML = cmGetConvergenceNote(node);
+            if (noteHTML) {
+              const noteWrap = document.createElement("div");
+              noteWrap.innerHTML = noteHTML;
+              column.appendChild(noteWrap.firstElementChild);
+            }
+          }
+        });
+
+        container.appendChild(column);
+      });
+
+      cmUpdateHUD();
+      setTimeout(cmDrawConnections, 50);
+    }
+
+    function cmSelectBranch(sourceId, targetId) {
+      const sourceIndex = cmActivePath.indexOf(sourceId);
+      if (sourceIndex !== -1) {
+        if (cmActivePath[sourceIndex + 1] === targetId) {
+          cmActivePath = cmActivePath.slice(0, sourceIndex + 1);
+        } else {
+          cmActivePath = cmActivePath.slice(0, sourceIndex + 1);
+          cmActivePath.push(targetId);
+        }
+      }
+      cmRenderGraph();
+    }
+
+    function cmResetNarrative() {
+      cmActivePath = ["start"];
+      cmRenderGraph();
+    }
+
+    function cmDrawConnections() {
+      const svg = document.getElementById("cm-svg-canvas");
+      const workspace = document.getElementById("cm-workspace");
+      if (!svg || !workspace) return;
+
+      svg.setAttribute("width", workspace.scrollWidth);
+      svg.setAttribute("height", workspace.scrollHeight);
+      svg.innerHTML = "";
+
+      Object.keys(CM_NARRATIVE_TREE).forEach(levelKey => {
+        CM_NARRATIVE_TREE[levelKey].forEach(node => {
+          if (!node.options) return;
+
+          const sourceEl = document.getElementById(node.id);
+          if (!sourceEl) return;
+
+          node.options.forEach(opt => {
+            const targetEl = document.getElementById(opt.target);
+            if (!targetEl) return;
+
+            const sourceRect = sourceEl.getBoundingClientRect();
+            const targetRect = targetEl.getBoundingClientRect();
+            const workspaceRect = workspace.getBoundingClientRect();
+
+            const x1 = sourceRect.right - workspaceRect.left + workspace.scrollLeft;
+            const y1 = sourceRect.top + (sourceRect.height / 2) - workspaceRect.top + workspace.scrollTop;
+            const x2 = targetRect.left - workspaceRect.left + workspace.scrollLeft;
+            const y2 = targetRect.top + (targetRect.height / 2) - workspaceRect.top + workspace.scrollTop;
+
+            const dx = (x2 - x1) * 0.5;
+            const pathData = `M ${x1} ${y1} C ${x1 + dx} ${y1}, ${x2 - dx} ${y2}, ${x2} ${y2}`;
+
+            const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+            path.setAttribute("d", pathData);
+
+            const isActivePath = cmIsEdgeActive(node.id, opt.target);
+
+            let pathClass = "cm-connection";
+            if (isActivePath) {
+              pathClass += " active";
+              const targetNodeObj = cmFindNodeById(opt.target);
+              if (targetNodeObj && (targetNodeObj.type === "gameover" || targetNodeObj.type === "victory" || targetNodeObj.type === "asylum")) {
+                // Desfecho definitivo: cor fixa por tipo (falhou = vermelho, venceu = dourado, surtou = roxo)
+                if (targetNodeObj.type === "gameover") pathClass += " gameover";
+                if (targetNodeObj.type === "victory") pathClass += " victory";
+                if (targetNodeObj.type === "asylum") pathClass += " asylum";
+              } else {
+                // Trecho ainda "em andamento": cor reflete o quão perto do limite
+                // a sanidade está NAQUELE ponto da rota — verde (tranquilo),
+                // amarelo (mais ou menos) ou laranja (perto do erro).
+                const targetIndex = cmActivePath.indexOf(opt.target);
+                const sanityHere = cmSanityAtIndex(targetIndex);
+                pathClass += " " + cmSanityTierClass(sanityHere);
+              }
+            }
+
+            path.setAttribute("class", pathClass);
+            svg.appendChild(path);
+          });
+        });
+      });
+    }
+
+    function cmFindNodeById(id) {
+      for (let level in CM_NARRATIVE_TREE) {
+        const found = CM_NARRATIVE_TREE[level].find(n => n.id === id);
+        if (found) return found;
+      }
+      return null;
+    }
+
+    window.addEventListener("resize", cmDrawConnections);
+    document.getElementById("cm-workspace").addEventListener("scroll", cmDrawConnections);
+
+    cmSetupWheelZoom();
+    cmSetupPinchZoom();
+    cmSetupDragPan();
+    cmRenderPicker();
+    cmRenderGraph();
+  </script>
+</body>
+</html>
