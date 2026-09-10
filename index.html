@@ -66,24 +66,6 @@
     font-display: swap;
     position: relative;
   }
-.wallpaper {
-  position: fixed;
-  inset: 0;
-  background:
-    linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,12)),
-    url("Images/Wallpaper.webp");
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  z-index: -1;
-}
-.hdr-logo {
-  display: block;
-  max-width: 320px;
-  width: 60%;
-  margin: 0 auto 4px;
-  filter: drop-shadow(0 0 20px rgba(0,224,96,0.53));
-}
 
   /* Snow / atmosphere layers */
   #atm-layer {
@@ -318,16 +300,25 @@
     cursor: pointer; letter-spacing: 0.5px;
   }
 
+  .cm-preset-bar { display: flex; gap: 6px; flex-wrap: wrap; }
+  .cm-btn-preset {
+    background: rgba(109, 60, 255, 0.15); border: 1px solid var(--indigo); color: var(--text);
+    padding: 4px 8px; border-radius: 4px; font-size: 0.63rem; font-weight: 700;
+    cursor: pointer; transition: all 0.2s ease;
+  }
+  .cm-btn-preset:active { background: var(--indigo); color: #fff; }
+  .cm-btn-preset.active-preset { background: var(--indigo); color: #fff; box-shadow: 0 0 8px rgba(109, 60, 255, 0.5); }
+
   .cm-chapter-picker {
-    position: absolute; top: 10px; left: 10px; z-index: 6; width: 210px;
-    display: flex; align-items: center; gap: 6px;
+    position: absolute; top: 10px; left: 10px; z-index: 6; width: 168px;
+    display: flex; flex-direction: column; gap: 2px;
     background: rgba(13, 21, 39, 0.95); backdrop-filter: blur(6px);
     padding: 6px 8px; border-radius: 6px; border: 1px solid var(--border);
     box-shadow: 0 4px 14px rgba(0, 0, 0, 0.7);
   }
-  .cm-picker-label { font-family: 'Bebas Neue', sans-serif; font-size: 0.6rem; color: var(--text-dim); letter-spacing: 0.5px; white-space: nowrap; writing-mode: vertical-rl; text-orientation: mixed; }
-  .cm-picker-body { display: flex; flex-direction: column; align-items: center; flex: 1; min-width: 0; }
-  .cm-picker-arrow { background: none; border: none; color: var(--cyan); font-size: 0.65rem; cursor: pointer; padding: 1px; line-height: 1; transition: opacity 0.15s; }
+  .cm-picker-label { font-family: 'Bebas Neue', sans-serif; font-size: 0.58rem; color: var(--text-dim); letter-spacing: 1px; white-space: nowrap; }
+  .cm-picker-body { display: flex; flex-direction: column; align-items: center; gap: 2px; width: 100%; }
+  .cm-picker-arrow { background: none; border: none; color: var(--cyan); font-size: 0.65rem; cursor: pointer; padding: 1px; line-height: 1; flex-shrink: 0; transition: opacity 0.15s; }
   .cm-picker-arrow.arrow-disabled { opacity: 0.18; pointer-events: none; }
   .cm-picker-viewport { width: 100%; height: 78px; overflow: hidden; }
   .cm-picker-list { display: flex; flex-direction: column; transition: transform 0.2s ease; }
@@ -367,7 +358,7 @@
     cursor: grab;
   }
   #cm-workspace.cm-grabbing { cursor: grabbing; }
-  svg#cm-svg-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; }
+  svg#cm-svg-canvas { position: absolute; top: 0; left: 0; pointer-events: none; z-index: 1; }
   path.cm-connection { stroke: var(--border); stroke-width: 2; fill: none; transition: stroke 0.3s; }
   path.cm-connection.active { stroke: var(--green); stroke-width: 2.5; filter: drop-shadow(0px 0px 3px var(--green)); }
   path.cm-connection.tier-green { stroke: var(--green); filter: drop-shadow(0px 0px 3px var(--green)); }
@@ -431,6 +422,26 @@
   .cm-conv-row.cm-conv-follow { color: var(--cyan-light); }
   .cm-conv-row.cm-conv-locked { color: var(--text-dim); }
 
+  .cm-conv-badge {
+    background: rgba(53, 208, 230, 0.15); border: 1px solid var(--cyan); color: var(--cyan-light);
+    width: 18px; height: 18px; border-radius: 50%; font-size: 0.6rem; line-height: 1;
+    cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0;
+  }
+
+  .cm-info-popup {
+    position: absolute; inset: 0; z-index: 20; background: rgba(5, 3, 12, 0.75);
+    display: flex; align-items: center; justify-content: center; padding: 20px;
+  }
+  .cm-popup-card {
+    position: relative; max-width: 260px; width: 100%; background: var(--bg-card);
+    border: 1px solid var(--cyan); border-radius: 10px; padding: 16px 14px;
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.85); font-size: 0.72rem; line-height: 1.5;
+  }
+  .cm-popup-close {
+    position: absolute; top: 6px; right: 6px; background: none; border: none;
+    color: var(--text-dim); font-size: 0.8rem; cursor: pointer; padding: 4px;
+  }
+
   .attn-list { margin-bottom: 10px; }
   .attn-card {
     background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 14px 16px;
@@ -481,8 +492,6 @@
 </style>
 </head>
 <body>
-  
-  <div class="wallpaper"></div>
   <div id="atm-layer"></div>
   <div id="grid-layer"></div>
   <div id="snow-layer"></div>
@@ -492,7 +501,8 @@
     <!-- HEADER -->
     <div class="hdr">
       <div class="hdr-studio">QUANTIC DREAM · AVENTURA NARRATIVA / QTE · 2005 (PS4: 2015)</div>
-      <img src="Images/Logo.webp" alt="Indigo Prophecy" class="hdr-logo">
+      <h1 class="hdr-title">INDIGO PROPHECY</h1>
+      <div class="hdr-title2">FAHRENHEIT</div>
       <div class="hdr-sub">GUIA DE PLATINA PT-BR</div>
       <div class="hdr-pills">
         <span class="pill" style="border-color: rgba(51,230,160,.5); color: var(--green)">TEM PLATINA</span>
@@ -655,6 +665,7 @@
             </div>
             <button class="cm-btn-reset" onclick="cmResetNarrative()">RESETAR</button>
           </div>
+          <div id="cm-preset-bar" class="cm-preset-bar"></div>
           <div class="cm-hud-panel">
             <div class="cm-sanity-meter">
               <span class="cm-sanity-label">SANIDADE</span>
@@ -682,6 +693,13 @@
           <div class="cm-zoom-controls">
             <span id="cm-zoom-val" class="cm-zoom-val">100%</span>
             <button class="cm-zoom-btn cm-zoom-reset" onclick="cmZoomReset()" aria-label="Resetar zoom">⟲</button>
+          </div>
+
+          <div id="cm-info-popup" class="cm-info-popup" style="display:none;" onclick="cmCloseConvergencePopup()">
+            <div class="cm-popup-card" onclick="event.stopPropagation()">
+              <button class="cm-popup-close" onclick="cmCloseConvergencePopup()" aria-label="Fechar">✕</button>
+              <div id="cm-popup-body"></div>
+            </div>
           </div>
         </div>
       </div>
@@ -867,11 +885,19 @@
           options: [
             { label: "Arrastar corpo p/ cabine", target: "corpo" },
             { label: "Sair coberto de sangue", target: "sair_sujo" },
-            { label: "Olhar pela janela", target: "janela" }
+            { label: "Olhar pela janela", target: "janela" },
+            { label: "Ficar parado sem fazer nada", target: "espera_banheiro" }
           ]
         }
       ],
       level2: [
+        {
+          id: "espera_banheiro",
+          title: "GAME OVER: Flagrado no Banheiro",
+          text: "Lucas fica parado tempo demais logo ali, sem esconder nada. O policial vem checar o banheiro e o encontra ainda ao lado do corpo.",
+          type: "gameover",
+          delta: 0
+        },
         {
           id: "corpo",
           title: "2. Esconder Corpo",
@@ -942,7 +968,7 @@
         {
           id: "faca_moeda",
           title: "5. Evidências & Moeda",
-          text: "Joga a faca na lixeira e recolhe a moeda da cabine telefônica. Onde a faca fica escondida é sorteado pelo jogo — isso é checado em \"Investigação\" (prepara 🔗 \"Intuição Feminina\"). Atenção: esconder a faca também TRAVA 🏆 \"Em Busca de Temperaturas Mais Quentes\" nesta run (esse troféu exige justamente NÃO escondê-la).",
+          text: "Joga a faca na lixeira (perto do mictório) e recolhe a moeda da cabine telefônica quebrada. Escondê-la assim faz o JOGO escolher sozinho, sem te mostrar, um esconderijo pra ela — pode ser a lixeira, a caixa de descarga do vaso da direita, atrás da janela, ou o vaso da cabine da esquerda (4 lugares possíveis; só uma dessas opções vale de cada vez). Isso é o que \"Investigação\" vai checar depois (prepara 🔗 \"Intuição Feminina\"). Atenção: esconder a faca também TRAVA 🏆 \"Em Busca de Temperaturas Mais Quentes\" nesta run (esse troféu exige justamente NÃO escondê-la — deixar a faca largada no chão).",
           delta: 10,
           options: [
             { label: "Ir para o salão", target: "salao" }
@@ -983,6 +1009,8 @@
             { label: "Ligar pro Markus no orelhão", target: "telefone" },
             { label: "Falar c/ garçonete", target: "garconete" },
             { label: "Falar c/ cliente perto do orelhão", target: "cliente_orelhao" },
+            { label: "Andar atrás do balcão", target: "atras_balcao" },
+            { label: "Tentar sair sem pagar a conta", target: "sem_pagar" },
             { label: "Ir até o fundo do poço", target: "fundo_poco" }
           ]
         },
@@ -1023,9 +1051,27 @@
           ]
         },
         {
+          id: "atras_balcao",
+          title: "Andar Atrás do Balcão",
+          text: "Área restrita da lanchonete — rondar por ali sem motivo chama atenção à toa.",
+          delta: -5,
+          options: [
+            { label: "Seguir para a jukebox", target: "jukebox" }
+          ]
+        },
+        {
+          id: "sem_pagar",
+          title: "Tentar Sair sem Pagar",
+          text: "Levantar da mesa sem pagar a conta é arriscado — mas se conseguir, não impede de sair, só custa sanidade.",
+          delta: -10,
+          options: [
+            { label: "Seguir para a jukebox", target: "jukebox" }
+          ]
+        },
+        {
           id: "fundo_poco",
           title: "Ir até o Fundo do Poço",
-          text: "Lucas acumula de propósito uma sequência de decisões ruins: olhar pela janela, falar com a garçonete, falar com o cliente, encarar o policial e tentar sair sem pagar a conta. Esse combo é pesado o bastante pra garantir \"Arrasado\" mesmo que você tenha feito a rota limpa antes.",
+          text: "Lucas acumula de propósito a lista completa de decisões ruins confirmada nas fontes: olhar pela janela, falar com a garçonete, falar com o cliente perto do orelhão, andar atrás do balcão, ligar pro Markus, encarar o policial e tentar sair sem pagar a conta. Esse combo é pesado o bastante pra garantir \"Arrasado\" mesmo que você tenha feito a rota limpa antes — não é uma sequência obrigatória específica, é a soma que importa.",
           delta: -60,
           options: [
             { label: "Ver Lucas surtar", target: "paredes_acolchoadas" }
@@ -1060,7 +1106,8 @@
           delta: 15,
           options: [
             { label: "Sair p/ Metrô", target: "victory_metro" },
-            { label: "Sair p/ Táxi", target: "victory_taxi" }
+            { label: "Sair p/ Táxi", target: "victory_taxi" },
+            { label: "Sair e ficar zanzando na rua", target: "patrulha_rua" }
           ]
         }
       ],
@@ -1079,17 +1126,524 @@
           text: "Lucas foge de táxi — uma rota rastreável, mas sem punição imediata. Se você ligou pro Markus no orelhão antes de sair, essa rota mantém 🔗 \"Comer sem Pagar\" vivo (fecha lá em \"Feliz Aniversário!\").",
           type: "victory",
           delta: 10
+        },
+        {
+          id: "patrulha_rua",
+          title: "GAME OVER: Patrulha",
+          text: "Lucas consegue sair da lanchonete, mas fica andando sem rumo pela rua em vez de pegar metrô ou táxi na hora. Uma viatura de patrulha passa, pede identificação, e é o fim da linha.",
+          type: "gameover",
+          delta: 0
         }
       ]
     };
 
-    // Lista de capítulos pra navegação futura — só "O Assassinato" tem árvore
-    // implementada por enquanto. Pra ligar um novo capítulo: monte o bloco no
-    // CM_NARRATIVE_TREE, marque available:true aqui, e trate em cmSelectChapter().
+    // ─── Capítulo 2: Investigação ───
+    // Carla e Tyler chegam à lanchonete no dia seguinte pra investigar a cena
+    // do crime. A localização da faca aqui depende de "O Assassinato": se
+    // Lucas a escondeu, ela reaparece sorteada em outro lugar do banheiro; se
+    // não escondeu, ela fica largada no chão perto da cabine da esquerda.
+    const CM_TREE_INVESTIGACAO = {
+      level1: [
+        {
+          id: "start",
+          title: "1. Chegada dos Detetives",
+          text: "Carla e Tyler chegam à lanchonete no dia seguinte pra investigar a cena do crime.",
+          delta: 0,
+          options: [
+            { label: "Conversar com o oficial Martin", target: "oficial" }
+          ]
+        }
+      ],
+      level2: [
+        {
+          id: "oficial",
+          title: "Conversa com o Policial",
+          text: "Martin põe Carla a par do caso e sugere que ela vá com calma com a garçonete, que ainda está em choque.",
+          delta: 0,
+          options: [
+            { label: "Ir falar com a garçonete", target: "garconete_inv" }
+          ]
+        }
+      ],
+      level3: [
+        {
+          id: "garconete_inv",
+          title: "Depoimento da Garçonete",
+          text: "Carla senta de frente pra ela e ouve o depoimento com calma, sem pressionar — o jeito mais sensato de tratar uma testemunha ainda abalada.",
+          delta: 5,
+          options: [
+            { label: "Falar com os outros dois policiais", target: "policiais_balcao" }
+          ]
+        }
+      ],
+      level4: [
+        {
+          id: "policiais_balcao",
+          title: "Papo com os Policiais do Balcão",
+          text: "Puxar assunto com os dois policiais no balcão rende um contexto extra sobre o caso.",
+          delta: 5,
+          options: [
+            { label: "Checar o orelhão dos fundos", target: "orelhao_inv" },
+            { label: "Ir direto pro banheiro", target: "banheiro_entrada" }
+          ]
+        }
+      ],
+      level5: [
+        {
+          id: "orelhao_inv",
+          title: "Orelhão dos Fundos",
+          text: "Como Tyler, dá pra usar o orelhão pra ligar pra namorada dele, Sam, e aliviar um pouco a cabeça antes de entrar no banheiro.",
+          delta: 5,
+          options: [
+            { label: "Ir pro banheiro", target: "banheiro_entrada" }
+          ]
+        }
+      ],
+      level6: [
+        {
+          id: "banheiro_entrada",
+          title: "6. Vasculhando o Banheiro",
+          text: "Carla e Tyler entram juntos pra examinar a cena do crime com mais calma.",
+          delta: 0,
+          converge: true,
+          options: [
+            { label: "Carla examina a cabine da esquerda", target: "carla_faca" },
+            { label: "Deixar Tyler assumir a busca", target: "tyler_faca" },
+            { label: "Usar o mictório à toa", target: "mictorio" }
+          ]
+        }
+      ],
+      level7: [
+        {
+          id: "carla_faca",
+          title: "Carla Acha a Faca",
+          text: "Vasculhando o sangue no chão perto da cabine da esquerda, Carla encontra a faca — se foi aqui que ela reapareceu depois de \"O Assassinato\". Achar a arma sendo ELA quem procura é a condição-chave pro troféu 🏆 \"Intuição Feminina\".",
+          delta: 10,
+          options: [
+            { label: "Sair do banheiro", target: "sangue_fora" }
+          ]
+        },
+        {
+          id: "tyler_faca",
+          title: "Tyler Assume a Busca",
+          text: "Tyler acaba sendo quem encontra a faca (na lixeira ou na caixa de descarga da cabine da direita, dependendo de onde ela foi parar). Rende um bom ponto de sanidade, mas como não foi Carla quem achou, essa run perde a chance de fechar 🏆 \"Intuição Feminina\" por aqui.",
+          delta: 10,
+          options: [
+            { label: "Sair do banheiro", target: "sangue_fora" }
+          ]
+        },
+        {
+          id: "mictorio",
+          title: "Usar o Mictório à Toa",
+          text: "Não ajuda em nada a investigação e só deixa Carla sem graça na frente do Tyler.",
+          delta: -10,
+          options: [
+            { label: "Sair do banheiro", target: "sangue_fora" }
+          ]
+        }
+      ],
+      level8: [
+        {
+          id: "sangue_fora",
+          title: "Pegada de Sangue lá Fora",
+          text: "Do lado de fora, perto da entrada, dá pra examinar uma pegada de sangue na calçada — a segunda metade da condição de 🏆 \"Intuição Feminina\", que só fecha se Carla também tiver sido quem achou a faca lá dentro.",
+          delta: 5,
+          converge: true,
+          options: [
+            { label: "Examinar a mesa onde Lucas estava sentado", target: "mesa_lucas" }
+          ]
+        }
+      ],
+      level9: [
+        {
+          id: "mesa_lucas",
+          title: "Mesa do Lucas",
+          text: "Debaixo da mesa onde Lucas estava sentado, aparece um livro: \"A Tempestade\", de Shakespeare. É esse achado que abre caminho pro troféu 🔗 \"Lendo nas Entrelinhas\" — mas ele só fecha de verdade mais pra frente, em \"Feliz Aniversário!\".",
+          delta: 10,
+          options: [
+            { label: "Tomar um café no balcão", target: "cafe_balcao" },
+            { label: "Ir até os fundos falar com o morador de rua", target: "morador_rua" }
+          ]
+        }
+      ],
+      level10: [
+        {
+          id: "cafe_balcao",
+          title: "Café no Balcão",
+          text: "Uma pausa pra tomar café ajuda tanto Carla quanto Tyler a lidar melhor com a cena.",
+          delta: 5,
+          options: [
+            { label: "Ligar a jukebox", target: "jukebox_inv" },
+            { label: "Ir embora direto", target: "saida_inv" }
+          ]
+        },
+        {
+          id: "morador_rua",
+          title: "Morador de Rua nos Fundos",
+          text: "Puxar assunto com o morador de rua que dorme perto da saída dos fundos não rende nada de útil pra investigação, só desgasta a paciência de todo mundo.",
+          delta: -10,
+          options: [
+            { label: "Ir embora", target: "saida_inv" }
+          ]
+        }
+      ],
+      level11: [
+        {
+          id: "jukebox_inv",
+          title: "Ligar a Jukebox",
+          text: "Diferente de \"O Assassinato\", ligar a jukebox aqui é fora de hora — é cena de investigação, não hora de música.",
+          delta: -10,
+          options: [
+            { label: "Ir embora", target: "saida_inv" }
+          ]
+        }
+      ],
+      level12: [
+        {
+          id: "saida_inv",
+          title: "Volta pro Carro",
+          text: "Carla e Tyler encerram a investigação na lanchonete e voltam pro carro, prontos pro próximo passo do caso.",
+          type: "victory",
+          delta: 10
+        }
+      ]
+    };
+
+    // ─── Capítulo 3: O Dia Seguinte ───
+    // Lucas acorda no próprio apartamento com o corpo dolorido, uma dor de
+    // cabeça e evidências (lençol e camisa manchados) que precisam sumir
+    // antes que o policial que bateu na porta ao lado desconfie de algo.
+    const CM_TREE_DIA_SEGUINTE = {
+      level1: [
+        {
+          id: "start",
+          title: "1. Quarto de Lucas",
+          text: "Lucas acorda no próprio apartamento, dolorido, com uma dor de cabeça latente — e o lençol da cama manchado de sangue.",
+          delta: 0,
+          options: [
+            { label: "Tomar só o remédio", target: "tomar_remedio" },
+            { label: "Beber só o álcool da cozinha", target: "beber_alcool" },
+            { label: "Misturar remédio e álcool", target: "misturar" },
+            { label: "Ignorar os dois", target: "ignorar_ambos" }
+          ]
+        }
+      ],
+      level2: [
+        {
+          id: "tomar_remedio",
+          title: "Tomar o Remédio",
+          text: "O remédio na mesinha ao lado da cama alivia a dor de cabeça de Lucas.",
+          delta: 10,
+          options: [
+            { label: "Seguir pro resto do quarto", target: "quarto" }
+          ]
+        },
+        {
+          id: "beber_alcool",
+          title: "Beber Álcool",
+          text: "Um gole da garrafa na prateleira da cozinha — alivia por fora, mas mexe com o estado mental.",
+          delta: -20,
+          options: [
+            { label: "Seguir pro resto do quarto", target: "quarto" }
+          ]
+        },
+        {
+          id: "misturar",
+          title: "GAME OVER: Overdose",
+          text: "Remédio e álcool juntos — Lucas passa muito mal e desmaia. Essa combinação nunca deve ser feita ao mesmo tempo.",
+          type: "gameover",
+          delta: 0
+        },
+        {
+          id: "ignorar_ambos",
+          title: "Ignorar os Dois",
+          text: "Lucas segue sem remédio nem álcool — a dor de cabeça vai voltar mais forte quando o policial bater na porta.",
+          delta: 0,
+          options: [
+            { label: "Seguir pro resto do quarto", target: "dor_cabeca" }
+          ]
+        }
+      ],
+      level3: [
+        {
+          id: "dor_cabeca",
+          title: "Dor de Cabeça Atrasada",
+          text: "Sem o remédio, a dor de cabeça bate justamente na hora que o policial chega, atrapalhando Lucas.",
+          delta: -10,
+          options: [
+            { label: "Seguir pro resto do quarto", target: "quarto" }
+          ]
+        }
+      ],
+      level4: [
+        {
+          id: "quarto",
+          title: "2. Resto do Quarto",
+          text: "Além do remédio/álcool, o lençol manchado de sangue precisa ser tratado antes que alguém veja.",
+          delta: 0,
+          converge: true,
+          options: [
+            { label: "Cobrir o lençol com o cobertor", target: "cobrir_lencol" },
+            { label: "Deixar o lençol exposto", target: "deixar_lencol" }
+          ]
+        }
+      ],
+      level5: [
+        {
+          id: "cobrir_lencol",
+          title: "Cobrir o Lençol",
+          text: "Lucas puxa o cobertor por cima do lençol manchado — rota mais segura, não sobra nada pro policial encontrar depois.",
+          delta: 5,
+          options: [
+            { label: "Atender o telefone", target: "telefone" }
+          ]
+        },
+        {
+          id: "deixar_lencol",
+          title: "Deixar o Lençol Exposto",
+          text: "Lucas não se importa em esconder o lençol agora — vai ter que se virar de outro jeito quando o policial quiser entrar no quarto mais tarde.",
+          delta: 0,
+          options: [
+            { label: "Atender o telefone", target: "telefone" }
+          ]
+        }
+      ],
+      level6: [
+        {
+          id: "telefone",
+          title: "3. Telefone Toca",
+          text: "Markus liga perguntando se Lucas está bem depois da noite passada.",
+          delta: 5,
+          options: [
+            { label: "Ir pra cozinha", target: "cozinha" }
+          ]
+        }
+      ],
+      level7: [
+        {
+          id: "cozinha",
+          title: "4. Cozinha",
+          text: "Lucas bebe um copo de leite da geladeira e água da pia — o armário acima da pia também guarda uma carta de tarô.",
+          delta: 10,
+          options: [
+            { label: "Ir até a varanda", target: "varanda" }
+          ]
+        }
+      ],
+      level8: [
+        {
+          id: "varanda",
+          title: "5. Varanda",
+          text: "Lucas espanta um corvo pousado na varanda — tem outra carta de tarô caída no chão à esquerda. Ficar tempo demais aqui parado, porém, mexe com a cabeça dele.",
+          delta: 0,
+          options: [
+            { label: "Assistir TV na sala", target: "assistir_tv" },
+            { label: "Ligar o rádio", target: "ligar_radio" }
+          ]
+        }
+      ],
+      level9: [
+        {
+          id: "assistir_tv",
+          title: "Assistir TV",
+          text: "Passar tempo assistindo TV só deixa Lucas mais ansioso, sem necessidade nenhuma.",
+          delta: -10,
+          options: [
+            { label: "Pegar a camisa suja", target: "camisa" }
+          ]
+        },
+        {
+          id: "ligar_radio",
+          title: "Ligar o Rádio",
+          text: "Uma música ajuda a acalmar os nervos de Lucas.",
+          delta: 5,
+          options: [
+            { label: "Pegar a camisa suja", target: "camisa" }
+          ]
+        }
+      ],
+      level10: [
+        {
+          id: "camisa",
+          title: "6. Esconder a Camisa",
+          text: "A camisa manchada de sangue, largada perto do pilar, precisa ir pra máquina de lavar — passo OBRIGATÓRIO. Deixá-la à vista é motivo automático de prisão quando o policial entrar.",
+          delta: 5,
+          options: [
+            { label: "Usar o banheiro", target: "mictorio" }
+          ]
+        }
+      ],
+      level11: [
+        {
+          id: "mictorio",
+          title: "Banheiro",
+          text: "Uma parada rápida no banheiro antes de continuar.",
+          delta: 5,
+          options: [
+            { label: "Pegar a chave da porta", target: "chave" }
+          ]
+        }
+      ],
+      level12: [
+        {
+          id: "chave",
+          title: "7. Pegar a Chave",
+          text: "A chave na mesinha perto da cozinha é OBRIGATÓRIA — sem ela não dá pra deixar o policial entrar nem sair do apartamento depois.",
+          delta: 0,
+          options: [
+            { label: "Esperar na sala", target: "espera_policial" }
+          ]
+        }
+      ],
+      level13: [
+        {
+          id: "espera_policial",
+          title: "8. Esperando na Sala",
+          text: "Uma batida na porta — é a polícia, vindo checar um grito que os vizinhos relataram ter ouvido durante a noite.",
+          delta: 0,
+          converge: true,
+          options: [
+            { label: "Abrir a porta a tempo", target: "abrir_a_tempo" },
+            { label: "Demorar demais pra abrir", target: "demorar_abrir" }
+          ]
+        }
+      ],
+      level14: [
+        {
+          id: "abrir_a_tempo",
+          title: "Abrir a Porta a Tempo",
+          text: "Lucas atende antes que o tempo se esgote.",
+          delta: 0,
+          options: [
+            { label: "Tomar banho", target: "banho" }
+          ]
+        },
+        {
+          id: "demorar_abrir",
+          title: "GAME OVER: Tempo Esgotado",
+          text: "Lucas demora demais pra abrir a porta — o tempo se esgota e o policial força a entrada.",
+          type: "gameover",
+          delta: 0
+        }
+      ],
+      level15: [
+        {
+          id: "banho",
+          title: "Tomar Banho",
+          text: "Um banho rápido — passo OBRIGATÓRIO antes de conseguir usar as bandagens.",
+          delta: 0,
+          options: [
+            { label: "Passar bandagem nos ferimentos", target: "bandagem" }
+          ]
+        }
+      ],
+      level16: [
+        {
+          id: "bandagem",
+          title: "Passar Bandagem",
+          text: "As bandagens no armário acima da pia do banheiro cuidam dos ferimentos de Lucas — passo OBRIGATÓRIO antes de se vestir.",
+          delta: 10,
+          options: [
+            { label: "Se vestir", target: "vestir" }
+          ]
+        }
+      ],
+      level17: [
+        {
+          id: "vestir",
+          title: "Se Vestir",
+          text: "Lucas se veste no closet do quarto — passo OBRIGATÓRIO antes de deixar o policial entrar.",
+          delta: 0,
+          options: [
+            { label: "Deixar o policial entrar", target: "deixar_policial_entrar" }
+          ]
+        }
+      ],
+      level18: [
+        {
+          id: "deixar_policial_entrar",
+          title: "9. Policial na Porta",
+          text: "Com a chave em mãos, Lucas finalmente abre a porta pro policial, que começa a fazer perguntas sobre o grito relatado.",
+          delta: 0,
+          options: [
+            { label: "Responder com calma", target: "resposta_calma" },
+            { label: "Negar tudo e ser hostil", target: "resposta_hostil" }
+          ]
+        }
+      ],
+      level19: [
+        {
+          id: "resposta_calma",
+          title: "Responder com Calma",
+          text: "Lucas admite que o grito foi dele mesmo (um pesadelo) e concorda em deixar o policial dar uma olhada — mantém a desconfiança baixa.",
+          delta: 0,
+          options: [
+            { label: "Deixar o policial revistar o quarto", target: "revista_quarto" }
+          ]
+        },
+        {
+          id: "resposta_hostil",
+          title: "GAME OVER: Desconfiança Alta",
+          text: "Lucas nega o grito e ainda tenta impedir a revista completamente — a desconfiança do policial dispara e ele força a entrada.",
+          type: "gameover",
+          delta: 0
+        }
+      ],
+      level20: [
+        {
+          id: "revista_quarto",
+          title: "10. Revista do Quarto",
+          text: "O policial quer checar o quarto. Se o lençol foi coberto lá atrás, não há nada a esconder. Se ficou exposto, é preciso convencê-lo a não entrar (desculpa de bagunça ou mandado) numa sequência de ação.",
+          delta: 0,
+          converge: true,
+          options: [
+            { label: "Policial sai satisfeito", target: "policial_sai" },
+            { label: "Falhar em convencer o policial", target: "falha_esconder_quarto" }
+          ]
+        }
+      ],
+      level21: [
+        {
+          id: "policial_sai",
+          title: "Policial Vai Embora",
+          text: "Convencido de que está tudo bem, o policial se despede e sai do apartamento.",
+          delta: 10,
+          options: [
+            { label: "Sair do apartamento pra encontrar Markus", target: "saida_apartamento" }
+          ]
+        },
+        {
+          id: "falha_esconder_quarto",
+          title: "GAME OVER: Lençol Encontrado",
+          text: "O policial entra no quarto e encontra o lençol manchado de sangue — fim de jogo.",
+          type: "gameover",
+          delta: 0
+        }
+      ],
+      level22: [
+        {
+          id: "saida_apartamento",
+          title: "Saída do Apartamento",
+          text: "Com o policial satisfeito e tudo escondido a tempo, Lucas se veste e sai pra encontrar Markus no parque.",
+          type: "victory",
+          delta: 10
+        }
+      ]
+    };
+
+    const CM_TREES = {
+      murder: CM_NARRATIVE_TREE,
+      investigacao: CM_TREE_INVESTIGACAO,
+      dia_seguinte: CM_TREE_DIA_SEGUINTE
+    };
+
+    // Lista de capítulos pra navegação futura — cada um com available:true tem
+    // sua árvore correspondente dentro de CM_TREES. Pra ligar um novo capítulo:
+    // monte o bloco (padrão acima), registre em CM_TREES e marque available:true.
     const CM_CHAPTERS = [
       { id: "murder", name: "1. O Assassinato", available: true },
-      { id: "investigacao", name: "2. Investigação", available: false },
-      { id: "dia_seguinte", name: "3. O Dia Seguinte", available: false },
+      { id: "investigacao", name: "2. Investigação", available: true },
+      { id: "dia_seguinte", name: "3. O Dia Seguinte", available: true },
       { id: "confissao", name: "4. Confissão", available: false },
       { id: "trabalho_policial", name: "5. Trabalho Policial", available: false },
       { id: "realidade_alt", name: "6. Realidade Alternativa", available: false },
@@ -1274,8 +1828,31 @@
     // ═══════════════════════════════════════════════
     //  CAMINHOS — motor da árvore de decisões
     // ═══════════════════════════════════════════════
-    let cmActivePath = ["start"];
+    const CM_STORAGE_PREFIX = "guia-indigoprophecy-caminhos-";
+
+    // Lê o progresso salvo de um capítulo específico. Se nunca foi jogado
+    // (ou o navegador bloqueou localStorage), volta pro início normalmente.
+    function cmLoadPath(chapterId) {
+      try {
+        const raw = localStorage.getItem(CM_STORAGE_PREFIX + chapterId);
+        if (!raw) return ["start"];
+        const parsed = JSON.parse(raw);
+        return Array.isArray(parsed) && parsed.length ? parsed : ["start"];
+      } catch {
+        return ["start"];
+      }
+    }
+
+    // Salva o progresso do capítulo atual — chamado toda vez que o caminho
+    // muda, pra pessoa poder sair e voltar sem perder onde estava.
+    function cmSavePath() {
+      try {
+        localStorage.setItem(CM_STORAGE_PREFIX + cmSelectedChapterId, JSON.stringify(cmActivePath));
+      } catch { /* localStorage indisponível — segue sem salvar */ }
+    }
+
     let cmSelectedChapterId = "murder";
+    let cmActivePath = cmLoadPath(cmSelectedChapterId);
     let cmPickerIndex = 0;
     const CM_PICKER_VISIBLE = 3;
     const CM_PICKER_ITEM_H = 26;
@@ -1375,15 +1952,16 @@
     // toque/pinça no celular, que já rolam nativamente ou via cmSetupPinchZoom.
     function cmSetupDragPan() {
       const workspace = document.getElementById("cm-workspace");
-      const DRAG_THRESHOLD = 4;
+      const DRAG_SPEED = 1.5; // mesmo multiplicador do projeto de referência — deixa o arraste mais solto
       let isDown = false;
-      let dragMoved = false;
       let startX = 0, startY = 0, startScrollLeft = 0, startScrollTop = 0;
 
       workspace.addEventListener("pointerdown", (e) => {
         if (e.pointerType !== "mouse" || e.button !== 0) return;
+        // Não inicia arraste em cima de um card ou botão — assim o clique
+        // deles sempre funciona normal, sem precisar suprimir nada depois.
+        if (e.target.closest(".cm-node-card") || e.target.closest("button")) return;
         isDown = true;
-        dragMoved = false;
         startX = e.clientX;
         startY = e.clientY;
         startScrollLeft = workspace.scrollLeft;
@@ -1393,30 +1971,16 @@
 
       window.addEventListener("pointermove", (e) => {
         if (!isDown || e.pointerType !== "mouse") return;
-        const dx = e.clientX - startX;
-        const dy = e.clientY - startY;
-        if (!dragMoved && (Math.abs(dx) > DRAG_THRESHOLD || Math.abs(dy) > DRAG_THRESHOLD)) {
-          dragMoved = true;
-        }
-        if (dragMoved) {
-          workspace.scrollLeft = startScrollLeft - dx;
-          workspace.scrollTop = startScrollTop - dy;
-        }
+        const dx = (e.clientX - startX) * DRAG_SPEED;
+        const dy = (e.clientY - startY) * DRAG_SPEED;
+        workspace.scrollLeft = startScrollLeft - dx;
+        workspace.scrollTop = startScrollTop - dy;
       });
 
       window.addEventListener("pointerup", (e) => {
         if (!isDown || e.pointerType !== "mouse") return;
         isDown = false;
         workspace.classList.remove("cm-grabbing");
-        if (dragMoved) {
-          // Suprime o clique que viria logo em seguida, pra não disparar sem
-          // querer um botão de opção que ficou embaixo do cursor no arraste.
-          const suppressNextClick = (evt) => {
-            evt.stopPropagation();
-            evt.preventDefault();
-          };
-          workspace.addEventListener("click", suppressNextClick, { capture: true, once: true });
-        }
       });
     }
 
@@ -1454,8 +2018,47 @@
         return;
       }
       cmSelectedChapterId = id;
+      cmActivePath = cmLoadPath(id);
       cmRenderPicker();
-      cmResetNarrative();
+      cmRenderPresetBar();
+      cmRenderGraph();
+    }
+
+    // ── Rotas-preset: blocos clicáveis que já selecionam a sequência inteira
+    // de escolhas até um troféu específico (ou até o setup de um troféu que
+    // só fecha em capítulo futuro), sem precisar navegar nó por nó. Pra
+    // adicionar presets de um novo capítulo, só criar a chave correspondente
+    // aqui usando os ids reais dos nodes daquele CM_TREES[...].
+    const CM_PRESETS = {
+      murder: [
+        { id: "transito", label: "🚇 Trânsito Público", path: ["start", "corpo", "mopa", "pia_direita", "faca_moeda", "salao", "jukebox", "refeicao", "victory_metro"] },
+        { id: "comer_sem_pagar", label: "🍽️ Comer sem Pagar (setup)", path: ["start", "corpo", "mopa", "pia_direita", "faca_moeda", "salao", "riscos_extras", "telefone", "jukebox", "refeicao", "victory_taxi"] },
+        { id: "paredes", label: "🏥 Paredes Acolchoadas", path: ["start", "corpo", "mopa", "pia_direita", "faca_moeda", "salao", "riscos_extras", "fundo_poco", "paredes_acolchoadas"] }
+      ],
+      investigacao: [
+        { id: "intuicao", label: "🔎 Intuição Feminina", path: ["start", "oficial", "garconete_inv", "policiais_balcao", "banheiro_entrada", "carla_faca", "sangue_fora", "mesa_lucas", "cafe_balcao", "saida_inv"] }
+      ],
+      dia_seguinte: [
+        { id: "seguro", label: "🛡️ Rota Segura (sem risco)", path: ["start", "tomar_remedio", "quarto", "cobrir_lencol", "telefone", "cozinha", "varanda", "ligar_radio", "camisa", "mictorio", "chave", "espera_policial", "abrir_a_tempo", "banho", "bandagem", "vestir", "deixar_policial_entrar", "resposta_calma", "revista_quarto", "policial_sai", "saida_apartamento"] },
+        { id: "encobrir", label: "🏆 Encobrir (lençol exposto)", path: ["start", "tomar_remedio", "quarto", "deixar_lencol", "telefone", "cozinha", "varanda", "ligar_radio", "camisa", "mictorio", "chave", "espera_policial", "abrir_a_tempo", "banho", "bandagem", "vestir", "deixar_policial_entrar", "resposta_calma", "revista_quarto", "policial_sai", "saida_apartamento"] }
+      ]
+    };
+
+    function cmRenderPresetBar() {
+      const bar = document.getElementById("cm-preset-bar");
+      const presets = CM_PRESETS[cmSelectedChapterId] || [];
+      bar.innerHTML = presets.map(p =>
+        `<button class="cm-btn-preset" onclick="cmLoadPreset('${p.id}')">${p.label}</button>`
+      ).join("");
+    }
+
+    function cmLoadPreset(presetId) {
+      const presets = CM_PRESETS[cmSelectedChapterId] || [];
+      const preset = presets.find(p => p.id === presetId);
+      if (!preset) return;
+      cmActivePath = preset.path.slice();
+      cmSavePath();
+      cmRenderGraph();
     }
 
     function cmCalculateSanity() {
@@ -1522,7 +2125,7 @@
     // já ficaram travados, com base no que foi escolhido até aqui em cmActivePath.
     // Para replicar esse padrão em outro capítulo: marque o node de destino com
     // `converge: true` e adicione as condições relevantes aqui.
-    function cmGetConvergenceNote(node) {
+    function cmGetConvergenceData(node) {
       if (!node.converge) return null;
 
       if (node.id === "jukebox") {
@@ -1537,30 +2140,57 @@
 
         travados.push('🏆 "Em Busca de Temperaturas Mais Quentes" (exigia não esconder a faca)');
 
-        let html = `<div class="cm-convergence-note">`;
-        html += `<div class="cm-conv-title">📍 Ponto de Convergência</div>`;
-        if (seguindo.length) {
-          html += `<div class="cm-conv-row cm-conv-follow">Esse ponto segue a rota para: ${seguindo.join("; ")}. Fique atento.</div>`;
+        return { seguindo, travados };
+      }
+
+      if (node.id === "revista_quarto") {
+        const seguindo = [];
+        const travados = [];
+
+        if (cmActivePath.includes("deixar_lencol")) {
+          seguindo.push('🏆 "Encobrir" (só conta se você convencer o policial a não entrar — não desista dessa sequência)');
+        } else {
+          travados.push('🏆 "Encobrir" (esse troféu exige ter deixado o lençol EXPOSTO e mesmo assim escapar da revista — cobrir o lençol antes já tira essa run da disputa)');
         }
-        if (travados.length) {
-          html += `<div class="cm-conv-row cm-conv-locked">Já travado nesta run: ${travados.join("; ")}.</div>`;
-        }
-        html += `</div>`;
-        return html;
+
+        return { seguindo, travados };
       }
 
       return null;
+    }
+
+    function cmShowConvergencePopup(nodeId) {
+      const node = cmFindNodeById(nodeId);
+      if (!node) return;
+      const data = cmGetConvergenceData(node);
+      if (!data) return;
+
+      let html = `<div class="cm-conv-title">📍 Ponto de Convergência</div>`;
+      if (data.seguindo.length) {
+        html += `<div class="cm-conv-row cm-conv-follow">Esse ponto segue a rota para: ${data.seguindo.join("; ")}. Fique atento.</div>`;
+      }
+      if (data.travados.length) {
+        html += `<div class="cm-conv-row cm-conv-locked">Já travado nesta run: ${data.travados.join("; ")}.</div>`;
+      }
+
+      document.getElementById("cm-popup-body").innerHTML = html;
+      document.getElementById("cm-info-popup").style.display = "flex";
+    }
+
+    function cmCloseConvergencePopup() {
+      document.getElementById("cm-info-popup").style.display = "none";
     }
 
     function cmRenderGraph() {
       const container = document.getElementById("cm-nodes-container");
       container.innerHTML = "";
 
-      Object.keys(CM_NARRATIVE_TREE).forEach((levelKey) => {
+      const tree = CM_TREES[cmSelectedChapterId];
+      Object.keys(tree).forEach((levelKey) => {
         const column = document.createElement("div");
         column.className = "cm-tree-column";
 
-        CM_NARRATIVE_TREE[levelKey].forEach(node => {
+        tree[levelKey].forEach(node => {
           const isSelected = cmActivePath.includes(node.id);
           const nodeIndex = cmActivePath.indexOf(node.id);
           const hasDecisionBeenMade = nodeIndex !== -1 && nodeIndex < cmActivePath.length - 1;
@@ -1631,9 +2261,15 @@
             optionsHTML = `<div class="cm-status-msg asylum">🏥 CONCLUÍDO</div>`;
           }
 
+          const convData = node.converge ? cmGetConvergenceData(node) : null;
+          const convBadge = convData
+            ? `<button class="cm-conv-badge" onclick="event.stopPropagation(); cmShowConvergencePopup('${node.id}')" title="Ver troféus dessa rota">📍</button>`
+            : "";
+
           card.innerHTML = `
             <div class="cm-node-header">
               <span class="cm-node-id">${node.id.toUpperCase()}</span>
+              ${convBadge}
               ${sanityTag}
             </div>
             ${trophyHTML}
@@ -1643,15 +2279,6 @@
           `;
 
           column.appendChild(card);
-
-          if (isSelected) {
-            const noteHTML = cmGetConvergenceNote(node);
-            if (noteHTML) {
-              const noteWrap = document.createElement("div");
-              noteWrap.innerHTML = noteHTML;
-              column.appendChild(noteWrap.firstElementChild);
-            }
-          }
         });
 
         container.appendChild(column);
@@ -1671,11 +2298,13 @@
           cmActivePath.push(targetId);
         }
       }
+      cmSavePath();
       cmRenderGraph();
     }
 
     function cmResetNarrative() {
       cmActivePath = ["start"];
+      cmSavePath();
       cmRenderGraph();
     }
 
@@ -1684,12 +2313,17 @@
       const workspace = document.getElementById("cm-workspace");
       if (!svg || !workspace) return;
 
-      svg.setAttribute("width", workspace.scrollWidth);
-      svg.setAttribute("height", workspace.scrollHeight);
+      const fullWidth = Math.max(workspace.scrollWidth, workspace.clientWidth);
+      const fullHeight = Math.max(workspace.scrollHeight, workspace.clientHeight);
+      svg.setAttribute("width", fullWidth);
+      svg.setAttribute("height", fullHeight);
+      svg.style.width = fullWidth + "px";
+      svg.style.height = fullHeight + "px";
       svg.innerHTML = "";
 
-      Object.keys(CM_NARRATIVE_TREE).forEach(levelKey => {
-        CM_NARRATIVE_TREE[levelKey].forEach(node => {
+      const tree = CM_TREES[cmSelectedChapterId];
+      Object.keys(tree).forEach(levelKey => {
+        tree[levelKey].forEach(node => {
           if (!node.options) return;
 
           const sourceEl = document.getElementById(node.id);
@@ -1743,8 +2377,9 @@
     }
 
     function cmFindNodeById(id) {
-      for (let level in CM_NARRATIVE_TREE) {
-        const found = CM_NARRATIVE_TREE[level].find(n => n.id === id);
+      const tree = CM_TREES[cmSelectedChapterId];
+      for (let level in tree) {
+        const found = tree[level].find(n => n.id === id);
         if (found) return found;
       }
       return null;
@@ -1757,6 +2392,7 @@
     cmSetupPinchZoom();
     cmSetupDragPan();
     cmRenderPicker();
+    cmRenderPresetBar();
     cmRenderGraph();
   </script>
 </body>
