@@ -356,6 +356,7 @@
     background-size: 20px 20px, 60px 60px, 60px 60px;
     -webkit-overflow-scrolling: touch;
     cursor: grab;
+    -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;
   }
   #cm-workspace.cm-grabbing { cursor: grabbing; }
   svg#cm-svg-canvas { position: absolute; top: 0; left: 0; pointer-events: none; z-index: 1; }
@@ -1026,7 +1027,7 @@
         {
           id: "telefone",
           title: "Orelhão dos Fundos",
-          text: "Lucas liga pro irmão, Markus, que não atende. Necessário pra preparar 🔗 \"Comer sem Pagar\" (só fecha lá na frente, em \"Feliz Aniversário!\", e só se você sair de TÁXI aqui).",
+          text: "Lucas liga pro irmão, Markus, que não atende. Esse é só o PRIMEIRO passo de uma cadeia pro troféu 🔗 \"Comer sem Pagar\" — o jogo também confere se o orelhão foi examinado de novo em \"Investigação\", e o desfecho só fecha lá na frente, em \"Feliz Aniversário!\", e só se você sair de TÁXI aqui.",
           delta: -5,
           options: [
             { label: "Seguir para a jukebox", target: "jukebox" }
@@ -1150,77 +1151,149 @@
           text: "Carla e Tyler chegam à lanchonete no dia seguinte pra investigar a cena do crime.",
           delta: 0,
           options: [
-            { label: "Conversar com o oficial Martin", target: "oficial" }
+            { label: "Conversar com o oficial Martin", target: "martin" }
           ]
         }
       ],
       level2: [
         {
-          id: "oficial",
-          title: "Conversa com o Policial",
-          text: "Martin põe Carla a par do caso e sugere que ela vá com calma com a garçonete, que ainda está em choque.",
-          delta: 0,
+          id: "martin",
+          title: "Conversa com Martin",
+          text: "Martin, o policial de folga que ficou de olho na cena a noite toda, põe Carla a par do caso.",
+          delta: 5,
           options: [
-            { label: "Ir falar com a garçonete", target: "garconete_inv" }
+            { label: "Ir achar o táxi lá fora", target: "taxi" }
           ]
         }
       ],
       level3: [
         {
-          id: "garconete_inv",
-          title: "Depoimento da Garçonete",
-          text: "Carla senta de frente pra ela e ouve o depoimento com calma, sem pressionar — o jeito mais sensato de tratar uma testemunha ainda abalada.",
+          id: "taxi",
+          title: "Achar o Táxi",
+          text: "Carla sai e localiza o ponto de táxi na rua — detalhe que ela anota pra cruzar depois com os registros da corrida.",
           delta: 5,
           options: [
-            { label: "Falar com os outros dois policiais", target: "policiais_balcao" }
+            { label: "Voltar pra lanchonete e examinar a mesa do Lucas", target: "mesa_lucas" }
           ]
         }
       ],
       level4: [
         {
-          id: "policiais_balcao",
-          title: "Papo com os Policiais do Balcão",
-          text: "Puxar assunto com os dois policiais no balcão rende um contexto extra sobre o caso.",
-          delta: 5,
+          id: "mesa_lucas",
+          title: "Mesa do Lucas",
+          text: "Debaixo da mesa onde Lucas estava sentado, aparece um livro: \"A Tempestade\", de Shakespeare. É esse achado que abre caminho pro troféu 🔗 \"Lendo nas Entrelinhas\" — mas ele só fecha de verdade mais pra frente, em \"Feliz Aniversário!\".",
+          delta: 10,
           options: [
-            { label: "Checar o orelhão dos fundos", target: "orelhao_inv" },
-            { label: "Ir direto pro banheiro", target: "banheiro_entrada" }
+            { label: "Tomar um café atrás do balcão", target: "cafe_balcao" }
           ]
         }
       ],
       level5: [
         {
-          id: "orelhao_inv",
-          title: "Orelhão dos Fundos",
-          text: "Como Tyler, dá pra usar o orelhão pra ligar pra namorada dele, Sam, e aliviar um pouco a cabeça antes de entrar no banheiro.",
+          id: "cafe_balcao",
+          title: "Café Atrás do Balcão",
+          text: "Uma pausa pra tomar café ajuda tanto Carla quanto Tyler a lidar melhor com a cena.",
           delta: 5,
           options: [
-            { label: "Ir pro banheiro", target: "banheiro_entrada" }
+            { label: "Examinar o orelhão dos fundos", target: "telefone_carla" }
           ]
         }
       ],
       level6: [
         {
+          id: "telefone_carla",
+          title: "6. Orelhão dos Fundos (Carla)",
+          text: "Carla examina o orelhão e pede pro Frank checar os registros de ligação. Esse exame aqui é uma etapa confirmada do troféu 🔗 \"Comer sem Pagar\" — além do que foi feito em \"O Assassinato\", o jogo também checa esse exame específico.",
+          delta: 5,
+          options: [
+            { label: "Ir até os fundos (Bogart / porta trancada)", target: "riscos_fundos" },
+            { label: "Trocar pra Tyler", target: "ir_tyler" }
+          ]
+        }
+      ],
+      level7: [
+        {
+          id: "riscos_fundos",
+          title: "Área dos Fundos",
+          text: "Do lado de fora, um morador de rua chamado Bogart está sentado por ali, e a porta dos fundos está trancada.",
+          delta: 0,
+          options: [
+            { label: "Puxar papo com Bogart", target: "bogart_fala" },
+            { label: "Tentar forçar a porta dos fundos", target: "porta_fundos" }
+          ]
+        },
+        {
+          id: "ir_tyler",
+          title: "Trocar pra Tyler",
+          text: "Do lado de dentro, Tyler segue com a própria parte da investigação.",
+          delta: 0,
+          options: [
+            { label: "Falar com Frank e Garret", target: "frank_garret" }
+          ]
+        }
+      ],
+      level8: [
+        {
+          id: "bogart_fala",
+          title: "Conversa com Bogart",
+          text: "Bogart não colabora muito — só desgasta a paciência de Carla puxar assunto com ele agora.",
+          delta: -5,
+          options: [
+            { label: "Trocar pra Tyler", target: "frank_garret" }
+          ]
+        },
+        {
+          id: "porta_fundos",
+          title: "Forçar a Porta dos Fundos",
+          text: "A porta não abre por fora — insistir nisso não leva a nada, só irrita todo mundo.",
+          delta: -10,
+          options: [
+            { label: "Trocar pra Tyler", target: "frank_garret" }
+          ]
+        },
+        {
+          id: "frank_garret",
+          title: "Frank e Garret",
+          text: "Tyler troca uma ideia com Frank e Garret, os dois investigadores da perícia, cada um rendendo um pouco de contexto extra sobre o caso.",
+          delta: 10,
+          options: [
+            { label: "Usar o orelhão pra ligar pra Sam", target: "telefone_tyler" }
+          ]
+        }
+      ],
+      level9: [
+        {
+          id: "telefone_tyler",
+          title: "Orelhão dos Fundos (Tyler)",
+          text: "Tyler aproveita o mesmo orelhão pra ligar pra namorada, Sam, e aliviar um pouco a cabeça.",
+          delta: 5,
+          options: [
+            { label: "Ir pro banheiro com Carla", target: "banheiro_entrada" }
+          ]
+        }
+      ],
+      level10: [
+        {
           id: "banheiro_entrada",
-          title: "6. Vasculhando o Banheiro",
+          title: "7. Vasculhando o Banheiro",
           text: "Carla e Tyler entram juntos pra examinar a cena do crime com mais calma.",
           delta: 0,
           converge: true,
           options: [
             { label: "Carla examina a cabine da esquerda", target: "carla_faca" },
             { label: "Deixar Tyler assumir a busca", target: "tyler_faca" },
-            { label: "Usar o mictório à toa", target: "mictorio" }
+            { label: "Tyler usa o mictório", target: "tyler_mictorio" }
           ]
         }
       ],
-      level7: [
+      level11: [
         {
           id: "carla_faca",
           title: "Carla Acha a Faca",
-          text: "Vasculhando o sangue no chão perto da cabine da esquerda, Carla encontra a faca — se foi aqui que ela reapareceu depois de \"O Assassinato\". Achar a arma sendo ELA quem procura é a condição-chave pro troféu 🏆 \"Intuição Feminina\".",
-          delta: 10,
+          text: "Carla examina o sangue no chão da cabine da esquerda (+5) e encontra a faca ali mesmo (+10) — se foi esse o esconderijo sorteado depois de \"O Assassinato\". Achar a arma sendo ELA quem procura é a condição-chave pro troféu 🏆 \"Intuição Feminina\".",
+          delta: 15,
           options: [
-            { label: "Sair do banheiro", target: "sangue_fora" }
+            { label: "Chamar Kate pra depoimento", target: "kate" }
           ]
         },
         {
@@ -1229,80 +1302,35 @@
           text: "Tyler acaba sendo quem encontra a faca (na lixeira ou na caixa de descarga da cabine da direita, dependendo de onde ela foi parar). Rende um bom ponto de sanidade, mas como não foi Carla quem achou, essa run perde a chance de fechar 🏆 \"Intuição Feminina\" por aqui.",
           delta: 10,
           options: [
-            { label: "Sair do banheiro", target: "sangue_fora" }
+            { label: "Chamar Kate pra depoimento", target: "kate" }
           ]
         },
         {
-          id: "mictorio",
-          title: "Usar o Mictório à Toa",
-          text: "Não ajuda em nada a investigação e só deixa Carla sem graça na frente do Tyler.",
+          id: "tyler_mictorio",
+          title: "Tyler Usa o Mictório",
+          text: "Tyler aproveita pra ir ao banheiro bem na frente da Carla — momento sem graça que incomoda ela mais do que ajuda a investigação.",
           delta: -10,
           options: [
-            { label: "Sair do banheiro", target: "sangue_fora" }
-          ]
-        }
-      ],
-      level8: [
-        {
-          id: "sangue_fora",
-          title: "Pegada de Sangue lá Fora",
-          text: "Do lado de fora, perto da entrada, dá pra examinar uma pegada de sangue na calçada — a segunda metade da condição de 🏆 \"Intuição Feminina\", que só fecha se Carla também tiver sido quem achou a faca lá dentro.",
-          delta: 5,
-          converge: true,
-          options: [
-            { label: "Examinar a mesa onde Lucas estava sentado", target: "mesa_lucas" }
-          ]
-        }
-      ],
-      level9: [
-        {
-          id: "mesa_lucas",
-          title: "Mesa do Lucas",
-          text: "Debaixo da mesa onde Lucas estava sentado, aparece um livro: \"A Tempestade\", de Shakespeare. É esse achado que abre caminho pro troféu 🔗 \"Lendo nas Entrelinhas\" — mas ele só fecha de verdade mais pra frente, em \"Feliz Aniversário!\".",
-          delta: 10,
-          options: [
-            { label: "Tomar um café no balcão", target: "cafe_balcao" },
-            { label: "Ir até os fundos falar com o morador de rua", target: "morador_rua" }
-          ]
-        }
-      ],
-      level10: [
-        {
-          id: "cafe_balcao",
-          title: "Café no Balcão",
-          text: "Uma pausa pra tomar café ajuda tanto Carla quanto Tyler a lidar melhor com a cena.",
-          delta: 5,
-          options: [
-            { label: "Ligar a jukebox", target: "jukebox_inv" },
-            { label: "Ir embora direto", target: "saida_inv" }
-          ]
-        },
-        {
-          id: "morador_rua",
-          title: "Morador de Rua nos Fundos",
-          text: "Puxar assunto com o morador de rua que dorme perto da saída dos fundos não rende nada de útil pra investigação, só desgasta a paciência de todo mundo.",
-          delta: -10,
-          options: [
-            { label: "Ir embora", target: "saida_inv" }
-          ]
-        }
-      ],
-      level11: [
-        {
-          id: "jukebox_inv",
-          title: "Ligar a Jukebox",
-          text: "Diferente de \"O Assassinato\", ligar a jukebox aqui é fora de hora — é cena de investigação, não hora de música.",
-          delta: -10,
-          options: [
-            { label: "Ir embora", target: "saida_inv" }
+            { label: "Chamar Kate pra depoimento", target: "kate" }
           ]
         }
       ],
       level12: [
         {
+          id: "kate",
+          title: "8. Depoimento da Kate",
+          text: "Carla senta de frente pra Kate, a garçonete, ainda abalada, e colhe o depoimento dela — etapa obrigatória pra fechar o capítulo, sem valor de sanidade associado nas fontes consultadas.",
+          delta: 0,
+          options: [
+            { label: "Encerrar e voltar pro carro", target: "saida_inv" }
+          ]
+        }
+      ],
+      level13: [
+        {
           id: "saida_inv",
           title: "Volta pro Carro",
-          text: "Carla e Tyler encerram a investigação na lanchonete e voltam pro carro, prontos pro próximo passo do caso.",
+          text: "Carla e Tyler encerram a investigação na lanchonete e voltam pro carro, prontos pro próximo passo do caso. (As fontes confirmam que o sangue na calçada lá fora aparece nessa cena, mas não afeta a sanidade — é só ambientação.)",
           type: "victory",
           delta: 10
         }
@@ -1631,10 +1659,742 @@
       ]
     };
 
+    // ─── Capítulo 4: Confissão ───
+    // Lucas encontra o irmão Markus no parque para confessar o assassinato.
+    // A conversa determina se Markus chega a oferecer o crucifixo, e uma visão
+    // de uma criança se afogando no lago congelado leva à decisão de arriscar-se
+    // para salvá-la ou ir embora.
+    const CM_TREE_CONFISSAO = {
+      level1: [
+        {
+          id: "start",
+          title: "1. Estátua no Meio do Parque",
+          text: "Lucas encontra o irmão Markus parado perto da estátua central do parque e começa a confessar o assassinato, as visões e os cortes que fez no próprio braço.",
+          delta: 10,
+          options: [
+            { label: "Manter a calma na conversa", target: "calmo" },
+            { label: "Ficar agressivo com Markus", target: "agressivo" }
+          ]
+        }
+      ],
+      level2: [
+        {
+          id: "calmo",
+          title: "Tom Calmo",
+          text: "Lucas explica a situação com calma, sem alterar o tom da conversa.",
+          delta: 0,
+          options: [
+            { label: "Seguir para o fim da conversa", target: "decisao_final" }
+          ]
+        },
+        {
+          id: "agressivo",
+          title: "Tom Agressivo",
+          text: "Confrontado sobre seu estado mental, Lucas perde a paciência e responde de forma agressiva a Markus.",
+          delta: -5,
+          options: [
+            { label: "Seguir para o fim da conversa", target: "decisao_final" }
+          ]
+        }
+      ],
+      level3: [
+        {
+          id: "decisao_final",
+          title: "2. Decisão Final da Conversa",
+          text: "Visivelmente abalado, Markus sugere que Lucas procure a polícia ou um hospital. Lucas precisa decidir como encerrar a conversa.",
+          delta: 0,
+          converge: true,
+          options: [
+            { label: "Convencer Markus a ajudar por fora", target: "convencer" },
+            { label: "Cortar a conversa (Break Off)", target: "cortar" }
+          ]
+        }
+      ],
+      level4: [
+        {
+          id: "convencer",
+          title: "Convencer Markus",
+          text: "Lucas convence Markus de que a polícia ou o hospital não são uma boa ideia. Antes de se despedir, Markus oferece um crucifixo a Lucas.",
+          delta: 0,
+          options: [
+            { label: "Aceitar o crucifixo", target: "aceitar_crucifixo" },
+            { label: "Recusar o crucifixo", target: "recusar_crucifixo" }
+          ]
+        },
+        {
+          id: "cortar",
+          title: "Cortar a Conversa",
+          text: "Lucas encerra a conversa de forma abrupta — Markus vai embora chateado, sem chegar a oferecer o crucifixo.",
+          delta: -10,
+          options: [
+            { label: "Seguir o caminho de saída", target: "vision_ao_afogamento" }
+          ]
+        }
+      ],
+      level5: [
+        {
+          id: "aceitar_crucifixo",
+          title: "Aceitar o Crucifixo",
+          text: "Lucas aceita o crucifixo oferecido por Markus, ganhando uma vida extra.",
+          delta: 0,
+          trophy: "🏆 \"Da Morte, Surge a Vida\"",
+          options: [
+            { label: "Seguir o caminho de saída", target: "vision_ao_afogamento" }
+          ]
+        },
+        {
+          id: "recusar_crucifixo",
+          title: "Recusar o Crucifixo",
+          text: "Lucas recusa o crucifixo, dizendo a Markus que precisa de mais do que isso para ser ajudado.",
+          delta: 0,
+          options: [
+            { label: "Seguir o caminho de saída", target: "vision_ao_afogamento" }
+          ]
+        }
+      ],
+      level6: [
+        {
+          id: "vision_ao_afogamento",
+          title: "3. Visão do Afogamento",
+          text: "Markus se despede e Lucas caminha rumo à saída do parque, mas uma visão o detém: uma criança está prestes a cair no lago congelado. Pouco depois, a queda acontece de verdade.",
+          delta: 0,
+          converge: true,
+          options: [
+            { label: "Correr e mergulhar para salvar a criança", target: "mergulhar" },
+            { label: "Ir embora sem tentar salvar", target: "ignorar_crianca" },
+            { label: "Hesitar por tempo demais decidindo", target: "gameover_hesitar" }
+          ]
+        }
+      ],
+      level7: [
+        {
+          id: "mergulhar",
+          title: "Mergulho no Lago Congelado",
+          text: "Lucas corre e mergulha no lago congelado, completando uma sequência de QTEs para nadar até a criança, pegá-la e voltar à superfície.",
+          delta: 0,
+          options: [
+            { label: "Completar o resgate e sair da água", target: "fora_da_agua" },
+            { label: "Ficar tempo demais submerso", target: "gameover_afogamento" }
+          ]
+        },
+        {
+          id: "ignorar_crianca",
+          title: "Sair do Parque sem Salvar",
+          text: "Lucas dá as costas e vai embora sem tentar salvar a criança — o remorso pesa sobre ele.",
+          type: "victory",
+          delta: -30
+        },
+        {
+          id: "gameover_hesitar",
+          title: "GAME OVER: Flagrado pela Polícia",
+          text: "Lucas demora demais para decidir entre salvar a criança ou ir embora — um policial nas proximidades o flagra parado perto do lago, encerrando a cena em prisão.",
+          type: "gameover",
+          delta: 0
+        }
+      ],
+      level8: [
+        {
+          id: "fora_da_agua",
+          title: "Fora da Água",
+          text: "Lucas consegue tirar a criança do gelo e sair da água junto com ela.",
+          delta: 0,
+          options: [
+            { label: "Ajoelhar e fazer RCP corretamente", target: "reanimar" },
+            { label: "Fugir ou falhar a reanimação", target: "gameover_sem_reanimar" }
+          ]
+        },
+        {
+          id: "gameover_afogamento",
+          title: "GAME OVER: Afogamento",
+          text: "Lucas demora demais debaixo d'água durante o resgate e se afoga antes de conseguir sair.",
+          type: "gameover",
+          delta: 0
+        }
+      ],
+      level9: [
+        {
+          id: "reanimar",
+          title: "Reanimação (RCP)",
+          text: "Lucas se ajoelha ao lado da criança e realiza compressões torácicas cronometradas — contando até 3 antes de cada uma — conseguindo reanimá-la a tempo.",
+          delta: 20,
+          trophy: "🏆 \"Ao Resgate\"",
+          options: [
+            { label: "Sair do parque", target: "saida_parque" }
+          ]
+        },
+        {
+          id: "gameover_sem_reanimar",
+          title: "GAME OVER: Reanimação Falhou",
+          text: "Seja fugindo do local sem tentar a RCP ou deixando o tempo da reanimação se esgotar, Lucas não consegue reanimar a criança — o policial o reconhece e o prende.",
+          type: "gameover",
+          delta: 0
+        }
+      ],
+      level10: [
+        {
+          id: "saida_parque",
+          title: "4. Saída do Parque",
+          text: "Um policial próximo reconhece Lucas como o suspeito da lanchonete, mas o deixa ir embora depois de presenciar o resgate da criança.",
+          type: "victory",
+          delta: 0
+        }
+      ]
+    };
+
+    // ─── Capítulo 5: Trabalho Policial ───
+    // Alterna entre Carla na delegacia e Tyler no próprio apartamento (com a
+    // namorada Sam) antes de também ir pra delegacia. Sem game over documentado
+    // nas fontes (só o de sanidade zerada, que é genérico do jogo).
+    const CM_TREE_TRABALHO_POLICIAL = {
+      level1: [
+        {
+          id: "start",
+          title: "1. Chegada de Carla à Delegacia",
+          text: "Carla passa pelo detector de metais e sobe as escadas até a sala principal da delegacia.",
+          delta: 0,
+          options: [
+            { label: "Beber no bebedouro da sala principal", target: "dispenser_carla" }
+          ]
+        }
+      ],
+      level2: [
+        {
+          id: "dispenser_carla",
+          title: "Bebedouro da Sala Principal",
+          text: "Carla toma uma água no bebedouro entre as duas portas da sala principal.",
+          delta: 5,
+          options: [
+            { label: "Seguir até o próprio escritório", target: "jeffrey" }
+          ]
+        }
+      ],
+      level3: [
+        {
+          id: "jeffrey",
+          title: "2. Conversa com Jeffrey",
+          text: "No caminho até o escritório, o esquisitão da mesa mais próxima puxa papo com Carla — conversa chata e inevitável, segundo as fontes.",
+          delta: -5,
+          options: [
+            { label: "Entrar no escritório", target: "agua_escritorio" }
+          ]
+        }
+      ],
+      level4: [
+        {
+          id: "agua_escritorio",
+          title: "Bebedouro do Escritório",
+          text: "Já no escritório, Carla toma água no bebedouro de lá.",
+          delta: 5,
+          options: [
+            { label: "Brincar com o ioiô na mesa", target: "ioio" }
+          ]
+        }
+      ],
+      level5: [
+        {
+          id: "ioio",
+          title: "Ioiô na Mesa",
+          text: "Carla pega o ioiô sobre a própria mesa e completa uma sequência com ele. Essa interação simples já rende sanidade, mas é distinta do requisito real do troféu 🥉 \"Para Cima, Para Baixo e Para os Lados\" — que exige 5 manobras \"volta ao mundo\" seguidas sem errar, um desafio bem mais difícil que só essa passada aqui.",
+          delta: 5,
+          options: [
+            { label: "Sentar na mesa (Tyler está atrasado)", target: "tyler_atrasado" }
+          ]
+        }
+      ],
+      level6: [
+        {
+          id: "tyler_atrasado",
+          title: "Tyler Está Atrasado",
+          text: "Carla senta na própria mesa e nota que Tyler está atrasado — isso a incomoda, e não tem como evitar essa reação segundo as fontes.",
+          delta: -5,
+          options: [
+            { label: "Abrir o computador e ler os e-mails", target: "email_carla" }
+          ]
+        }
+      ],
+      level7: [
+        {
+          id: "email_carla",
+          title: "3. Checar o E-mail",
+          text: "Carla é obrigada a ler o terceiro e-mail (o sem assunto) — passo necessário pra ela aceitar ir até o necrotério mais tarde na história, mesmo sendo um e-mail chato de ler.",
+          delta: -5,
+          options: [
+            { label: "Ligar pro Tyler", target: "ligar_tyler" }
+          ]
+        }
+      ],
+      level8: [
+        {
+          id: "ligar_tyler",
+          title: "Ligando pro Tyler",
+          text: "Carla pega o telefone e liga pro Tyler, acordando-o. A cena passa a acompanhar Tyler a partir daqui.",
+          delta: 0,
+          options: [
+            { label: "Trocar pra Tyler", target: "tyler_acorda" }
+          ]
+        }
+      ],
+      level9: [
+        {
+          id: "tyler_acorda",
+          title: "4. Tyler Acorda",
+          text: "Tyler atende a ligação e sai da cama no próprio apartamento.",
+          delta: 0,
+          options: [
+            { label: "Olhar pra Sam, ainda dormindo", target: "olhar_sam" }
+          ]
+        }
+      ],
+      level10: [
+        {
+          id: "olhar_sam",
+          title: "Olhar pra Sam",
+          text: "Tyler contorna a cama e observa a namorada, Sam, dormindo do outro lado.",
+          delta: 5,
+          options: [
+            { label: "Escolher a opção \"coração\" (ficar com a Sam)", target: "tempo_com_sam" },
+            { label: "Não escolher a opção do coração", target: "pular_tempo_sam" }
+          ]
+        }
+      ],
+      level11: [
+        {
+          id: "tempo_com_sam",
+          title: "Momento com a Sam",
+          text: "Tyler escolhe a opção \"coração\" e passa um tempo a sós com a Sam.",
+          delta: 20,
+          options: [
+            { label: "Continuar (Carla liga de novo)", target: "interrupcao_carla" }
+          ]
+        },
+        {
+          id: "pular_tempo_sam",
+          title: "Sem Momento com a Sam",
+          text: "Tyler não escolhe a opção \"coração\" agora, então segue direto pro banheiro sem esse bônus de sanidade — e também sem a interrupção da Carla mais adiante.",
+          delta: 0,
+          options: [
+            { label: "Ir pro banheiro", target: "banheiro_tyler" }
+          ]
+        }
+      ],
+      level12: [
+        {
+          id: "interrupcao_carla",
+          title: "Carla Liga de Novo",
+          text: "A distração custa caro: Carla liga de novo, incomodada com a demora, e Tyler precisa se levantar.",
+          delta: -10,
+          options: [
+            { label: "Ir pro banheiro", target: "banheiro_tyler" }
+          ]
+        }
+      ],
+      level13: [
+        {
+          id: "banheiro_tyler",
+          title: "Banheiro de Tyler",
+          text: "Tyler entra no banheiro, se olha no espelho, faz xixi e toma banho — o banho é uma etapa OBRIGATÓRIA antes de conseguir se vestir. Há uma carta de tarô bônus bem do lado do vaso sanitário.",
+          delta: 15,
+          converge: true,
+          options: [
+            { label: "Se vestir", target: "vestir_tyler" }
+          ]
+        }
+      ],
+      level14: [
+        {
+          id: "vestir_tyler",
+          title: "Se Vestir",
+          text: "Tyler abre o armário do quarto e se veste — outra etapa OBRIGATÓRIA antes de poder sair do apartamento.",
+          delta: 0,
+          options: [
+            { label: "Ir até a sala e ligar o toca-discos", target: "toca_discos" }
+          ]
+        }
+      ],
+      level15: [
+        {
+          id: "toca_discos",
+          title: "Toca-Discos na Sala",
+          text: "Já na sala, Tyler liga o toca-discos.",
+          delta: 5,
+          options: [
+            { label: "Conversar com a Sam (e tomar um café com ela)", target: "conversa_sam_1" }
+          ]
+        }
+      ],
+      level16: [
+        {
+          id: "conversa_sam_1",
+          title: "5. Conversa com a Sam",
+          text: "Antes de Tyler sair, Sam quer conversar — inclusive tomando um café com ela na sala, passo que o jogo espera antes de liberar a saída do apartamento.",
+          delta: 0,
+          options: [
+            { label: "Tom compreensivo / carinhoso (\"understanding\"/\"tender\")", target: "tom_bom_1" },
+            { label: "Tom irônico / chateado (\"ironic\"/\"upset\")", target: "tom_ruim_1" }
+          ]
+        }
+      ],
+      level17: [
+        {
+          id: "tom_bom_1",
+          title: "Tom Compreensivo",
+          text: "Tyler responde com compreensão e carinho.",
+          delta: 10,
+          options: [
+            { label: "Seguir a conversa", target: "conversa_sam_2" }
+          ]
+        },
+        {
+          id: "tom_ruim_1",
+          title: "Tom Irônico",
+          text: "Tyler responde de forma irônica, o que deixa Sam chateada.",
+          delta: -10,
+          options: [
+            { label: "Seguir a conversa", target: "conversa_sam_2" }
+          ]
+        }
+      ],
+      level18: [
+        {
+          id: "conversa_sam_2",
+          title: "Segunda Parte da Conversa",
+          text: "A conversa com a Sam segue pra um segundo momento de decisão.",
+          delta: 0,
+          converge: true,
+          options: [
+            { label: "Tom conciliador / convincente (\"conciliatory\"/\"convince\")", target: "tom_bom_2" },
+            { label: "Tom agressivo / firme (\"aggressive\"/\"firm\")", target: "tom_ruim_2" }
+          ]
+        }
+      ],
+      level19: [
+        {
+          id: "tom_bom_2",
+          title: "Tom Conciliador",
+          text: "Tyler é conciliador e convincente com a Sam.",
+          delta: 10,
+          options: [
+            { label: "Pegar o casaco e se despedir", target: "despedida_sam" }
+          ]
+        },
+        {
+          id: "tom_ruim_2",
+          title: "Tom Agressivo",
+          text: "Tyler é agressivo e firme demais com a Sam.",
+          delta: -20,
+          options: [
+            { label: "Pegar o casaco e se despedir", target: "despedida_sam" }
+          ]
+        }
+      ],
+      level20: [
+        {
+          id: "despedida_sam",
+          title: "6. Despedida da Sam",
+          text: "Tyler pega o casaco perto da porta. Dar um beijo de despedida na Sam é a diferença entre sair em bons termos ou magoá-la.",
+          delta: 0,
+          converge: true,
+          options: [
+            { label: "Beijar a Sam antes de sair", target: "beijo_sam" },
+            { label: "Sair sem beijar a Sam", target: "sem_beijo" }
+          ]
+        }
+      ],
+      level21: [
+        {
+          id: "beijo_sam",
+          title: "Beijo de Despedida",
+          text: "Tyler beija a Sam antes de sair do apartamento.",
+          delta: 10,
+          options: [
+            { label: "Ir pra delegacia", target: "delegacia_tyler" }
+          ]
+        },
+        {
+          id: "sem_beijo",
+          title: "Sem Beijo de Despedida",
+          text: "Tyler sai do apartamento sem beijar a Sam.",
+          delta: -30,
+          options: [
+            { label: "Ir pra delegacia", target: "delegacia_tyler" }
+          ]
+        }
+      ],
+      level22: [
+        {
+          id: "delegacia_tyler",
+          title: "7. Tyler na Delegacia",
+          text: "Tyler chega na delegacia e sobe pela mesma escada, entrando na sala principal.",
+          delta: 0,
+          converge: true,
+          options: [
+            { label: "Beber no bebedouro, enfrentar o Jeffrey de novo e jogar basquete", target: "basquete_tyler" }
+          ]
+        }
+      ],
+      level23: [
+        {
+          id: "basquete_tyler",
+          title: "Bebedouro e Basquete",
+          text: "No caminho até o escritório, Tyler bebe no bebedouro da sala principal, enfrenta de novo o papo chato com o Jeffrey perto da porta do escritório (inevitável, segundo as fontes), toma água no bebedouro do próprio escritório e ainda brinca com a bola de basquete na mesa.",
+          delta: 10,
+          options: [
+            { label: "Ir encontrar a Carla perto da mesa do Garret", target: "encontro_final" }
+          ]
+        }
+      ],
+      level24: [
+        {
+          id: "encontro_final",
+          title: "8. Encontro com Carla",
+          text: "Tyler encontra Carla perto da mesa do Garret, junto ao bebedouro. Assim que as perguntas terminam — supondo que Carla já tenha checado o próprio e-mail — a cena se encerra.",
+          type: "victory",
+          delta: 0
+        }
+      ]
+    };
+
+    // ─── Capítulo 6: Realidade Alternativa ───
+    // Lucas no banco onde trabalha. Envolve o escritório dividido com Warren
+    // (crucifixo/gaveta/computador), a ligação de Tiffany, e termina na longa
+    // sequência de fuga dos insetos gigantes na Estação 62 — a única sequência
+    // deste capítulo com Game Over real (ficar sem vidas), segundo as fontes.
+    const CM_TREE_REALIDADE_ALT = {
+      level1: [
+        {
+          id: "start",
+          title: "1. Banheiro do Banco",
+          text: "Lucas está no banheiro do banco onde trabalha. Ao final do corredor há uma carta de tarô bônus. Ele se lava na pia.",
+          delta: 5,
+          options: [
+            { label: "Sair do banheiro rumo à área de trabalho", target: "area_trabalho" }
+          ]
+        }
+      ],
+      level2: [
+        {
+          id: "area_trabalho",
+          title: "Área de Cubículos",
+          text: "Lucas sai pro grande open space cheio de estações de trabalho, com duas cartas de tarô bônus escondidas nessa área.",
+          delta: 0,
+          options: [
+            { label: "Passar na máquina de café antes (opcional)", target: "cafe_maquina" },
+            { label: "Ir direto pro escritório", target: "escritorio_warren" }
+          ]
+        }
+      ],
+      level3: [
+        {
+          id: "cafe_maquina",
+          title: "Máquina de Café (Opcional)",
+          text: "Lucas toma um café na máquina, no canto oposto da área de cubículos.",
+          delta: 5,
+          options: [
+            { label: "Seguir pro escritório", target: "escritorio_warren" }
+          ]
+        }
+      ],
+      level4: [
+        {
+          id: "escritorio_warren",
+          title: "2. Escritório — Warren",
+          text: "Lucas entra no escritório que divide com Warren, que já está sentado na própria cadeira. Ele se senta também para uma sequência de QTE curta e tranquila.",
+          delta: 0,
+          converge: true,
+          options: [
+            { label: "Completar a sequência e ouvir Warren", target: "ouvir_warren" }
+          ]
+        }
+      ],
+      level5: [
+        {
+          id: "ouvir_warren",
+          title: "Pensamentos do Warren",
+          text: "Depois de passar pela primeira sequência de QTE, Lucas acaba ouvindo os pensamentos incômodos do Warren — dedução de sanidade inevitável, segundo as fontes.",
+          delta: -5,
+          options: [
+            { label: "Abrir a gaveta direita e pegar o crucifixo", target: "gaveta_direita" },
+            { label: "Não abrir gaveta nenhuma agora", target: "pular_gavetas" }
+          ]
+        }
+      ],
+      level6: [
+        {
+          id: "gaveta_direita",
+          title: "Gaveta Direita — Crucifixo",
+          text: "Lucas abre a gaveta direita da própria mesa, encontra um crucifixo e ganha uma vida extra com ele. Fecha a gaveta em seguida.",
+          delta: 0,
+          trophy: "🏆 \"Da Morte, Surge a Vida\"",
+          options: [
+            { label: "Abrir a gaveta esquerda também", target: "gaveta_esquerda" },
+            { label: "Não abrir a gaveta esquerda", target: "pular_esquerda" }
+          ]
+        },
+        {
+          id: "pular_gavetas",
+          title: "Gavetas Ignoradas",
+          text: "Lucas ignora as duas gavetas por enquanto — perde a chance deste crucifixo específico, mas o troféu \"Da Morte, Surge a Vida\" ainda pode ser fechado em outro capítulo com crucifixo, como \"Confissão\".",
+          delta: 0,
+          options: [
+            { label: "Seguir pra próxima etapa", target: "usar_pc" }
+          ]
+        }
+      ],
+      level7: [
+        {
+          id: "gaveta_esquerda",
+          title: "Gaveta Esquerda — Foto de Tiffany",
+          text: "Lucas abre a gaveta esquerda e encontra uma foto antiga dele com a ex-mulher, Tiffany — a lembrança reduz sua sanidade.",
+          delta: -5,
+          options: [
+            { label: "Seguir pra próxima etapa", target: "usar_pc" }
+          ]
+        },
+        {
+          id: "pular_esquerda",
+          title: "Gaveta Esquerda Ignorada",
+          text: "Lucas decide não abrir a gaveta esquerda, evitando a lembrança dolorosa.",
+          delta: 0,
+          options: [
+            { label: "Seguir pra próxima etapa", target: "usar_pc" }
+          ]
+        }
+      ],
+      level8: [
+        {
+          id: "usar_pc",
+          title: "Usar o Computador",
+          text: "De volta à mesa, surge a opção de usar o computador do escritório pra trabalhar.",
+          delta: 0,
+          converge: true,
+          options: [
+            { label: "Usar o computador (Lucas se assusta)", target: "pc_assustado" },
+            { label: "Não usar o computador agora", target: "pular_pc" }
+          ]
+        }
+      ],
+      level9: [
+        {
+          id: "pc_assustado",
+          title: "Susto no Computador",
+          text: "Ao usar o computador pela primeira vez, Lucas se assusta com algo na tela — um baque considerável na sanidade.",
+          delta: -20,
+          options: [
+            { label: "Atender o telefone (Tiffany)", target: "ligacao_tiffany" }
+          ]
+        },
+        {
+          id: "pular_pc",
+          title: "PC Ignorado por Enquanto",
+          text: "Lucas não mexe no computador por enquanto.",
+          delta: 0,
+          options: [
+            { label: "Atender o telefone (Tiffany)", target: "ligacao_tiffany" }
+          ]
+        }
+      ],
+      level10: [
+        {
+          id: "ligacao_tiffany",
+          title: "3. Ligação de Tiffany",
+          text: "A ex-mulher de Lucas, Tiffany, liga pedindo permissão pra visitá-lo à noite.",
+          delta: 0,
+          converge: true,
+          options: [
+            { label: "Responder \"Sim\"", target: "aceitar_tiffany" },
+            { label: "Responder \"Não\"", target: "recusar_tiffany" }
+          ]
+        }
+      ],
+      level11: [
+        {
+          id: "aceitar_tiffany",
+          title: "Aceitar a Visita",
+          text: "Lucas permite a visita de Tiffany — sanidade positiva, ainda mais recomendado se ele acabou de se assustar com o computador.",
+          delta: 10,
+          options: [
+            { label: "Seguir a cena", target: "premonicao" }
+          ]
+        },
+        {
+          id: "recusar_tiffany",
+          title: "Recusar a Visita",
+          text: "Lucas nega a visita de Tiffany — sem valor de sanidade documentado nas fontes consultadas para essa escolha.",
+          delta: 0,
+          options: [
+            { label: "Seguir a cena", target: "premonicao" }
+          ]
+        }
+      ],
+      level12: [
+        {
+          id: "premonicao",
+          title: "4. Premonição",
+          text: "Uma nova sequência de QTE, mais curta e rápida — vale tentar não falhar aqui. Lucas tem uma premonição do que está por vir; a cena corta em seguida.",
+          delta: 0,
+          converge: true,
+          options: [
+            { label: "Ir checar o computador da Estação 62", target: "estacao_62" }
+          ]
+        }
+      ],
+      level13: [
+        {
+          id: "estacao_62",
+          title: "5. Estação 62",
+          text: "Independente de ter completado a QTE anterior sem falhar, Lucas precisa ir até o computador da Estação 62. Ao se aproximar, tem outra visão curta. Interage com o computador pra consertá-lo.",
+          delta: 0,
+          options: [
+            { label: "Consertar o computador (começa a fuga)", target: "fuga_insetos" }
+          ]
+        }
+      ],
+      level14: [
+        {
+          id: "fuga_insetos",
+          title: "6. Fuga dos Insetos Gigantes",
+          text: "Sequência longa de QTE: insetos gigantes aparecem, um deles agarra Lucas por trás (ativa o medidor L1/R1 — apertar alternadamente até se soltar), e ele usa um extintor de incêndio pra se defender no fim. Só de completar essa sequência (com falhas ou não), Lucas já perde bastante sanidade pelo trauma do evento. Cada comando de movimento errado custa uma vida; ficar sem vidas é Game Over.",
+          delta: -20,
+          options: [
+            { label: "Acertar todos os comandos sem errar nenhum", target: "pane_perfeito" },
+            { label: "Completar com algumas falhas (perde vidas, mas sobrevive)", target: "pane_com_falhas" },
+            { label: "Ficar sem vidas no meio da fuga", target: "gameover_insetos" }
+          ]
+        }
+      ],
+      level15: [
+        {
+          id: "pane_perfeito",
+          title: "7. Fuga Perfeita — Elevador",
+          text: "Lucas acerta todo comando de movimento exibido na tela, sem perder nenhum, e chega ao elevador ileso.",
+          type: "victory",
+          delta: 0,
+          trophy: "🏆 \"Pane\""
+        },
+        {
+          id: "pane_com_falhas",
+          title: "Fuga com Falhas — Elevador",
+          text: "Lucas erra um ou mais comandos ao longo da fuga (perdendo vidas a cada erro), mas ainda tem vida suficiente pra completar a sequência e chegar ao elevador — sem o troféu \"Pane\" nessa run.",
+          type: "victory",
+          delta: 0
+        },
+        {
+          id: "gameover_insetos",
+          title: "GAME OVER: Sem Vidas",
+          text: "Lucas esgota todas as vidas por errar comandos demais durante a fuga dos insetos gigantes.",
+          type: "gameover",
+          delta: 0
+        }
+      ]
+    };
+
     const CM_TREES = {
       murder: CM_NARRATIVE_TREE,
       investigacao: CM_TREE_INVESTIGACAO,
-      dia_seguinte: CM_TREE_DIA_SEGUINTE
+      dia_seguinte: CM_TREE_DIA_SEGUINTE,
+      confissao: CM_TREE_CONFISSAO,
+      trabalho_policial: CM_TREE_TRABALHO_POLICIAL,
+      realidade_alt: CM_TREE_REALIDADE_ALT
     };
 
     // Lista de capítulos pra navegação futura — cada um com available:true tem
@@ -1644,9 +2404,9 @@
       { id: "murder", name: "1. O Assassinato", available: true },
       { id: "investigacao", name: "2. Investigação", available: true },
       { id: "dia_seguinte", name: "3. O Dia Seguinte", available: true },
-      { id: "confissao", name: "4. Confissão", available: false },
-      { id: "trabalho_policial", name: "5. Trabalho Policial", available: false },
-      { id: "realidade_alt", name: "6. Realidade Alternativa", available: false },
+      { id: "confissao", name: "4. Confissão", available: true },
+      { id: "trabalho_policial", name: "5. Trabalho Policial", available: true },
+      { id: "realidade_alt", name: "6. Realidade Alternativa", available: true },
       { id: "tyler_kate", name: "7. Tyler & Kate", available: false },
       { id: "amor_perdido", name: "8. Amor Perdido", available: false },
       { id: "esconde_esconde", name: "9. Esconde-Esconde", available: false },
@@ -1961,6 +2721,7 @@
         // Não inicia arraste em cima de um card ou botão — assim o clique
         // deles sempre funciona normal, sem precisar suprimir nada depois.
         if (e.target.closest(".cm-node-card") || e.target.closest("button")) return;
+        e.preventDefault();
         isDown = true;
         startX = e.clientX;
         startY = e.clientY;
@@ -2036,11 +2797,22 @@
         { id: "paredes", label: "🏥 Paredes Acolchoadas", path: ["start", "corpo", "mopa", "pia_direita", "faca_moeda", "salao", "riscos_extras", "fundo_poco", "paredes_acolchoadas"] }
       ],
       investigacao: [
-        { id: "intuicao", label: "🔎 Intuição Feminina", path: ["start", "oficial", "garconete_inv", "policiais_balcao", "banheiro_entrada", "carla_faca", "sangue_fora", "mesa_lucas", "cafe_balcao", "saida_inv"] }
+        { id: "intuicao", label: "🔎 Intuição Feminina", path: ["start", "martin", "taxi", "mesa_lucas", "cafe_balcao", "telefone_carla", "ir_tyler", "frank_garret", "telefone_tyler", "banheiro_entrada", "carla_faca", "kate", "saida_inv"] }
       ],
       dia_seguinte: [
         { id: "seguro", label: "🛡️ Rota Segura (sem risco)", path: ["start", "tomar_remedio", "quarto", "cobrir_lencol", "telefone", "cozinha", "varanda", "ligar_radio", "camisa", "mictorio", "chave", "espera_policial", "abrir_a_tempo", "banho", "bandagem", "vestir", "deixar_policial_entrar", "resposta_calma", "revista_quarto", "policial_sai", "saida_apartamento"] },
         { id: "encobrir", label: "🏆 Encobrir (lençol exposto)", path: ["start", "tomar_remedio", "quarto", "deixar_lencol", "telefone", "cozinha", "varanda", "ligar_radio", "camisa", "mictorio", "chave", "espera_policial", "abrir_a_tempo", "banho", "bandagem", "vestir", "deixar_policial_entrar", "resposta_calma", "revista_quarto", "policial_sai", "saida_apartamento"] }
+      ],
+      confissao: [
+        { id: "crucifixo", label: "✝️ Da Morte, Surge a Vida (crucifixo)", path: ["start", "calmo", "decisao_final", "convencer", "aceitar_crucifixo", "vision_ao_afogamento", "mergulhar", "fora_da_agua", "reanimar", "saida_parque"] },
+        { id: "resgate", label: "🧊 Ao Resgate (salvar a criança)", path: ["start", "calmo", "decisao_final", "convencer", "aceitar_crucifixo", "vision_ao_afogamento", "mergulhar", "fora_da_agua", "reanimar", "saida_parque"] }
+      ],
+      trabalho_policial: [
+        { id: "sanidade_maxima", label: "🎯 Rota de Sanidade Máxima", path: ["start", "dispenser_carla", "jeffrey", "agua_escritorio", "ioio", "tyler_atrasado", "email_carla", "ligar_tyler", "tyler_acorda", "olhar_sam", "tempo_com_sam", "interrupcao_carla", "banheiro_tyler", "vestir_tyler", "toca_discos", "conversa_sam_1", "tom_bom_1", "conversa_sam_2", "tom_bom_2", "despedida_sam", "beijo_sam", "delegacia_tyler", "basquete_tyler", "encontro_final"] }
+      ],
+      realidade_alt: [
+        { id: "crucifixo", label: "✝️ Da Morte, Surge a Vida (crucifixo)", path: ["start", "area_trabalho", "cafe_maquina", "escritorio_warren", "ouvir_warren", "gaveta_direita", "pular_esquerda", "usar_pc", "pular_pc", "ligacao_tiffany", "aceitar_tiffany", "premonicao", "estacao_62", "fuga_insetos", "pane_perfeito"] },
+        { id: "pane", label: "🐜 Pane (fuga perfeita)", path: ["start", "area_trabalho", "cafe_maquina", "escritorio_warren", "ouvir_warren", "gaveta_direita", "pular_esquerda", "usar_pc", "pular_pc", "ligacao_tiffany", "aceitar_tiffany", "premonicao", "estacao_62", "fuga_insetos", "pane_perfeito"] }
       ]
     };
 
@@ -2151,6 +2923,45 @@
           seguindo.push('🏆 "Encobrir" (só conta se você convencer o policial a não entrar — não desista dessa sequência)');
         } else {
           travados.push('🏆 "Encobrir" (esse troféu exige ter deixado o lençol EXPOSTO e mesmo assim escapar da revista — cobrir o lençol antes já tira essa run da disputa)');
+        }
+
+        return { seguindo, travados };
+      }
+
+      if (node.id === "decisao_final") {
+        const seguindo = [];
+        const travados = [];
+
+        seguindo.push('🏆 "Da Morte, Surge a Vida" (ainda em aberto — só se fecha se você escolher "Convencer Markus" e depois aceitar o crucifixo)');
+
+        return { seguindo, travados };
+      }
+
+      if (node.id === "vision_ao_afogamento") {
+        const seguindo = [];
+        const travados = [];
+
+        if (cmActivePath.includes("cortar")) {
+          travados.push('🏆 "Da Morte, Surge a Vida" (você cortou a conversa antes de Markus chegar a oferecer o crucifixo)');
+        } else if (cmActivePath.includes("recusar_crucifixo")) {
+          travados.push('🏆 "Da Morte, Surge a Vida" (você recusou o crucifixo oferecido)');
+        } else if (cmActivePath.includes("aceitar_crucifixo")) {
+          seguindo.push('🏆 "Da Morte, Surge a Vida" (já garantido — crucifixo aceito)');
+        }
+
+        seguindo.push('🏆 "Ao Resgate" (ainda em aberto — só se fecha se você mergulhar E reanimar a criança a tempo)');
+
+        return { seguindo, travados };
+      }
+
+      if (node.id === "usar_pc") {
+        const seguindo = [];
+        const travados = [];
+
+        if (cmActivePath.includes("gaveta_direita")) {
+          seguindo.push('🏆 "Da Morte, Surge a Vida" (já garantido — crucifixo da gaveta direita coletado)');
+        } else if (cmActivePath.includes("pular_gavetas")) {
+          seguindo.push('🏆 "Da Morte, Surge a Vida" (esse crucifixo específico foi ignorado, mas o troféu ainda pode ser fechado em outro capítulo com crucifixo, como "Confissão")');
         }
 
         return { seguindo, travados };
