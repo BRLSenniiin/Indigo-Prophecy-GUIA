@@ -434,7 +434,7 @@
     display: flex; align-items: center; justify-content: center; padding: 20px;
   }
   .cm-popup-card {
-    position: relative; max-width: 260px; width: 100%; background: var(--bg-card);
+    position: absolute; max-width: 260px; width: 100%; background: var(--bg-card);
     border: 1px solid var(--cyan); border-radius: 10px; padding: 16px 14px;
     box-shadow: 0 8px 28px rgba(0, 0, 0, 0.85); font-size: 0.72rem; line-height: 1.5;
   }
@@ -2388,18 +2388,1155 @@
       ]
     };
 
+    // ─── Capítulo 7: Tyler & Kate ───
+    // Capítulo bem curto: só a montagem do retrato falado do suspeito. Sem
+    // cartas de tarô, sem vidas extras e sem valores de sanidade documentados
+    // nas fontes (DeuceExDefcon e Grawl concordam nisso) — e sem Game Over.
+    const CM_TREE_TYLER_KATE = {
+      level1: [
+        {
+          id: "start",
+          title: "1. Montagem do Retrato Falado",
+          text: "Kate se junta a Tyler na delegacia pra montar, com a ajuda dele, um retrato falado do suspeito que ela viu na lanchonete.",
+          delta: 0,
+          options: [
+            { label: "Montar um retrato bem parecido com Lucas", target: "retrato_preciso" },
+            { label: "Montar um retrato bem diferente de Lucas", target: "retrato_impreciso" }
+          ]
+        }
+      ],
+      level2: [
+        {
+          id: "retrato_preciso",
+          title: "Retrato Fiel",
+          text: "Kate monta um retrato entre 75% e 100% de semelhança com Lucas — cabelo curto penteado pra trás, rosto sem barba nem bigode, e as demais feições o mais próximas possível das reais.",
+          type: "victory",
+          delta: 0,
+          trophy: "🏆 \"Testemunho Confiável\""
+        },
+        {
+          id: "retrato_impreciso",
+          title: "Retrato Impreciso",
+          text: "Kate monta um retrato bem diferente de Lucas — sem penalidade de sanidade documentada nas fontes consultadas, mas sem fechar o troféu \"Testemunho Confiável\" nessa run.",
+          type: "victory",
+          delta: 0
+        }
+      ]
+    };
+
+    // ─── Capítulo 8: Amor Perdido ───
+    // De volta ao apartamento de Lucas, esperando a visita da Tiffany à noite.
+    // Fontes: DeuceExDefcon (PS2) como base principal — Grawl (PC) diverge em
+    // dois valores pontuais, sinalizados abaixo nos próprios nós. Tem Game Over
+    // (misturar comprimido com álcool) e é setup pros troféus "Preparação
+    // Mental" (sanidade ≥55 antes da Tiffany chegar — acumulado do jogo todo,
+    // não só desta cena) e "Boa Jogada" (convencê-la a passar a noite).
+    const CM_TREE_AMOR_PERDIDO = {
+      level1: [
+        {
+          id: "start",
+          title: "1. De Volta ao Apartamento",
+          text: "Lucas está de volta em casa, esperando a visita da Tiffany à noite. Há bastante coisa opcional pra fazer no apartamento antes dela chegar — cada atividade soma sanidade e ajuda a aproximar do patamar de 55 pontos exigido pelo troféu \"Preparação Mental\" (que é medido pela sanidade acumulada geral de Lucas, não só pelos pontos ganhos nesta cena).",
+          delta: 0,
+          options: [
+            { label: "Tomar um copo de leite na geladeira", target: "leite" }
+          ]
+        }
+      ],
+      level2: [
+        {
+          id: "leite",
+          title: "Leite da Geladeira",
+          text: "Lucas toma um gole de leite da geladeira.",
+          delta: 5,
+          options: [
+            { label: "Usar o banheiro", target: "banheiro" }
+          ]
+        }
+      ],
+      level3: [
+        {
+          id: "banheiro",
+          title: "Usar o Banheiro",
+          text: "Lucas usa o banheiro.",
+          delta: 5,
+          options: [
+            { label: "Ligar o som na sala", target: "som" }
+          ]
+        }
+      ],
+      level4: [
+        {
+          id: "som",
+          title: "Som na Sala",
+          text: "Lucas liga o rádio/som na sala de estar.",
+          delta: 5,
+          options: [
+            { label: "Olhar a foto na mesa perto do computador", target: "foto_mesa" },
+            { label: "Ignorar a foto e seguir", target: "pular_foto" }
+          ]
+        }
+      ],
+      level5: [
+        {
+          id: "foto_mesa",
+          title: "Foto na Mesa",
+          text: "Lucas olha a foto na própria mesa, perto do computador — a lembrança reduz sua sanidade.",
+          delta: -5,
+          options: [
+            { label: "Ir até o saco de pancadas", target: "saco_pancadas" }
+          ]
+        },
+        {
+          id: "pular_foto",
+          title: "Foto Ignorada",
+          text: "Lucas decide não olhar a foto por enquanto.",
+          delta: 0,
+          options: [
+            { label: "Ir até o saco de pancadas", target: "saco_pancadas" }
+          ]
+        }
+      ],
+      level6: [
+        {
+          id: "saco_pancadas",
+          title: "Saco de Pancadas",
+          text: "Lucas completa as sequências de QTE no saco de pancadas até derrubá-lo.",
+          delta: 10,
+          converge: true,
+          options: [
+            { label: "Ligar o amplificador e tocar violão", target: "violao_casa" }
+          ]
+        }
+      ],
+      level7: [
+        {
+          id: "violao_casa",
+          title: "Violão em Casa",
+          text: "Lucas liga o amplificador e completa as sequências de QTE tocando violão sozinho.",
+          delta: 10,
+          options: [
+            { label: "Decidir entre comprimido e álcool", target: "escolha_substancia" }
+          ]
+        }
+      ],
+      level8: [
+        {
+          id: "escolha_substancia",
+          title: "Comprimido ou Álcool?",
+          text: "Na mesinha ao lado da cama há comprimidos; na cozinha, uma garrafa de álcool. As fontes são categóricas: NUNCA combine os dois — é Game Over instantâneo.",
+          delta: 0,
+          converge: true,
+          options: [
+            { label: "Tomar os comprimidos", target: "comprimidos" },
+            { label: "Beber álcool (sem tomar comprimido)", target: "alcool" },
+            { label: "Não usar nenhum dos dois", target: "pular_substancia" },
+            { label: "Combinar comprimido + álcool", target: "gameover_overdose" }
+          ]
+        }
+      ],
+      level9: [
+        {
+          id: "comprimidos",
+          title: "Comprimidos",
+          text: "Lucas toma os comprimidos da mesinha ao lado da cama.",
+          delta: 10,
+          options: [
+            { label: "Ir dormir na cama", target: "dormir" }
+          ]
+        },
+        {
+          id: "alcool",
+          title: "Álcool",
+          text: "Lucas bebe da garrafa na prateleira da cozinha (sem ter tomado comprimido). Beber mais de uma vez custa 20 pontos de sanidade a cada dose extra — repetível até zerar a sanidade e resultar em Game Over —, então uma única dose já garante o bônus documentado sem correr esse risco.",
+          delta: 5,
+          options: [
+            { label: "Ir dormir na cama", target: "dormir" }
+          ]
+        },
+        {
+          id: "pular_substancia",
+          title: "Nenhum dos Dois",
+          text: "Lucas não mexe nem nos comprimidos nem no álcool.",
+          delta: 0,
+          options: [
+            { label: "Ir dormir na cama", target: "dormir" }
+          ]
+        },
+        {
+          id: "gameover_overdose",
+          title: "GAME OVER: Comprimido + Álcool",
+          text: "Lucas combina os comprimidos com o álcool — overdose fatal, fim de jogo instantâneo.",
+          type: "gameover",
+          delta: 0
+        }
+      ],
+      level10: [
+        {
+          id: "dormir",
+          title: "Dormir na Cama",
+          text: "Lucas escolhe a segunda opção de cama pra dormir — é uma AÇÃO OBRIGATÓRIA antes de Tiffany aparecer (ela bate na porta e o acorda; mesmo se ele não dormir, ela aparece de qualquer jeito mais cedo ou mais tarde).",
+          delta: 10,
+          converge: true,
+          options: [
+            { label: "Atender a porta pra Tiffany", target: "chegada_tiffany" }
+          ]
+        }
+      ],
+      level11: [
+        {
+          id: "chegada_tiffany",
+          title: "2. Chegada da Tiffany",
+          text: "Tiffany bate na porta. Lucas atende — AÇÃO OBRIGATÓRIA pra continuar o capítulo.",
+          delta: 0,
+          options: [
+            { label: "Oferecer um copo de bebida (escolher \"copo\")", target: "oferecer_bebida" },
+            { label: "Não oferecer bebida", target: "pular_bebida" }
+          ]
+        }
+      ],
+      level12: [
+        {
+          id: "oferecer_bebida",
+          title: "Oferecer Bebida",
+          text: "Lucas escolhe a opção \"copo\" logo no início da conversa, vai até a cozinha, enche um copo e entrega pra Tiffany. [Nota: o DeuceExDefcon documenta +5 aqui; o Grawl documenta +10 pro mesmo gesto — as fontes divergem, e mantive o valor do DeuceExDefcon por ser a fonte mais detalhada e consistente usada no resto deste capítulo.]",
+          delta: 5,
+          options: [
+            { label: "Seguir a conversa (tema \"notícias\")", target: "conversa_noticias" }
+          ]
+        },
+        {
+          id: "pular_bebida",
+          title: "Sem Oferecer Bebida",
+          text: "Lucas não oferece bebida nenhuma a Tiffany.",
+          delta: 0,
+          options: [
+            { label: "Seguir a conversa (tema \"notícias\")", target: "conversa_noticias" }
+          ]
+        }
+      ],
+      level13: [
+        {
+          id: "conversa_noticias",
+          title: "Conversa — Notícias",
+          text: "Lucas escolhe o tema \"notícias\" pra puxar assunto, o que leva à próxima etapa obrigatória: buscar as caixas da Tiffany.",
+          delta: 0,
+          converge: true,
+          options: [
+            { label: "Ir buscar as duas caixas dela", target: "caixas" }
+          ]
+        }
+      ],
+      level14: [
+        {
+          id: "caixas",
+          title: "3. Caixas da Tiffany",
+          text: "AÇÃO OBRIGATÓRIA: uma caixa fica um pouco à esquerda do telefone, perto da cozinha; a outra, um pouco à esquerda do computador, no quarto. Lucas traz as duas e as deixa no chão perto dela, o que puxa mais diálogo.",
+          delta: 0,
+          options: [
+            { label: "Ser sincero na conversa", target: "sincero" },
+            { label: "Ser agressivo na conversa", target: "agressivo_tiffany" }
+          ]
+        }
+      ],
+      level15: [
+        {
+          id: "sincero",
+          title: "Sincero",
+          text: "Lucas escolhe a opção \"sincero\" na conversa.",
+          delta: 5,
+          options: [
+            { label: "Seguir pra próxima parte da conversa", target: "sentimental_ou_nao" }
+          ]
+        },
+        {
+          id: "agressivo_tiffany",
+          title: "Agressivo",
+          text: "Lucas escolhe a opção \"agressivo\" na conversa.",
+          delta: -10,
+          options: [
+            { label: "Seguir pra próxima parte da conversa", target: "sentimental_ou_nao" }
+          ]
+        }
+      ],
+      level16: [
+        {
+          id: "sentimental_ou_nao",
+          title: "Segunda Parte da Conversa",
+          text: "A conversa segue pra outro momento de escolha.",
+          delta: 0,
+          converge: true,
+          options: [
+            { label: "Escolher a opção \"sentimental\"", target: "sentimental" },
+            { label: "Não escolher a opção sentimental", target: "pular_sentimental" }
+          ]
+        }
+      ],
+      level17: [
+        {
+          id: "sentimental",
+          title: "Sentimental",
+          text: "Lucas escolhe a opção \"sentimental\" na conversa.",
+          delta: 10,
+          options: [
+            { label: "Evitar o beijo por enquanto", target: "evitar_beijo_cedo" },
+            { label: "Tentar beijar Tiffany agora mesmo", target: "beijo_cedo" }
+          ]
+        },
+        {
+          id: "pular_sentimental",
+          title: "Sem Opção Sentimental",
+          text: "Lucas não escolhe a opção sentimental na conversa.",
+          delta: 0,
+          options: [
+            { label: "Evitar o beijo por enquanto", target: "evitar_beijo_cedo" },
+            { label: "Tentar beijar Tiffany agora mesmo", target: "beijo_cedo" }
+          ]
+        }
+      ],
+      level18: [
+        {
+          id: "evitar_beijo_cedo",
+          title: "Evitar o Beijo Cedo Demais",
+          text: "Lucas não tenta beijar Tiffany ainda — as fontes avisam que tentar agora, antes da hora certa, a deixaria incomodada.",
+          delta: 0,
+          converge: true,
+          options: [
+            { label: "Pegar o violão quando ela pedir", target: "violao_tiffany" }
+          ]
+        },
+        {
+          id: "beijo_cedo",
+          title: "Beijo Cedo Demais",
+          text: "Lucas tenta beijar Tiffany antes da hora certa — ela fica incomodada e vai embora, encerrando o encontro antes mesmo do momento real do beijo ser cogitado.",
+          delta: -20,
+          options: [
+            { label: "Seguir a noite", target: "sonho_noturno" }
+          ]
+        }
+      ],
+      level19: [
+        {
+          id: "violao_tiffany",
+          title: "4. Violão pra Tiffany",
+          text: "Tiffany pede pra Lucas tocar violão pra ela.",
+          delta: 0,
+          options: [
+            { label: "Completar a sequência sem errar", target: "violao_sucesso" },
+            { label: "Errar a sequência do violão", target: "violao_falha" }
+          ]
+        }
+      ],
+      level20: [
+        {
+          id: "violao_sucesso",
+          title: "Violão Impecável",
+          text: "Lucas completa a sequência do violão sem errar, em frente à Tiffany.",
+          delta: 10,
+          options: [
+            { label: "Beijar Tiffany (momento certo)", target: "beijo_certo" }
+          ]
+        },
+        {
+          id: "violao_falha",
+          title: "Violão Errado",
+          text: "Lucas erra a sequência do violão em frente à Tiffany, o que azeda o clima.",
+          delta: -10,
+          options: [
+            { label: "Tentar beijar mesmo assim", target: "beijo_apos_falha" },
+            { label: "Não arriscar o beijo depois da falha", target: "sem_beijo_apos_falha" }
+          ]
+        }
+      ],
+      level21: [
+        {
+          id: "beijo_certo",
+          title: "5. Beijo no Momento Certo",
+          text: "Lucas beija Tiffany no momento certo — dessa vez ela não fica brava, e os dois acabam indo pro quarto juntos.",
+          delta: 30,
+          trophy: "🏆 \"Boa Jogada\"",
+          options: [
+            { label: "Seguir a noite", target: "sonho_noturno" }
+          ]
+        },
+        {
+          id: "beijo_apos_falha",
+          title: "Beijo Após Falhar no Violão",
+          text: "Mesmo depois de errar o violão, Lucas tenta beijar Tiffany — dessa vez ela fica de fato brava e vai embora.",
+          delta: -30,
+          options: [
+            { label: "Seguir a noite", target: "sonho_noturno" }
+          ]
+        },
+        {
+          id: "sem_beijo_apos_falha",
+          title: "Sem Tentar o Beijo",
+          text: "Depois de errar o violão, Lucas prefere não arriscar o beijo — evita a penalidade adicional de vê-la ir embora brava, mas também não fecha o troféu \"Boa Jogada\" nessa run.",
+          delta: 0,
+          options: [
+            { label: "Seguir a noite", target: "sonho_noturno" }
+          ]
+        }
+      ],
+      level22: [
+        {
+          id: "sonho_noturno",
+          title: "6. Sonho Estranho",
+          text: "Algo acorda Lucas no meio da noite, independente de como o encontro com a Tiffany terminou. [Nota: as próprias fontes se contradizem aqui — a seção \"Ações Obrigatórias\" do DeuceExDefcon lista \"sair pro corredor\" como obrigatório, mas o texto do walkthrough do mesmo autor diz explicitamente que dá pra evitar a perda de pontos voltando a dormir sem entrar no corredor. Mantive as duas opções abertas por conta dessa divergência interna da própria fonte.]",
+          delta: 0,
+          converge: true,
+          options: [
+            { label: "Sair do quarto e entrar no corredor", target: "corredor_visao" },
+            { label: "Voltar a dormir sem entrar no corredor", target: "volta_dormir" }
+          ]
+        }
+      ],
+      level23: [
+        {
+          id: "corredor_visao",
+          title: "Visão no Corredor",
+          text: "Lucas sai do quarto e entra no corredor, onde vê uma garota estranha — era só um sonho, e ele acorda gritando, perdendo sanidade com o susto.",
+          delta: -20,
+          options: [
+            { label: "Fim do capítulo", target: "fim_capitulo" }
+          ]
+        },
+        {
+          id: "volta_dormir",
+          title: "Evitar a Visão",
+          text: "Lucas simplesmente volta a dormir sem entrar no corredor, evitando o susto do sonho por completo.",
+          delta: 0,
+          options: [
+            { label: "Fim do capítulo", target: "fim_capitulo" }
+          ]
+        }
+      ],
+      level24: [
+        {
+          id: "fim_capitulo",
+          title: "7. Fim do Encontro",
+          text: "O capítulo se encerra aqui, independente do desfecho com a Tiffany ou do sonho na madrugada.",
+          type: "victory",
+          delta: 0,
+          converge: true
+        }
+      ]
+    };
+
+    // ─── Capítulo 9: Esconde-Esconde ───
+    // Cemitério (presente) + flashback de Lucas criança no Hangar 4. A parte
+    // de infiltração é guiada passo a passo pelas fontes (sem valores de
+    // sanidade documentados nela própria); o único delta de sanidade do
+    // capítulo é o resultado final de salvar ou não os três garotos.
+    const CM_TREE_ESCONDE_ESCONDE = {
+      level1: [
+        {
+          id: "start",
+          title: "1. Cemitério",
+          text: "Lucas anda pelo cemitério. Logo na entrada, o primeiro caminho à direita tem uma carta de tarô bônus no chão. Ele segue reto até o fim do caminho principal, sem pegar nenhum desvio à direita.",
+          delta: 0,
+          options: [
+            { label: "Pegar o crucifixo em cima do túmulo no fim do caminho (vida extra)", target: "vida_extra" }
+          ]
+        }
+      ],
+      level2: [
+        {
+          id: "vida_extra",
+          title: "Vida Extra no Túmulo",
+          text: "No fim do caminho, há um túmulo à direita com um crucifixo em cima — vida extra.",
+          delta: 0,
+          options: [
+            { label: "Voltar e seguir pelo caminho do meio até Markus", target: "encontro_markus" }
+          ]
+        }
+      ],
+      level3: [
+        {
+          id: "encontro_markus",
+          title: "2. Encontro com Markus",
+          text: "Lucas volta e segue pelo caminho do meio até encontrar Markus, parado no cemitério. Ele diz uma frase curta.",
+          delta: 0,
+          options: [
+            { label: "Colocar as flores no túmulo dos pais", target: "flores" }
+          ]
+        }
+      ],
+      level4: [
+        {
+          id: "flores",
+          title: "Flores no Túmulo",
+          text: "Lucas coloca as flores no túmulo dos pais — AÇÃO OBRIGATÓRIA que dispara o flashback da infância.",
+          delta: 0,
+          options: [
+            { label: "Seguir o flashback", target: "premonicao" }
+          ]
+        }
+      ],
+      level5: [
+        {
+          id: "premonicao",
+          title: "3. Premonição",
+          text: "Já como Lucas garoto no flashback, Markus termina de falar e Lucas corre pra frente até ter uma premonição. Completar a sequência de QTE dá um gostinho da próxima tarefa; falhar não custa nada, segundo as fontes.",
+          delta: 0,
+          options: [
+            { label: "Correr até a cerca", target: "cerca1" }
+          ]
+        }
+      ],
+      level6: [
+        {
+          id: "cerca1",
+          title: "4. Primeira Cerca",
+          text: "Lucas corre até a primeira cerca e a escala com uma sequência de movimentos.",
+          delta: 0,
+          options: [
+            { label: "Descer do outro lado e se esconder atrás da pedra", target: "espera_guarda" }
+          ]
+        }
+      ],
+      level7: [
+        {
+          id: "espera_guarda",
+          title: "Esperando o Guarda",
+          text: "Do outro lado da cerca, Lucas se esconde à direita de uma pedra grande. Há dois guardas na estrada principal andando um em direção ao outro e depois se afastando. É preciso esperar o guarda mais próximo se afastar (mesma direção dos caminhões que passam) antes de arriscar a travessia.",
+          delta: 0,
+          options: [
+            { label: "Esperar o guarda se afastar e atravessar em diagonal", target: "segunda_cerca" },
+            { label: "Atravessar sem esperar o guarda se afastar", target: "gameover_flagrado" }
+          ]
+        }
+      ],
+      level8: [
+        {
+          id: "segunda_cerca",
+          title: "5. Segunda Cerca e Vala",
+          text: "Lucas atravessa em diagonal até a segunda cerca e corre pra vala ao lado dela pra ficar fora de vista, seguindo pra norte ao longo da cerca até achar um buraco perto de uma pedra.",
+          delta: 0,
+          options: [
+            { label: "Rastejar pelo buraco", target: "caixotes" }
+          ]
+        }
+      ],
+      level9: [
+        {
+          id: "caixotes",
+          title: "6. Caixotes e Caminhões",
+          text: "Depois de rastejar pelo buraco, Lucas se posiciona atrás do segundo conjunto de caixotes. Caminhões passam por ali de tempos em tempos, e é preciso usar um deles pra bloquear a visão do guarda enquanto se move — melhor ficar agachado esperando o caminhão certo passar.",
+          delta: 0,
+          options: [
+            { label: "Sair correndo ao lado do caminhão até passar pelos dois últimos guardas", target: "entrada_hangar" },
+            { label: "Se expor sem a cobertura do caminhão", target: "gameover_flagrado" }
+          ]
+        }
+      ],
+      level10: [
+        {
+          id: "entrada_hangar",
+          title: "7. Entrada do Hangar",
+          text: "Assim que o caminhão passa entre os dois últimos guardas, Lucas se solta dele, vira a leste e corre entre os hangares até o X vermelho marcado no mapa, que indica a entrada.",
+          delta: 0,
+          options: [
+            { label: "Entrar no hangar", target: "dentro_hangar" }
+          ]
+        },
+        {
+          id: "gameover_flagrado",
+          title: "GAME OVER: Flagrado pelos Guardas",
+          text: "Um dos guardas perto do hangar avista Lucas durante a infiltração — fim de jogo, segundo as fontes.",
+          type: "gameover",
+          delta: 0
+        }
+      ],
+      level11: [
+        {
+          id: "dentro_hangar",
+          title: "8. Dentro do Hangar",
+          text: "Depois de uma breve conversa, Lucas manda Markus embora e fica encarregado de achar os três garotos escondidos: um atrás de um pedaço de avião, outro escondido perto de umas coisas contra a parede (subindo a escada), e o terceiro dentro de um caixote aberto no meio, entre duas fileiras de caixotes no chão principal.",
+          delta: 0,
+          options: [
+            { label: "Salvar os três garotos a tempo", target: "salvou_todos" },
+            { label: "Não salvar todos os três a tempo", target: "nao_salvou_todos" }
+          ]
+        }
+      ],
+      level12: [
+        {
+          id: "salvou_todos",
+          title: "9. Todos Salvos",
+          text: "Lucas encontra e salva os três garotos escondidos antes do tempo acabar. A cena termina e ele volta ao presente.",
+          type: "victory",
+          delta: 10,
+          trophy: "🏆 \"Fim de Jogo\""
+        },
+        {
+          id: "nao_salvou_todos",
+          title: "Nem Todos Salvos",
+          text: "Lucas não consegue salvar todos os três garotos a tempo. A cena termina e ele volta ao presente.",
+          type: "victory",
+          delta: -20
+        }
+      ]
+    };
+
+    // ─── Capítulo 10: Combate Amistoso ───
+    // Ginásio: Carla e Tyler precisam completar dois treinos cada (em
+    // qualquer ordem/estação) antes da luta ser liberada. Sem Game Over. A
+    // luta em si é sempre controlada pela Carla, vencer ou perder é o que
+    // decide o troféu "Já Teve o Suficiente?".
+    const CM_TREE_COMBATE_AMISTOSO = {
+      level1: [
+        {
+          id: "start",
+          title: "1. Ginásio",
+          text: "Carla e Tyler chegam ao ginásio, cheio de estações de treino — algumas exclusivas dela, outras dele. Os dois precisam completar dois treinos cada (em qualquer estação, inclusive repetindo a mesma duas vezes) antes que a luta seja liberada — AÇÃO OBRIGATÓRIA.",
+          delta: 0,
+          options: [
+            { label: "Beber da garrafa de água no banco (Carla)", target: "agua_carla" },
+            { label: "Não beber e ir direto treinar (Carla)", target: "treino1_carla" }
+          ]
+        }
+      ],
+      level2: [
+        {
+          id: "agua_carla",
+          title: "Água (Carla)",
+          text: "Carla bebe da garrafa de água no banco.",
+          delta: 5,
+          options: [
+            { label: "Treinar na primeira estação", target: "treino1_carla" }
+          ]
+        }
+      ],
+      level3: [
+        {
+          id: "treino1_carla",
+          title: "Primeira Estação (Carla)",
+          text: "Carla treina na primeira estação de aquecimento.",
+          delta: 0,
+          converge: true,
+          options: [
+            { label: "Completar o aquecimento e treinar numa segunda estação", target: "treino2_carla" },
+            { label: "Falhar três tentativas seguidas de aquecimento", target: "falha_aquecimento_carla" }
+          ]
+        }
+      ],
+      level4: [
+        {
+          id: "falha_aquecimento_carla",
+          title: "Aquecimento Falhado (Carla)",
+          text: "Carla falha três tentativas seguidas de aquecimento numa das estações — perde sanidade, mas pode tentar de novo em seguida sem mais penalidade.",
+          delta: -5,
+          options: [
+            { label: "Treinar numa segunda estação", target: "treino2_carla" }
+          ]
+        }
+      ],
+      level5: [
+        {
+          id: "treino2_carla",
+          title: "Segunda Estação (Carla)",
+          text: "Ao completar a segunda estação de treino (pode ser a mesma repetida), Carla ganha o bônus completo de aquecimento.",
+          delta: 10,
+          converge: true,
+          options: [
+            { label: "Trocar pra Tyler", target: "tyler_intro" }
+          ]
+        }
+      ],
+      level6: [
+        {
+          id: "tyler_intro",
+          title: "2. Tyler no Ginásio",
+          text: "Com Tyler, é hora de repetir o processo: ele também precisa completar dois treinos antes que a luta seja liberada.",
+          delta: 0,
+          options: [
+            { label: "Beber da garrafa de água no banco (Tyler)", target: "agua_tyler" },
+            { label: "Não beber e ir direto treinar (Tyler)", target: "treino1_tyler" }
+          ]
+        }
+      ],
+      level7: [
+        {
+          id: "agua_tyler",
+          title: "Água (Tyler)",
+          text: "Tyler bebe da garrafa de água no banco.",
+          delta: 5,
+          options: [
+            { label: "Treinar na primeira estação", target: "treino1_tyler" }
+          ]
+        }
+      ],
+      level8: [
+        {
+          id: "treino1_tyler",
+          title: "Primeira Estação (Tyler)",
+          text: "Tyler treina na primeira estação de aquecimento.",
+          delta: 0,
+          converge: true,
+          options: [
+            { label: "Completar o aquecimento e treinar numa segunda estação", target: "treino2_tyler" },
+            { label: "Falhar três tentativas seguidas de aquecimento", target: "falha_aquecimento_tyler" }
+          ]
+        }
+      ],
+      level9: [
+        {
+          id: "falha_aquecimento_tyler",
+          title: "Aquecimento Falhado (Tyler)",
+          text: "Tyler falha três tentativas seguidas de aquecimento numa das estações — perde sanidade, mas pode tentar de novo em seguida sem mais penalidade.",
+          delta: -5,
+          options: [
+            { label: "Treinar numa segunda estação", target: "treino2_tyler" }
+          ]
+        }
+      ],
+      level10: [
+        {
+          id: "treino2_tyler",
+          title: "Segunda Estação (Tyler)",
+          text: "Ao completar a segunda estação de treino (pode ser a mesma repetida), Tyler ganha o bônus completo de aquecimento.",
+          delta: 10,
+          converge: true,
+          options: [
+            { label: "Ir até o ringue de boxe", target: "ringue" }
+          ]
+        }
+      ],
+      level11: [
+        {
+          id: "ringue",
+          title: "3. Ringue de Boxe",
+          text: "Com os dois treinos completos dos dois lados, dá pra ir até o ringue. Há uma carta de tarô bônus escondida no canto atrás dele — melhor pegar antes de inspecionar o ringue, já que isso dispara a sequência de luta. Inspecionar o ringue é AÇÃO OBRIGATÓRIA pra continuar.",
+          delta: 0,
+          options: [
+            { label: "Inspecionar o ringue e começar a luta", target: "luta" }
+          ]
+        }
+      ],
+      level12: [
+        {
+          id: "luta",
+          title: "4. A Luta",
+          text: "A partir daqui, o controle passa pra Carla — é ela quem luta contra o Tyler numa sequência de QTE relativamente longa.",
+          delta: 0,
+          options: [
+            { label: "Vencer a luta", target: "vitoria" },
+            { label: "Perder a luta", target: "derrota" }
+          ]
+        }
+      ],
+      level13: [
+        {
+          id: "vitoria",
+          title: "5. Vitória de Carla",
+          text: "Carla vence a luta contra Tyler — ele não ganha nem perde sanidade com o resultado. Há uma cena curta depois da luta, e o capítulo termina.",
+          type: "victory",
+          delta: 20,
+          trophy: "🏆 \"Já Teve o Suficiente?\""
+        },
+        {
+          id: "derrota",
+          title: "Derrota de Carla",
+          text: "Carla perde a luta pra Tyler — ele não ganha nada com a vitória dele. Segundo as fontes, a fala do Tyler se ele vencer vale a pena ver/ouvir. Há uma cena curta depois da luta, e o capítulo termina.",
+          type: "victory",
+          delta: -10
+        }
+      ]
+    };
+
+    // ─── Capítulo 11: Prestação de Contas (Carla) ───
+    // Fontes: Neoseeker, Omikrongame, e dois textos de gamefaqs (um deles no
+    // formato FH.04.13 do Grawl). Arquivo com QTE de respiração contínuo
+    // (claustrofobia da Carla) — o capítulo tem DOIS troféus que são rotas
+    // opostas: "Respiração Calma" (nunca falhar) e "Resignação" (falhar de
+    // propósito repetidamente até a sanidade geral chegar a "Destruído"). Sem
+    // Game Over documentado — só a opção de desistir e trocar pro Tyler.
+    const CM_TREE_PRESTACAO_CONTAS = {
+      level1: [
+        {
+          id: "start",
+          title: "1. Sala do Chefe",
+          text: "Carla e Tyler são interrogados pelo chefe. As fontes sugerem \"Ritual\" e \"Incerto\" como respostas razoáveis, mas deixam claro que a escolha não muda o resultado. Depois de algumas perguntas, os dois saem com suas missões: Carla vai investigar o caso Kirsten nos arquivos; Tyler vai investigar o livro achado na lanchonete.",
+          delta: 0,
+          options: [
+            { label: "Seguir com Carla até os arquivos", target: "corredor_inicial" }
+          ]
+        }
+      ],
+      level2: [
+        {
+          id: "corredor_inicial",
+          title: "2. Corredor de Entrada",
+          text: "Assim que ganha o controle da Carla, bem ao lado de onde ela começa há uma carta de tarô bônus — quase impossível de não ver. [Nota: o valor documentado na maioria das fontes — e já cadastrado na tabela de tarô do site — é 10; só uma das quatro fontes consultadas aqui marca esse valor como incerto (\"5(?)\"), então mantive o valor já existente no site por ser o mais consistente entre as fontes.]",
+          delta: 0,
+          options: [
+            { label: "Seguir até o portão dos arquivos", target: "portao" }
+          ]
+        }
+      ],
+      level3: [
+        {
+          id: "portao",
+          title: "Portão dos Arquivos",
+          text: "Carla explica sua claustrofobia antes mesmo de entrar — ela vai sofrer com isso a cena inteira. Virando à direita bem na frente do portão tem o interruptor de luz; melhor ligar antes de abrir o portão e entrar (às vezes a luz pisca e apaga por um tempo lá dentro — dá pra esperar passar mantendo a respiração em dia, ou seguir em frente na escuridão mesmo, sem custo documentado por isso).",
+          delta: 0,
+          options: [
+            { label: "Ligar a luz e abrir o portão", target: "inicio_respiracao" }
+          ]
+        }
+      ],
+      level4: [
+        {
+          id: "inicio_respiracao",
+          title: "3. Controle de Respiração",
+          text: "A partir daqui começa o minigame de respiração que dura a cena inteira: segure os botões esquerdo/direito (L1/R1) alternadamente, num ritmo estável, pra manter o indicador no meio da barra. Apertar rápido demais joga o indicador pra esquerda; não apertar joga pra direita — os dois extremos fazem Carla entrar em pânico. Esse controle continua ativo durante praticamente toda a movimentação e interação com objetos (exceto ao mexer no terminal).",
+          delta: 0,
+          options: [
+            { label: "Manter a respiração sob controle", target: "prateleiras1" },
+            { label: "Falhar o controle de respiração", target: "falha_respiracao" }
+          ]
+        }
+      ],
+      level5: [
+        {
+          id: "prateleiras1",
+          title: "Estantes — Primeiro Trecho",
+          text: "Usando os ângulos de câmera, Carla avança até achar a estante com a roldana à direita — gira essa roldana pra abrir caminho. Na estante seguinte, primeiro gira a roldana da esquerda, depois a da direita, formando o caminho até a área central com o terminal do computador.",
+          delta: 0,
+          converge: true,
+          options: [
+            { label: "Chegar ao terminal (sem energia)", target: "terminal_sem_energia" }
+          ]
+        },
+        {
+          id: "falha_respiracao",
+          title: "Pânico (Falha na Respiração)",
+          text: "O indicador chega numa das pontas e Carla entra em pânico — uma cutscene toca e ela perde sanidade na hora. Ela fica agachada do lado de fora do arquivo, com o ícone de troca de personagem disponível na tela. Não trocar permite que ela se levante e tente de novo (repetindo esse ciclo de falha quantas vezes quiser); é exatamente esse ciclo repetido de propósito que a tabela de troféus do site recomenda pra fechar \"Resignação\" o mais rápido possível — não confundir com a run limpa de \"Respiração Calma\".",
+          delta: -10,
+          options: [
+            { label: "Levantar e tentar de novo", target: "retomar_apos_falha" },
+            { label: "Trocar pra Tyler (desistir de vez)", target: "trocar_tyler_desistir" }
+          ]
+        }
+      ],
+      level6: [
+        {
+          id: "retomar_apos_falha",
+          title: "Retomar Após a Falha",
+          text: "Carla se levanta e volta a tentar. O jogo permite repetir esse ciclo (entrar, falhar de propósito, sair, -10 de cada vez) quantas vezes quiser — é assim que se aproxima do estado \"Destruído\" da sanidade geral, exigido pelo troféu \"Resignação\", mais rápido do que esperando a sanidade cair organicamente ao longo do jogo todo.",
+          delta: 0,
+          options: [
+            { label: "Seguir pras estantes", target: "prateleiras1" }
+          ]
+        },
+        {
+          id: "trocar_tyler_desistir",
+          title: "4. Desistir e Trocar pra Tyler",
+          text: "Carla desiste e o controle passa pro Tyler, que assume essa missão dela mais tarde (depois de terminar a própria missão, pode descer aos arquivos e completar em nome dela — sem detalhes documentados de como isso funcionaria na prática, então não modelei essa continuação aqui). Uma única desistência não garante sozinha o estado \"Destruído\" — o troféu \"Resignação\" normalmente exige repetir a falha de propósito várias vezes antes de desistir de vez.",
+          delta: -30,
+          options: [
+            { label: "Seguir pra missão do Tyler (livraria)", target: "livraria_start" }
+          ]
+        }
+      ],
+      level7: [
+        {
+          id: "terminal_sem_energia",
+          title: "4. Terminal Sem Energia",
+          text: "O terminal não tem energia — é preciso achar o quadro de força primeiro. De frente pro terminal, Carla vira à esquerda e segue pelo caminho entre as estantes. O quadro de força fica na parede atrás da próxima fileira: gira primeiro a roldana da direita, depois a da esquerda, o que abre caminho até ele (fica bem iluminado, impossível não ver). Usa o quadro, e volta pro terminal — agora energizado.",
+          delta: 0,
+          options: [
+            { label: "Buscar a fita certa (seção 1990-2000)", target: "busca_fita" }
+          ]
+        }
+      ],
+      level8: [
+        {
+          id: "busca_fita",
+          title: "5. Busca pela Fita — Seção 1990-2000",
+          text: "De frente pro terminal, vira à direita. Gira a roldana mais à esquerda da fileira de estantes ali e segue pelo caminho — parece um beco sem saída. Gira a roldana à esquerda: abre um caminho, mas não tem nada útil lá. Volta pro terminal, gira a mesma roldana da esquerda de novo, depois a roldana mais à direita da mesma fileira, e segue pela abertura. Gira a roldana à frente, e a seção \"1990-2000\" se abre. Pega a fita nessa fileira.",
+          delta: 0,
+          options: [
+            { label: "Usar a fita certa no terminal", target: "fita_correta" }
+          ]
+        }
+      ],
+      level9: [
+        {
+          id: "fita_correta",
+          title: "6. Fita Encontrada",
+          text: "Carla usa a fita certa no terminal, encerrando a parte dela — o próximo destino da Carla é o detetive Robert Mitchell, responsável pelo caso Kirsten na época. A história agora acompanha o Tyler, que investiga o livro achado na lanchonete numa livraria.",
+          delta: 20,
+          converge: true,
+          options: [
+            { label: "Seguir pra missão do Tyler (livraria)", target: "livraria_start" }
+          ]
+        }
+      ],
+      level10: [
+        {
+          id: "livraria_start",
+          title: "7. Livraria do Takeo",
+          text: "Do lado do Tyler: ele entra na livraria de Takeo, especialista em livros antigos. Logo no início da cena, num canto à esquerda, tem uma carta de tarô bônus (já documentada). Sob a escada por onde ele desceu tem uma mesa com um livro — o mesmo que Lucas deixou na lanchonete, uma peça de Shakespeare (\"A Tempestade\"). Examinar esse livro com a lupa disponível ali é o que puxa a conversa com o Takeo sobre o caso.",
+          delta: 0,
+          converge: true,
+          options: [
+            { label: "Conversar com Takeo sobre o caso", target: "conversa_takeo" }
+          ]
+        }
+      ],
+      level11: [
+        {
+          id: "conversa_takeo",
+          title: "Conversa com Takeo",
+          text: "Na conversa, a sequência de falas recomendada pra NÃO revelar que Tyler é policial é: \"Tossir\" → \"Insistir\" → \"Livro\" → \"Insistir\". Escolher \"Caso\" ou \"Profissão\" em algum momento revela que ele é da polícia.",
+          delta: 0,
+          options: [
+            { label: "Seguir sem revelar a profissão", target: "sem_revelar" },
+            { label: "Revelar a profissão (\"Caso\"/\"Profissão\")", target: "revelar_profissao" }
+          ]
+        }
+      ],
+      level12: [
+        {
+          id: "sem_revelar",
+          title: "Profissão Escondida",
+          text: "Tyler segue a conversa sem revelar que é policial.",
+          delta: 0,
+          options: [
+            { label: "Tentar sair da loja", target: "pedido_takeo" }
+          ]
+        },
+        {
+          id: "revelar_profissao",
+          title: "Profissão Revelada",
+          text: "Tyler acaba revelando que é policial durante a conversa.",
+          delta: 0,
+          options: [
+            { label: "Tentar sair da loja", target: "pedido_takeo" }
+          ]
+        }
+      ],
+      level13: [
+        {
+          id: "pedido_takeo",
+          title: "8. Pedido do Takeo",
+          text: "Quando Tyler tenta ir embora, Takeo o chama de volta e pede um favor: achar um livro específico pra ele — AÇÃO OBRIGATÓRIA pra continuar o capítulo.",
+          delta: 0,
+          converge: true,
+          options: [
+            { label: "Examinar o livro na mesa sob a escada", target: "autor_livro" }
+          ]
+        }
+      ],
+      level14: [
+        {
+          id: "autor_livro",
+          title: "Nome do Autor",
+          text: "Tyler examina de novo o livro na mesa sob a escada por onde desceu no início (o de Shakespeare) até largá-lo de vez — e assim anota o nome do autor do livro que o Takeo está pedindo: \"De Gruttola\".",
+          delta: 0,
+          options: [
+            { label: "Subir até a mesa perto da escada principal", target: "ano_livro" }
+          ]
+        }
+      ],
+      level15: [
+        {
+          id: "ano_livro",
+          title: "Ano do Livro",
+          text: "No andar de cima, Tyler examina o livro numa mesa à direita e descobre o ano ligado a \"De Gruttola\": 1796.",
+          delta: 0,
+          options: [
+            { label: "Ir até o 3º andar buscar o livro certo", target: "terceiro_andar" }
+          ]
+        }
+      ],
+      level16: [
+        {
+          id: "terceiro_andar",
+          title: "9. Terceiro Andar — Estantes Brancas",
+          text: "Livros de 1700 a 1800 ficam no 3º andar, marcados de branco pras letras A-E. Tyler pega o livro certo por ali (uma fonte cita a 4ª prateleira a partir da esquerda). Há uma segunda carta de tarô bônus que só aparece depois de entregar o livro certo, perto da escada de saída — já documentada na tabela de tarô do site.",
+          delta: 0,
+          options: [
+            { label: "Levar o livro de volta pro Takeo", target: "entrega_livro" }
+          ]
+        }
+      ],
+      level17: [
+        {
+          id: "entrega_livro",
+          title: "10. Entrega do Livro",
+          text: "Tyler entrega o livro certo pro Takeo, puxando uma conversa curta antes de poder sair da loja.",
+          delta: 0,
+          converge: true,
+          options: [
+            { label: "Sair da loja", target: "fim_capitulo" }
+          ]
+        }
+      ],
+      level18: [
+        {
+          id: "fim_capitulo",
+          title: "11. Fim do Capítulo",
+          text: "Tyler sai da loja — o capítulo se encerra aqui, unindo os dois lados (Carla nos arquivos, Tyler na livraria) de \"Prestação de Contas\".",
+          type: "victory",
+          delta: 0
+        }
+      ]
+    };
+
+    // ─── Capítulo 7: Reconstrução ───
+    // Necrotério: Carla ajuda o legista a reconstruir o crime através de 4
+    // sequências de ação independentes. Fontes (Neoseeker, Omikrongame, 2x
+    // gamefaqs) concordam ponto a ponto: +10 por sequência bem-sucedida, -10
+    // por falha, sem carta de tarô, sem Game Over, sem ação obrigatória além
+    // de acompanhar a cena. Esse capítulo estava FALTANDO no site — sua
+    // ausência é o que empurrava a numeração de "Tyler & Kate" em diante.
+    const CM_TREE_RECONSTRUCAO = {
+      level1: [
+        {
+          id: "start",
+          title: "1. Necrotério",
+          text: "Carla desce ao necrotério, onde o legista começa a examinar o corpo da vítima e explicar suas descobertas. A cada uma das 4 sequências de ação independentes que se seguem, dá pra descobrir um fato diferente sobre o crime — ou não, se a sequência falhar.",
+          delta: 0,
+          options: [
+            { label: "Passar a 1ª sequência", target: "seq1_passa" },
+            { label: "Falhar a 1ª sequência", target: "seq1_falha" }
+          ]
+        }
+      ],
+      level2: [
+        {
+          id: "seq1_passa",
+          title: "1ª Sequência: Sucesso",
+          text: "Carla entende: a vítima não viu o assassino até o último momento.",
+          delta: 10,
+          options: [
+            { label: "Passar a 2ª sequência", target: "seq2_passa" },
+            { label: "Falhar a 2ª sequência", target: "seq2_falha" }
+          ]
+        },
+        {
+          id: "seq1_falha",
+          title: "1ª Sequência: Falha",
+          text: "Carla não consegue acompanhar essa parte da explicação do legista.",
+          delta: -10,
+          options: [
+            { label: "Passar a 2ª sequência", target: "seq2_passa" },
+            { label: "Falhar a 2ª sequência", target: "seq2_falha" }
+          ]
+        }
+      ],
+      level3: [
+        {
+          id: "seq2_passa",
+          title: "2ª Sequência: Sucesso",
+          text: "Carla entende: a vítima caiu e machucou o crânio.",
+          delta: 10,
+          converge: true,
+          options: [
+            { label: "Passar a 3ª sequência", target: "seq3_passa" },
+            { label: "Falhar a 3ª sequência", target: "seq3_falha" }
+          ]
+        },
+        {
+          id: "seq2_falha",
+          title: "2ª Sequência: Falha",
+          text: "Carla não consegue acompanhar essa parte da explicação do legista.",
+          delta: -10,
+          converge: true,
+          options: [
+            { label: "Passar a 3ª sequência", target: "seq3_passa" },
+            { label: "Falhar a 3ª sequência", target: "seq3_falha" }
+          ]
+        }
+      ],
+      level4: [
+        {
+          id: "seq3_passa",
+          title: "3ª Sequência: Sucesso",
+          text: "Carla entende: a vítima viu algo surpreendente antes de morrer.",
+          delta: 10,
+          converge: true,
+          options: [
+            { label: "Passar a 4ª sequência", target: "seq4_passa" },
+            { label: "Falhar a 4ª sequência", target: "seq4_falha" }
+          ]
+        },
+        {
+          id: "seq3_falha",
+          title: "3ª Sequência: Falha",
+          text: "Carla não consegue acompanhar essa parte da explicação do legista.",
+          delta: -10,
+          converge: true,
+          options: [
+            { label: "Passar a 4ª sequência", target: "seq4_passa" },
+            { label: "Falhar a 4ª sequência", target: "seq4_falha" }
+          ]
+        }
+      ],
+      level5: [
+        {
+          id: "seq4_passa",
+          title: "4ª Sequência: Sucesso",
+          text: "Carla entende: o assassino era canhoto.",
+          delta: 10,
+          converge: true,
+          options: [
+            { label: "Seguir pro fim da cena", target: "caso_kirsten" }
+          ]
+        },
+        {
+          id: "seq4_falha",
+          title: "4ª Sequência: Falha",
+          text: "Carla não consegue acompanhar essa parte da explicação do legista.",
+          delta: -10,
+          converge: true,
+          options: [
+            { label: "Seguir pro fim da cena", target: "caso_kirsten" }
+          ]
+        }
+      ],
+      level6: [
+        {
+          id: "caso_kirsten",
+          title: "2. O Caso Kirsten",
+          text: "Depois das quatro sequências (independente do resultado de cada uma), o legista comenta um caso parecido que ele mesmo já teve nas mãos: o caso Kirsten. A cena termina e a história segue pra acompanhar o Tyler.",
+          type: "victory",
+          delta: 0,
+          converge: true
+        }
+      ]
+    };
+
     const CM_TREES = {
       murder: CM_NARRATIVE_TREE,
       investigacao: CM_TREE_INVESTIGACAO,
       dia_seguinte: CM_TREE_DIA_SEGUINTE,
       confissao: CM_TREE_CONFISSAO,
       trabalho_policial: CM_TREE_TRABALHO_POLICIAL,
-      realidade_alt: CM_TREE_REALIDADE_ALT
+      realidade_alt: CM_TREE_REALIDADE_ALT,
+      reconstrucao: CM_TREE_RECONSTRUCAO,
+      tyler_kate: CM_TREE_TYLER_KATE,
+      amor_perdido: CM_TREE_AMOR_PERDIDO,
+      esconde_esconde: CM_TREE_ESCONDE_ESCONDE,
+      combate_amistoso: CM_TREE_COMBATE_AMISTOSO,
+      prestacao_contas: CM_TREE_PRESTACAO_CONTAS
     };
 
     // Lista de capítulos pra navegação futura — cada um com available:true tem
     // sua árvore correspondente dentro de CM_TREES. Pra ligar um novo capítulo:
     // monte o bloco (padrão acima), registre em CM_TREES e marque available:true.
+    //
+    // NOTA DE NUMERAÇÃO (corrigido): "Reconstrução" tinha ficado de fora, o que
+    // empurrava a numeração de "Tyler & Kate" em diante. Além disso,
+    // "Prestação de Contas" (Carla nos arquivos + Tyler na livraria) segue a
+    // mesma regra já usada em "Trabalho Policial" e "Combate Amistoso": duas
+    // fontes de época contavam "controlar dois personagens" como dois
+    // capítulos separados (ex: "11/12", "13/14"), mas aqui é sempre UM capítulo
+    // só. Capítulos 13 em diante não mudaram de número (a inserção da
+    // Reconstrução e a fusão da Prestação de Contas se cancelam).
     const CM_CHAPTERS = [
       { id: "murder", name: "1. O Assassinato", available: true },
       { id: "investigacao", name: "2. Investigação", available: true },
@@ -2407,12 +3544,12 @@
       { id: "confissao", name: "4. Confissão", available: true },
       { id: "trabalho_policial", name: "5. Trabalho Policial", available: true },
       { id: "realidade_alt", name: "6. Realidade Alternativa", available: true },
-      { id: "tyler_kate", name: "7. Tyler & Kate", available: false },
-      { id: "amor_perdido", name: "8. Amor Perdido", available: false },
-      { id: "esconde_esconde", name: "9. Esconde-Esconde", available: false },
-      { id: "combate_amistoso", name: "10. Combate Amistoso", available: false },
-      { id: "prestacao_carla", name: "11. Prestação de Contas (Carla)", available: false },
-      { id: "prestacao_tyler", name: "12. Prestação de Contas (Tyler)", available: false },
+      { id: "reconstrucao", name: "7. Reconstrução", available: true },
+      { id: "tyler_kate", name: "8. Tyler & Kate", available: true },
+      { id: "amor_perdido", name: "9. Amor Perdido", available: true },
+      { id: "esconde_esconde", name: "10. Esconde-Esconde", available: true },
+      { id: "combate_amistoso", name: "11. Combate Amistoso", available: true },
+      { id: "prestacao_contas", name: "12. Prestação de Contas", available: true },
       { id: "agatha", name: "13. Agatha", available: false },
       { id: "mau_pressagio", name: "14. Mau Presságio", available: false },
       { id: "cara_a_cara", name: "15. Cara a Cara", available: false },
@@ -2813,6 +3950,25 @@
       realidade_alt: [
         { id: "crucifixo", label: "✝️ Da Morte, Surge a Vida (crucifixo)", path: ["start", "area_trabalho", "cafe_maquina", "escritorio_warren", "ouvir_warren", "gaveta_direita", "pular_esquerda", "usar_pc", "pular_pc", "ligacao_tiffany", "aceitar_tiffany", "premonicao", "estacao_62", "fuga_insetos", "pane_perfeito"] },
         { id: "pane", label: "🐜 Pane (fuga perfeita)", path: ["start", "area_trabalho", "cafe_maquina", "escritorio_warren", "ouvir_warren", "gaveta_direita", "pular_esquerda", "usar_pc", "pular_pc", "ligacao_tiffany", "aceitar_tiffany", "premonicao", "estacao_62", "fuga_insetos", "pane_perfeito"] }
+      ],
+      tyler_kate: [
+        { id: "testemunho", label: "🖼️ Testemunho Confiável (retrato fiel)", path: ["start", "retrato_preciso"] }
+      ],
+      amor_perdido: [
+        { id: "boa_jogada", label: "💜 Boa Jogada + Preparação Mental (rota completa)", path: ["start", "leite", "banheiro", "som", "pular_foto", "saco_pancadas", "violao_casa", "escolha_substancia", "comprimidos", "dormir", "chegada_tiffany", "oferecer_bebida", "conversa_noticias", "caixas", "sincero", "sentimental_ou_nao", "sentimental", "evitar_beijo_cedo", "violao_tiffany", "violao_sucesso", "beijo_certo", "sonho_noturno", "volta_dormir", "fim_capitulo"] }
+      ],
+      esconde_esconde: [
+        { id: "fim_de_jogo", label: "🏭 Fim de Jogo (salvar os três garotos)", path: ["start", "vida_extra", "encontro_markus", "flores", "premonicao", "cerca1", "espera_guarda", "segunda_cerca", "caixotes", "entrada_hangar", "dentro_hangar", "salvou_todos"] }
+      ],
+      combate_amistoso: [
+        { id: "ja_teve_o_suficiente", label: "🥊 Já Teve o Suficiente? (vencer a luta)", path: ["start", "agua_carla", "treino1_carla", "treino2_carla", "tyler_intro", "agua_tyler", "treino1_tyler", "treino2_tyler", "ringue", "luta", "vitoria"] }
+      ],
+      reconstrucao: [
+        { id: "sequencia_perfeita", label: "🔍 Sequência Perfeita (4 acertos)", path: ["start", "seq1_passa", "seq2_passa", "seq3_passa", "seq4_passa", "caso_kirsten"] }
+      ],
+      prestacao_contas: [
+        { id: "respiracao_calma", label: "📁 Respiração Calma + Só Estava Tentando Ajudar", path: ["start", "corredor_inicial", "portao", "inicio_respiracao", "prateleiras1", "terminal_sem_energia", "busca_fita", "fita_correta", "livraria_start", "conversa_takeo", "sem_revelar", "pedido_takeo", "autor_livro", "ano_livro", "terceiro_andar", "entrega_livro", "fim_capitulo"] },
+        { id: "resignacao", label: "🎖️ Resignação (exemplo do ciclo — repita a falha várias vezes)", path: ["start", "corredor_inicial", "portao", "inicio_respiracao", "falha_respiracao", "retomar_apos_falha", "prateleiras1", "terminal_sem_energia", "busca_fita", "fita_correta", "livraria_start", "conversa_takeo", "sem_revelar", "pedido_takeo", "autor_livro", "ano_livro", "terceiro_andar", "entrega_livro", "fim_capitulo"] }
       ]
     };
 
@@ -2967,10 +4123,37 @@
         return { seguindo, travados };
       }
 
+      if (node.id === "fita_correta") {
+        const seguindo = [];
+        const travados = [];
+
+        if (!cmActivePath.includes("falha_respiracao")) {
+          seguindo.push('🏆 "Respiração Calma" (fechado — nenhuma falha na respiração ao longo desta run)');
+        } else {
+          travados.push('🏆 "Respiração Calma" (perdido nesta run — houve pelo menos uma falha na respiração)');
+          seguindo.push('🏆 "Resignação" (só fecha se a sanidade GERAL da Carla chegar a "Destruído" — normalmente exige repetir a falha de propósito várias vezes, não só uma)');
+        }
+
+        return { seguindo, travados };
+      }
+
+      if (node.id === "entrega_livro") {
+        const seguindo = [];
+        const travados = [];
+
+        if (cmActivePath.includes("sem_revelar")) {
+          seguindo.push('🏆 "Só Estava Tentando Ajudar" (fechado — profissão nunca revelada pro Takeo)');
+        } else if (cmActivePath.includes("revelar_profissao")) {
+          travados.push('🏆 "Só Estava Tentando Ajudar" (perdido nesta run — profissão revelada na conversa)');
+        }
+
+        return { seguindo, travados };
+      }
+
       return null;
     }
 
-    function cmShowConvergencePopup(nodeId) {
+    function cmShowConvergencePopup(nodeId, evt) {
       const node = cmFindNodeById(nodeId);
       if (!node) return;
       const data = cmGetConvergenceData(node);
@@ -2985,7 +4168,45 @@
       }
 
       document.getElementById("cm-popup-body").innerHTML = html;
-      document.getElementById("cm-info-popup").style.display = "flex";
+
+      const overlay = document.getElementById("cm-info-popup");
+      const card = overlay.querySelector(".cm-popup-card");
+      overlay.style.display = "flex";
+
+      const workspace = document.getElementById("cm-workspace");
+
+      if (evt) {
+        const wsRect = workspace.getBoundingClientRect();
+        // Posição do clique relativa ao conteúdo rolável do workspace.
+        let x = evt.clientX - wsRect.left + workspace.scrollLeft;
+        let y = evt.clientY - wsRect.top + workspace.scrollTop;
+
+        card.style.transform = "none";
+        card.style.left = "0px";
+        card.style.top = "0px";
+
+        const cardWidth = card.offsetWidth || 260;
+        const cardHeight = card.offsetHeight || 150;
+        const viewW = workspace.clientWidth;
+        const viewH = workspace.clientHeight;
+
+        // Clampa dentro da área visível atual (considerando o scroll no momento do clique).
+        const minX = workspace.scrollLeft + 10;
+        const maxX = Math.max(minX, workspace.scrollLeft + viewW - cardWidth - 10);
+        const minY = workspace.scrollTop + 10;
+        const maxY = Math.max(minY, workspace.scrollTop + viewH - cardHeight - 10);
+
+        x = Math.min(Math.max(x + 14, minX), maxX);
+        y = Math.min(Math.max(y + 14, minY), maxY);
+
+        card.style.left = x + "px";
+        card.style.top = y + "px";
+      } else {
+        // Sem evento de clique disponível (chamada programática): centraliza como antes.
+        card.style.left = "50%";
+        card.style.top = "50%";
+        card.style.transform = "translate(-50%, -50%)";
+      }
     }
 
     function cmCloseConvergencePopup() {
@@ -3074,7 +4295,7 @@
 
           const convData = node.converge ? cmGetConvergenceData(node) : null;
           const convBadge = convData
-            ? `<button class="cm-conv-badge" onclick="event.stopPropagation(); cmShowConvergencePopup('${node.id}')" title="Ver troféus dessa rota">📍</button>`
+            ? `<button class="cm-conv-badge" onclick="event.stopPropagation(); cmShowConvergencePopup('${node.id}', event)" title="Ver troféus dessa rota">📍</button>`
             : "";
 
           card.innerHTML = `
