@@ -5975,6 +5975,1326 @@
       ]
     };
 
+    const CM_TREE_KURIAKIN = {
+      level1: [
+        {
+          id: "start",
+          title: "1. Chegada ao Museu",
+          text: "Lucas visita o Professor Dimitri Kuriakin, especialista em civilização Maia, seguindo o contato revelado no fim de \"A Fugitiva\". É possível explorar as exposições e examinar algumas peças antes de falar com ele — inclusive há um cartão bônus opcional virando 90° à esquerda da entrada, perto de uma vitrine (já catalogado na lista de pontos bônus, sem efeito na sanidade). Nenhuma das fontes registra alteração de sanidade só por entrar no museu.",
+          delta: 0,
+          options: [
+            { label: "Aproximar-se do Professor Kuriakin", target: "apresentacao" }
+          ]
+        }
+      ],
+      level2: [
+        {
+          id: "apresentacao",
+          title: "2. Apresentação como Jornalista",
+          text: "Lucas se apresenta como jornalista (as fontes variam entre \"The New York Times\" e \"Freelance\" como respostas aceitas). Quando o professor pergunta se o reconhece, surge um evento Simon Says a pouco aviso — o Omikrongame e uma das versões do GameFAQs indicam EVITANDO como a escolha ideal na sequência de diálogo; a Neoseeker acrescenta que, se esse mini-evento falhar, responder de forma descontraída evita levantar suspeita. Nenhuma fonte cita valor numérico de sanidade pra esse trecho.",
+          delta: 0,
+          options: [
+            { label: "Seguir o professor pela exposição", target: "exposicao_serpente" }
+          ]
+        }
+      ],
+      level3: [
+        {
+          id: "exposicao_serpente",
+          title: "3. A Serpente de Duas Cabeças",
+          text: "O professor guia Lucas até a peça da serpente de duas cabeças. Escolher PENSAMENTOS, OUTRO MUNDO e ORÁCULOS como tópicos de diálogo aqui é o que fecha o troféu \"Poderes Sobrenaturais\" — conversar com o Dr. Kuriakin explorando os tópicos sobre os Oráculos antes de a cena avançar pro desfecho dele, conforme a descrição oficial do troféu.",
+          delta: 0,
+          trophy: "🏆 \"Poderes Sobrenaturais\"",
+          options: [
+            { label: "Seguir até a pintura do sacrifício", target: "pintura_sacrificio" }
+          ]
+        }
+      ],
+      level4: [
+        {
+          id: "pintura_sacrificio",
+          title: "4. A Pintura do Sacrifício",
+          text: "Na pintura do sacrifício, as opções ORÁCULO MATA, EXECUTOR e CONCLUSÃO levam o professor a confrontar Lucas, exigindo que ele conte a verdade sobre quem realmente é.",
+          delta: 0,
+          options: [
+            { label: "Contar a verdade", target: "confronto_verdade" }
+          ]
+        }
+      ],
+      level5: [
+        {
+          id: "confronto_verdade",
+          title: "5. O Professor Exige a Verdade",
+          text: "Lucas escolhe VERDADE e a conversa continua. O professor pergunta o que ele quer do encontro — segundo o Gamepressure, as opções são CONFIANÇA, MOSTRAR ANTEBRAÇOS ou VISÕES. Escolher MOSTRAR ANTEBRAÇOS ou VISÕES convence o professor a ajudar; escolher apenas CONFIANÇA faz Lucas ter que fugir sozinho, sem o professor.",
+          delta: 0,
+          options: [
+            { label: "Mostrar os antebraços / falar das visões (convencer o professor)", target: "convencer_professor" },
+            { label: "Pedir apenas confiança (fugir sozinho)", target: "fuga_sozinho" }
+          ]
+        }
+      ],
+      level6: [
+        {
+          id: "convencer_professor",
+          title: "6. O Professor Concorda em Ajudar",
+          text: "Convencido, o professor acompanha Lucas pra fora, pela saída lateral/de funcionários, rumo ao estacionamento. Rende +20 de sanidade — confirmado pela Fahrenheit Fandom Wiki (\"Positive +20: (...) successfully convince Kuriakin\") e pelo Gamepressure (\"professor will help you +20%\"), condicionado a um nível de suspeita baixo o bastante segundo a Fandom Wiki.",
+          delta: 20,
+          options: [
+            { label: "Seguir para o estacionamento com o professor", target: "estacionamento_professor" }
+          ]
+        },
+        {
+          id: "fuga_sozinho",
+          title: "6. Fuga Sozinho pela Saída dos Funcionários",
+          text: "Ao pedir apenas confiança, Lucas não convence o professor, que entra em pânico e avisa o guarda (uma das versões do GameFAQs). É preciso escapar pela porta dos fundos/saída de funcionários antes que o guarda saque a arma. Essa mesma fonte registra que, nesse caminho, os 20 pontos da morte do professor no estacionamento NÃO são descontados no fim — o que bate com o Gamepressure, que só aplica o -20% do estacionamento \"se o professor estiver com você\" (\"if professor is with you\").",
+          delta: 0,
+          options: [
+            { label: "Fugir sozinho até o estacionamento", target: "estacionamento_sozinho" }
+          ]
+        }
+      ],
+      level7: [
+        {
+          id: "estacionamento_professor",
+          title: "7. Perseguição no Estacionamento — Com o Professor (Fim do Capítulo)",
+          text: "No estacionamento, carros avançam contra Lucas e o professor numa longa sequência de Simon Says, com um único evento L1/R1 no meio enquanto ele se segura num carro em disparada. Apesar de convencido antes, o professor morre atropelado — -20 de sanidade, confirmado pela Fahrenheit Fandom Wiki (\"Kuriakin dies in front of Lucas\"), pelo Gamepressure (\"-20%\") e por três fontes de texto independentes (Omikrongame, GameFAQs e Neoseeker). Antes de morrer, ele revela informações cruciais sobre o Códex e a Criança Índigo; em seguida o Oráculo atinge Lucas, que desperta em outro lugar, encerrando o capítulo.",
+          type: "victory",
+          delta: -20
+        },
+        {
+          id: "estacionamento_sozinho",
+          title: "7. Perseguição no Estacionamento — Sozinho (Fim do Capítulo)",
+          text: "Sem o professor por perto, Lucas enfrenta sozinho a mesma sequência de carros no estacionamento. Como ele não está lá, a penalidade de -20 pela sua morte não se aplica nesse caminho, segundo a mesma fonte que descreve a fuga pela saída dos funcionários e confirmado pelo Gamepressure, que só aplica o -20% \"se o professor estiver com você\". As fontes consultadas não detalham se a visão do Oráculo ocorre da mesma forma nesse desfecho alternativo.",
+          type: "victory",
+          delta: 0
+        }
+      ]
+    };
+
+    const CM_TREE_SEGREDOS_MAIAS = {
+      level1: [
+        {
+          id: "start",
+          title: "1. O Encontro com o Oráculo",
+          text: "Lucas acorda em algum lugar estranho e desconhecido. O Oráculo explica algumas coisas sobre si e sobre Lucas — e revela que também quer sua morte. Há duas rodadas de perguntas pra fazer a ele; a Neoseeker registra que não importa muito o que se escolhe, é só selecionar a opção de maior interesse. Uma das versões do GameFAQs confirma explicitamente que esse capítulo não concede nem tira pontos de sanidade (\"you don't receive any Mental Health points in this chapter\").",
+          delta: 0,
+          options: [
+            { label: "Deixar o Oráculo terminar de falar", target: "perseguicao_pantera" }
+          ]
+        }
+      ],
+      level2: [
+        {
+          id: "perseguicao_pantera",
+          title: "2. A Perseguição da Pantera Negra (Fim do Capítulo)",
+          text: "Ao fim da conversa, o Oráculo invoca uma espécie de pantera negra pra caçar e destruir Lucas — uma sequência de eventos Simon Says que a Neoseeker descreve como mais fácil e repetitiva que sequências anteriores. Bem quando a pantera está prestes a alcançá-lo (uma das versões do GameFAQs registra isso como o próprio Lucas tropeçando), a cena congela e Agatha — já morta — reaparece pra salvá-lo, revelando que ele precisa encontrar uma jovem pura destinada ao sacrifício. Esse gancho conecta diretamente ao próximo capítulo da fila. Sem alteração de sanidade, pela mesma nota do GameFAQs citada no nó anterior.",
+          type: "victory",
+          delta: 0
+        }
+      ]
+    };
+
+    const CM_TREE_CLA = {
+      level1: [
+        {
+          id: "start",
+          title: "1. A Visão do Relatório do Oráculo (Fim do Capítulo)",
+          text: "Lucas tem uma visão do que o Oráculo vê e diz a seus mestres — um evento Simon Says simples. Segundo o Omikrongame e o GameFAQs, falhar não impede a progressão, só corta parte da sequência (\"you won't get to see the whole sequence\"), então é tratado como um respiro antes da próxima parte pesada do jogo. Deixar a visão se desenrolar por completo, sem falhar, é o que fecha o troféu \"Outro Clã?\". O desfecho da cena é o Clã Laranja percebendo que existe outro Clã em jogo, e a confirmação de que, embora o Oráculo esteja manipulando Lucas, alguém também está manipulando o Oráculo. Uma das versões do GameFAQs confirma que esse capítulo não concede nem tira pontos de sanidade.",
+          type: "victory",
+          delta: 0,
+          trophy: "🏆 \"Outro Clã?\""
+        }
+      ]
+    };
+
+    // NOTA: "Perigo e Onipresença" alterna entre Lucas, Markus e Carla (com
+    // Tyler), mas o sistema CM_LANES existente só tem cor definida pra 2
+    // personagens (carla/tyler, ver CSS .cm-lane-badge.lane-carla/.lane-tyler).
+    // Pra não inventar uma 3ª cor de lane fora do design original, essa árvore
+    // segue como sequência linear única (sem campo "lane"), com a troca de
+    // personagem indicada no título/texto de cada nó — igual ao que as
+    // próprias fontes fazem na narração.
+    //
+    // fonte: o GameFAQs em formato ASCII ("outro guia") lista um item extra
+    // em Positivo/Lucas — "Re-enter the room via the window [+20]" — que não
+    // corresponde a nenhuma ação descrita em nenhuma das outras 4 fontes
+    // (Omikrongame, GameFAQs FH.04.33, Neoseeker, GameFAQs ASM). Sem uma ação
+    // correspondente confirmada, esse item foi deixado de fora pra não
+    // fabricar um nó sem base narrativa.
+    //
+    // fonte: o número do quarto errado que Carla chuta diverge entre fontes —
+    // Omikrongame/GameFAQs (prosa e ASM) dizem que ela confunde "366" com
+    // "369"; a Neoseeker cita a porta errada como "269". Ambas concordam na
+    // estrutura (porta errada primeiro, "369" é a certa no fim do corredor),
+    // então o nó abaixo usa a versão mais detalhada (366↔369, com a explicação
+    // do erro de leitura) e sinaliza a divergência no texto.
+    const CM_TREE_PERIGO_ONIPRESENCA = {
+      level1: [
+        {
+          id: "acordar_lucas",
+          title: "1. Lucas Acorda com uma Visão de Markus em Perigo",
+          text: "Lucas Kane acorda sem saber onde está e tem outra visão pelos olhos do Oráculo — o vilão está avançando sobre Markus, pronto pra matá-lo. Rende -10 de sanidade pra Lucas, confirmado em duas fontes numéricas (GameFAQs ASCII e GameFAQs FH.04.33).",
+          delta: -10,
+          options: [
+            { label: "Levantar e ir até o telefone", target: "lucas_liga_markus" }
+          ]
+        }
+      ],
+      level2: [
+        {
+          id: "lucas_liga_markus",
+          title: "Lucas Liga pra Markus",
+          text: "Lucas se levanta, contorna a cama até o telefone e liga pra Markus.",
+          delta: 0,
+          options: [
+            { label: "Trocar para Markus", target: "markus_escolha_oraculo" }
+          ]
+        }
+      ],
+      level3: [
+        {
+          id: "markus_escolha_oraculo",
+          title: "2. Markus é Confrontado pelo Oráculo",
+          text: "No apartamento de Markus, o telefone toca bem na hora em que o Oráculo o confronta pessoalmente. É preciso escolher entre atender o telefone ou CONVERSAR (TALK) com o Oráculo — as fontes (Omikrongame/GameFAQs) são categóricas: \"it's not good to TALK\".",
+          delta: 0,
+          options: [
+            { label: "Atender o telefone (opção correta)", target: "markus_corre_escritorio" },
+            { label: "Conversar com o Oráculo (TALK)", target: "markus_morto" }
+          ]
+        }
+      ],
+      level4: [
+        {
+          id: "markus_corre_escritorio",
+          title: "Markus Atende e Corre pro Escritório",
+          text: "Markus escolhe o telefone em vez do Oráculo — isso é o que a Neoseeker e o GameFAQs ASCII registram como \"avisar Markus com sucesso\", rendendo +20 de sanidade pra Lucas. Ele corre até a porta à frente, entra no próprio escritório e pega o telefone de lá.",
+          delta: 20,
+          options: [
+            { label: "Voltar pra Lucas", target: "lucas_sem_tempo" }
+          ]
+        },
+        {
+          id: "markus_morto",
+          title: "Markus Não Sobrevive ao Oráculo",
+          text: "Escolher conversar com o Oráculo em vez de atender o telefone é uma das formas de selar o destino de Markus, segundo a nota do Omikrongame/GameFAQs (\"There are a few ways to get Markus killed - switching to Carla early on, not locking the door, wasting time on the phone\"). O resultado é a falha em salvar Markus, com -60 de sanidade pra Lucas — confirmado em três fontes numéricas (GameFAQs ASCII, GameFAQs FH.04.33 e Neoseeker). As fontes não detalham como o capítulo prossegue a partir daqui.",
+          delta: -60
+        }
+      ],
+      level5: [
+        {
+          id: "lucas_sem_tempo",
+          title: "Lucas Diz \"Sem Tempo\"",
+          text: "De volta a Lucas, ele avisa Markus que não há tempo a perder — a resposta \"NO TIME\" na conversa.",
+          delta: 0,
+          options: [
+            { label: "Trocar para Markus de novo", target: "markus_tranca_porta" }
+          ]
+        }
+      ],
+      level6: [
+        {
+          id: "markus_tranca_porta",
+          title: "3. Markus Tranca a Porta",
+          text: "Markus se vira imediatamente pra porta ao lado e a tranca. Essa é a ação que garante a sobrevivência dele ao perigo apresentado — o que fecha o troféu \"Por Pouco\" — e rende +30 de sanidade, creditados ao medidor de Lucas segundo o GameFAQs FH.04.33 (\"Door closed (Markus) +30 Lucas\") e confirmado pela Neoseeker (\"+30 Manage to save Markus from the Oracle\").",
+          delta: 30,
+          trophy: "🏆 \"Por Pouco\"",
+          options: [
+            { label: "Trocar para Carla e Tyler", target: "carla_corredor" }
+          ]
+        }
+      ],
+      level7: [
+        {
+          id: "carla_corredor",
+          title: "4. Carla (e Tyler) no Corredor do Hotel",
+          text: "A cena muda pra Carla e Tyler, chegando ao corredor do hotel barato onde Lucas está hospedado. Essa entrada em cena já rende +30 de sanidade pra Carla, confirmado em três fontes numéricas (GameFAQs ASCII: \"as she walks down the hallway\"; GameFAQs FH.04.33: \"walking up stairs\"; Neoseeker: \"at the start of the scene\").",
+          delta: 30,
+          options: [
+            { label: "Seguir até a porta ao lado de Tyler", target: "carla_porta_errada" }
+          ]
+        }
+      ],
+      level8: [
+        {
+          id: "carla_porta_errada",
+          title: "Porta Errada",
+          text: "Carla chuta a porta ao lado de Tyler — errada: segundo o Omikrongame/GameFAQs, o \"6\" de \"366\" tinha girado e parecia um \"9\", confundindo com \"369\" (a Neoseeker cita a porta errada como \"269\"; as fontes divergem no número exato, mas concordam que não é a certa).",
+          delta: 0,
+          options: [
+            { label: "Virar e seguir até o fim do corredor", target: "carla_porta_certa" }
+          ]
+        }
+      ],
+      level9: [
+        {
+          id: "carla_porta_certa",
+          title: "A Porta Certa: Quarto 369",
+          text: "Carla vira e segue até a última porta antes da saída de incêndio, marcada \"369\" — a certa dessa vez. Ela arromba a porta, mas o quarto está vazio: Lucas sumiu, de um jeito que nem ele sabe explicar direito.",
+          delta: 0,
+          options: [
+            { label: "Sair sem revistar o quarto", target: "carla_desiste" }
+          ]
+        }
+      ],
+      level10: [
+        {
+          id: "carla_desiste",
+          title: "5. Carla e Tyler Desistem da Busca",
+          text: "Trabalho policial capenga: Carla e Tyler saem do quarto sem revistá-lo direito, sem achar Lucas (que reaparece assim que eles vão embora). Isso rende -30 de sanidade pra Carla, confirmado em três fontes numéricas — a mesma cena, pelo lado de Lucas, é registrada como um ganho de sanidade (\"Clara and Tyler didn't find you +20 Lucas\", segundo o GameFAQs FH.04.33), já que ele escapou da prisão.",
+          delta: -30,
+          options: [
+            { label: "Voltar pra Lucas e atender o telefone que toca", target: "lucas_atende_telefone" }
+          ]
+        }
+      ],
+      level11: [
+        {
+          id: "lucas_atende_telefone",
+          title: "6. Lucas Atende o Telefone (Fim do Capítulo)",
+          text: "De volta a Lucas, o telefone toca e ele atende, encerrando o capítulo — e descobrindo que Tiffany foi sequestrada, gancho direto pro próximo capítulo da fila (segundo o GameFAQs FH.04.33: \"Pick up the phone to find out Tiffany has been kidnapped\"). Atender rende -20 de sanidade, confirmado em três fontes numéricas (GameFAQs ASCII, GameFAQs FH.04.33 e Neoseeker).",
+          type: "victory",
+          delta: -20
+        }
+      ]
+    };
+
+    // fonte: o GameFAQs em formato ASCII ("outro guia") descreve a travessia
+    // da viga como "instant game over" se a barra bater em qualquer lado, mas
+    // o Omikrongame/GameFAQs (prosa) contradiz essa leitura — fala em "perder
+    // uma vida" e em já ter "cinco ou seis vidas" acumuladas nesse ponto do
+    // jogo, sugerindo um sistema de tentativas, não uma tela de Game Over
+    // definitiva. Sem confirmação em mais de uma fonte pro estado de Game
+    // Over, o nó abaixo descreve o risco sem criar um nó type:"gameover".
+    const CM_TREE_COLINAS_RUSSAS = {
+      level1: [
+        {
+          id: "chegada_parque",
+          title: "1. Chegada ao Parque de Diversões Abandonado",
+          text: "Lucas entra no velho parque de diversões e dá de cara com mais um mendigo — o mesmo personagem do primeiro capítulo, que ele vai conhecer de verdade em breve. Virando à direita e seguindo até o fim, há uma vida extra no chão perto de uma barraca (colecionável, sem efeito na sanidade). O cartão bônus desse capítulo já está catalogado na lista de pontos bônus.",
+          delta: 0,
+          options: [
+            { label: "Seguir o corvo até a montanha-russa", target: "controle_montanha_russa" }
+          ]
+        }
+      ],
+      level2: [
+        {
+          id: "controle_montanha_russa",
+          title: "2. A Cabine de Controle da Montanha-Russa",
+          text: "Um corvo indica o caminho certo até uma cabine com o painel de controle. Lucas entra, aciona a alavanca/interruptor de energia pra chamar o carrinho, sai da cabine, entra no carrinho e puxa a barra de segurança pra baixo.",
+          delta: 0,
+          options: [
+            { label: "Subir até o topo", target: "travessia_viga" }
+          ]
+        }
+      ],
+      level3: [
+        {
+          id: "travessia_viga",
+          title: "3. Travessia da Viga Estreita",
+          text: "No topo, Lucas precisa atravessar uma viga estreita até Tiffany, segurando o equilíbrio com um evento L1/R1 constante — a Neoseeker compara ao jogo de respiração da Carla, só que mais difícil. O Omikrongame recomenda dividir a barra em oito segmentos mentalmente e só corrigir quando ela chegar nos segmentos 2 ou 7, sem mexer enquanto estiver nos segmentos centrais (3 a 6). O GameFAQs em formato ASCII descreve bater numa das pontas como \"instant game over\", mas o Omikrongame fala em perder uma vida (\"you should have five or six lives by now\"), então essa árvore trata como risco de queda/perda de vida, não como um Game Over confirmado.",
+          delta: 0,
+          options: [
+            { label: "Chegar até Tiffany", target: "resgate_tiffany" }
+          ]
+        }
+      ],
+      level4: [
+        {
+          id: "resgate_tiffany",
+          title: "4. Resgatando Tiffany",
+          text: "Lucas chega até Tiffany, contorna por trás dela e desata as cordas. Rende +20 de sanidade, confirmado em três fontes numéricas (GameFAQs ASCII, GameFAQs FH.04.34 e Neoseeker).",
+          delta: 20,
+          options: [
+            { label: "Continuar (Fim do Capítulo)", target: "queda_final" }
+          ]
+        }
+      ],
+      level5: [
+        {
+          id: "queda_final",
+          title: "5. A Queda (Fim do Capítulo)",
+          text: "Assim que Tiffany é libertada, o homem mau aparece e os dois caem. Duas fontes (GameFAQs ASCII e Neoseeker) descrevem isso qualitativamente como perder quase toda a sanidade, sobrando só 5 pontos; o GameFAQs FH.04.34 é a fonte mais granular e dá o número exato: -75 de sanidade.",
+          type: "victory",
+          delta: -75
+        }
+      ]
+    };
+
+    // NOTA: capítulo sem nenhum valor de sanidade em nenhuma fonte — confirmado
+    // explicitamente ("There aren't any Mental Health points you can gain" /
+    // "Bonus Points: None" / "Points: None"), então todos os nós ficam com
+    // delta 0. É uma infiltração parecida com a de "Esconde-Esconde" (mesma
+    // base militar, quando Lucas e Markus eram crianças), mas as próprias
+    // fontes dizem que essa é mais difícil e tem refletores — cenas distintas,
+    // não uma duplicata. Nenhuma fonte confirma um estado de Game Over pra
+    // esse capítulo especificamente (ao contrário de "Esconde-Esconde"), então
+    // nenhum nó type:"gameover" foi criado aqui.
+    const CM_TREE_BRINCADEIRA_CRIANCA = {
+      level1: [
+        {
+          id: "acordar_sonho",
+          title: "1. Um Sonho na Base de Wichita",
+          text: "Lucas está morto — vozes misteriosas comentam sobre ele até ele perceber que está sonhando. É um flashback de infância: Lucas e Markus dormindo na base militar de Wichita. Lucas pula da cama.",
+          delta: 0,
+          options: [
+            { label: "Acordar Markus", target: "acordar_markus" }
+          ]
+        }
+      ],
+      level2: [
+        {
+          id: "acordar_markus",
+          title: "Acordando Markus",
+          text: "Lucas acorda o irmão.",
+          delta: 0,
+          options: [
+            { label: "Sair pela janela", target: "sair_janela" }
+          ]
+        }
+      ],
+      level3: [
+        {
+          id: "sair_janela",
+          title: "2. Saindo pela Janela",
+          text: "Os dois saem pela janela do quarto rumo à infiltração. Como em \"Esconde-Esconde\", o mapa marca os garotos como um ponto verde, os guardas como azul e uma rota sugerida em amarelo (as fontes dizem que dá pra se desviar dela sem problema). Dessa vez há também refletores como complicação extra — as fontes concordam que essa infiltração é mais difícil que a anterior na mesma base.",
+          delta: 0,
+          options: [
+            { label: "Seguir a linha amarela", target: "primeira_sentinela" }
+          ]
+        }
+      ],
+      level4: [
+        {
+          id: "primeira_sentinela",
+          title: "3. Passando pela Primeira Sentinela",
+          text: "Os garotos rastejam até a lateral de uma cabana e avistam dois soldados de sentinela por uma janela. Usando uma pedra grande como cobertura, é preciso esperar o guarda olhar pra longe (e o refletor se afastar) antes de atravessar correndo até o muro.",
+          delta: 0,
+          options: [
+            { label: "Seguir ao longo do muro", target: "esconder_jipe" }
+          ]
+        }
+      ],
+      level5: [
+        {
+          id: "esconder_jipe",
+          title: "Escondidos atrás do Jipe",
+          text: "Seguindo o muro, passam por um bloco de concreto e pilhas de caixotes cobertos de lona, até um guarda se aproximar — é preciso correr e se esconder atrás de um jipe até ele passar.",
+          delta: 0,
+          options: [
+            { label: "Seguir o caminho por onde o guarda veio", target: "primeira_distracao" }
+          ]
+        }
+      ],
+      level6: [
+        {
+          id: "primeira_distracao",
+          title: "4. Primeira Distração",
+          text: "Markus percebe outro guarda olhando direto pra eles e propõe criar uma distração. O jogador escolhe qual dos dois garotos fica encarregado disso — as fontes dizem que não importa qual (\"choose one of them\") — enquanto o outro espera. Depois de criar a distração e esperar o guarda se afastar da lateral da cabana, os dois atravessam até o próximo bloco de concreto, cronometrando a corrida pra escapar do refletor.",
+          delta: 0,
+          options: [
+            { label: "Reencontrar o irmão", target: "reunir_irmaos" }
+          ]
+        }
+      ],
+      level7: [
+        {
+          id: "reunir_irmaos",
+          title: "Reencontro entre as Cabanas",
+          text: "Correndo de bloco em bloco e descendo pela lateral de cada um, os dois se reencontram entre a primeira e a segunda cabana, repetindo o mesmo padrão até ficarem juntos de novo atrás de um par de pedras, com mais um guarda do outro lado.",
+          delta: 0,
+          options: [
+            { label: "Criar uma segunda distração", target: "segunda_distracao" }
+          ]
+        }
+      ],
+      level8: [
+        {
+          id: "segunda_distracao",
+          title: "5. Segunda Distração e o Poste",
+          text: "Dessa vez é Markus quem se oferece pra distrair — ele dá a volta pela cabana e chuta um barril do outro lado. Assim que o guarda vai investigar o barulho, Lucas corre até um poste telefônico e começa a escalar.",
+          delta: 0,
+          options: [
+            { label: "Escalar o poste", target: "travessia_cabo" }
+          ]
+        }
+      ],
+      level9: [
+        {
+          id: "travessia_cabo",
+          title: "6. Travessia pelo Cabo",
+          text: "No topo, Lucas precisa avançar rastejando por um cabo, evitando os refletores — esperar cada um se afastar até a borda do alcance antes de avançar rápido, repetindo pra cada refletor no caminho. Depois, desce pelo poste do outro lado.",
+          delta: 0,
+          options: [
+            { label: "Seguir em direção ao hangar", target: "aproximacao_hangar" }
+          ]
+        }
+      ],
+      level10: [
+        {
+          id: "aproximacao_hangar",
+          title: "Últimos Refletores",
+          text: "Restam mais alguns refletores até a lateral do hangar — as fontes sugerem correr em paralelo ao primeiro deles e, assim que se afastar, seguir colado na parede do hangar, o que ajuda a evitar os demais.",
+          delta: 0,
+          options: [
+            { label: "Abrir a porta do hangar", target: "porta_hangar" }
+          ]
+        }
+      ],
+      level11: [
+        {
+          id: "porta_hangar",
+          title: "7. A Porta do Hangar (Fim do Capítulo)",
+          text: "Lucas abre a porta do hangar — o marcador vermelho final —, entra no elevador, segue em frente e abre a porta seguinte, revelando o segredo do hangar. Nenhuma fonte descreve exatamente o que é encontrado ali (uma delas admite isso abertamente: \"you'll find something, but you won't know what\"), então esse gancho fica em aberto. Capítulo sem qualquer alteração de sanidade, do início ao fim.",
+          type: "victory",
+          delta: 0
+        }
+      ]
+    };
+
+    const CM_TREE_XEQUE_MATE = {
+      level1: [
+        {
+          id: "start",
+          title: "1. Novo Relatório do Oráculo (Fim do Capítulo)",
+          text: "Outra visão curta do que o Oráculo vê e diz a seus mestres — o mesmo tipo de evento Simon Says simples já visto em \"O Clã\". Dessa vez ele conta que Lucas está morto, e que é o cara certo pra achar a Criança Índigo. Segundo o GameFAQs FH.04.36, não há personagem jogável nesse capítulo (\"Playable Characters: None\") nem pontos de sanidade em jogo (\"Points: None\"), confirmado também pela ausência de qualquer valor numérico nas outras três fontes.",
+          type: "victory",
+          delta: 0
+        }
+      ]
+    };
+
+    // ─── Capítulo 35: O Pacto (Carla → Lucas) ───
+    // Fontes: Omikrongame, três guias GameFAQs (dois com texto praticamente
+    // idêntico ao do Omikrongame; um terceiro em formato "chapact" mais
+    // detalhado; um quarto em formato tabular FH.04.37) e Neoseeker (formato
+    // PAC5) — cinco fontes distintas ao todo, cruzadas.
+    //
+    // ATENÇÃO — fontes divergem em dois pontos: (1) a perda de sanidade da
+    // Carla ao reagir com "Wary": o guia GameFAQs "chapact" cita -5 de forma
+    // explícita ("you'll lose 5 Mental Health points"), enquanto a Neoseeker
+    // cita -10; mantive -5 por ser a fonte mais explícita/detalhada sobre
+    // esse valor específico, mas o conflito fica registrado aqui. (2) o guia
+    // GameFAQs em formato tabular (FH.04.37) lista "Trust Carla (Lucas) +10
+    // Lucas", frase ambígua que poderia sugerir que o bônus da escolha
+    // "Trusting" vai pro Lucas em vez da Carla — mas as outras duas fontes
+    // que detalham essa escolha (GameFAQs "chapact" e Neoseeker) concordam
+    // que é a CARLA quem ganha os +10 ao escolher "Trusting", e foi esse o
+    // valor usado.
+    //
+    // ATENÇÃO — troféu já cadastrado sem confirmação de fonte: o troféu #36
+    // "Um Aliado Confiável" ("Carla não sacou a arma contra Lucas e formou
+    // uma aliança durante 'O Pacto'") já está cadastrado com capítulo "O
+    // Pacto", mas NENHUMA das cinco fontes consultadas aqui menciona uma
+    // opção de sacar arma nessa cena — todas descrevem só a escolha
+    // Trusting/Wary seguida de Simon Says. Não fabriquei esse ramo por falta
+    // de confirmação; o campo trophy não foi vinculado a nenhum node deste
+    // capítulo. Fica sinalizado — confirme a fonte certa desse mecanismo
+    // antes de eu linkar o troféu a um node específico.
+    //
+    // NUMERAÇÃO: "O Pacto" não estava na lista de capítulos reservados —
+    // inserido como capítulo 35 (logo após "Xeque-mate!"), empurrando os
+    // antigos 35–37 ("Jade", "Bogart", "Capítulo Final") pra
+    // 36–38.
+    const CM_TREE_O_PACTO = {
+      level1: [
+        {
+          id: "start",
+          title: "1. Túmulo de Tiffany",
+          text: "Carla chega ao cemitério e precisa achar o túmulo de Tiffany, perto da área onde foi encontrada a vida extra durante \"Esconde-Esconde\" — fácil de identificar porque tem flores frescas.",
+          delta: 0,
+          options: [
+            { label: "Examinar as flores no túmulo", target: "lucas_aparece" }
+          ]
+        }
+      ],
+      level2: [
+        {
+          id: "lucas_aparece",
+          title: "2. Lucas Aparece",
+          text: "Ao olhar as flores, Lucas surge do nada e conta um pouco sobre Tiffany pra Carla.",
+          delta: 0,
+          options: [
+            { label: "Reagir de forma Confiante (\"Trusting\")", target: "confiante" },
+            { label: "Reagir com Cautela (\"Wary\")", target: "cautelosa" }
+          ]
+        }
+      ],
+      level3: [
+        {
+          id: "confiante",
+          title: "Reação Confiante (\"Trusting\")",
+          text: "Carla escolhe confiar em Lucas — as fontes que detalham essa escolha (GameFAQs \"chapact\" e Neoseeker) concordam: +10 de sanidade pra Carla.",
+          delta: 10,
+          converge: true,
+          options: [
+            { label: "Simon Says: dizer \"POR QUÊ\" e depois \"ORÁCULO\"", target: "simon1" }
+          ]
+        },
+        {
+          id: "cautelosa",
+          title: "Reação Cautelosa (\"Wary\")",
+          text: "Carla escolhe ser cautelosa — as fontes divergem no valor exato da perda (-5 segundo o GameFAQs \"chapact\", -10 segundo a Neoseeker; mantive -5 por ser a fonte mais explícita sobre esse valor). De qualquer forma, essa escolha não impede a continuação da história: ajudar Lucas é obrigatório daqui em diante.",
+          delta: -5,
+          converge: true,
+          options: [
+            { label: "Simon Says: dizer \"POR QUÊ\" e depois \"ORÁCULO\"", target: "simon1" }
+          ]
+        }
+      ],
+      level4: [
+        {
+          id: "simon1",
+          title: "3. Primeiro Simon Says (\"Por Quê\" / \"Oráculo\")",
+          text: "Sequência Simon Says em que Carla diz \"POR QUÊ\" e depois \"ORÁCULO\" — completar isso faz Carla perceber algo sobre Lucas. Nenhuma das fontes documenta valor de sanidade específico pra essa sequência isolada.",
+          delta: 0,
+          converge: true,
+          options: [
+            { label: "Passar o Simon Says seguinte", target: "simon2" }
+          ]
+        }
+      ],
+      level5: [
+        {
+          id: "simon2",
+          title: "4. Segundo Simon Says",
+          text: "Outro evento Simon Says, dessa vez levando Carla a começar a acreditar na história de Lucas.",
+          delta: 0,
+          converge: true,
+          options: [
+            { label: "Escolher as falas de diálogo livremente", target: "dialogo_livre" }
+          ]
+        }
+      ],
+      level6: [
+        {
+          id: "dialogo_livre",
+          title: "5. Diálogo Livre",
+          text: "Carla pode escolher qualquer resposta de diálogo que quiser — o guia GameFAQs \"chapact\" confirma explicitamente que essa parte não afeta sanidade nem saúde mental.",
+          delta: 0,
+          converge: true,
+          options: [
+            { label: "Terceiro Simon Says: Carla pondera se Lucas está mentindo", target: "simon3" }
+          ]
+        }
+      ],
+      level7: [
+        {
+          id: "simon3",
+          title: "6. Terceiro Simon Says (Verdade ou Mentira)",
+          text: "Novo Simon Says enquanto Carla pondera se Lucas está falando a verdade ou mentindo — o jogador não decide isso por ela, é automático.",
+          delta: 0,
+          converge: true,
+          options: [
+            { label: "Simon Says final: o aperto de mãos", target: "aperto_maos" }
+          ]
+        }
+      ],
+      level8: [
+        {
+          id: "aperto_maos",
+          title: "7. Aperto de Mãos (Fim do Capítulo)",
+          text: "Último Simon Says enquanto os dois apertam as mãos, selando o pacto — Carla percebe mais uma coisa sobre Lucas. As fontes concordam num bônus final ao fechar o capítulo: +20 de sanidade pra Carla e +10 pra Lucas (trabalharem juntos), tratado como inevitável.",
+          type: "victory",
+          delta: 20,
+          converge: true
+        }
+      ]
+    };
+
+    // ─── Capítulo 36: Jade (Lucas / visão do Oráculo) ───
+    // Slot já reservado em CM_CHAPTERS (id "jade") — só ativei
+    // available:true e montei a árvore, sem renumerar nada. NOTA: esse
+    // capítulo é só "Jade" (as quatro fontes chamam assim: "Chapter 38 -
+    // Jade", "Chapter 39: Jade", "Jade [FH.04.38]", "Jade" JAD5) — não deve
+    // ser confundido com "Onde Está Jade", capítulo distinto e posterior já
+    // referenciado no troféu #38 ("Voto de Confiança") e no cartão bônus
+    // #30, ainda não inserido na lista.
+    // Fontes: Omikrongame, dois guias GameFAQs (um com texto idêntico ao
+    // Omikrongame; outro em formato "chapjade"; um terceiro em formato
+    // tabular FH.04.38) e Neoseeker (formato JAD5) — quatro fontes
+    // cruzadas, todas concordando: capítulo 100% cutscene guiada por Simon
+    // Says, sem personagem jogável ("Playable Characters: None") e sem
+    // nenhum valor de sanidade documentado ("Points: None" / "Bonus
+    // Points: None").
+    const CM_TREE_JADE = {
+      level1: [
+        {
+          id: "start",
+          title: "1. Visão do Oráculo: Jade (Fim do Capítulo)",
+          text: "Mais um evento Simon Says simples, do mesmo molde de \"O Clã\" e \"Xeque-mate!\": uma visão pelos olhos do Oráculo, dessa vez mostrando Lucas descobrindo onde a Criança Índigo mora. No final, Carla o toca com carinho — indício de que um tempo passou entre essa cena e a anterior (as fontes recomendam reparar nas datas exibidas pra perceber isso) e de que os dois formaram um vínculo forte. Uma das fontes GameFAQs alerta que não seguir os comandos do Analógico como indicado na tela faz o jogador perder parte do áudio/vídeo da cutscene.",
+          type: "victory",
+          delta: 0
+        }
+      ]
+    };
+
+    // ─── Capítulo 37: Congelado até os Ossos (Carla → Tyler) ───
+    // Fontes: Omikrongame, dois guias GameFAQs (um com texto quase idêntico
+    // ao Omikrongame; outro em formato "chapbone1" mais detalhado, com
+    // seção de resumo numérico separada; um terceiro em formato tabular
+    // FH.04.39) e Neoseeker (formato FRO5) — cinco fontes cruzadas.
+    //
+    // As fontes concordam que são DUAS escolhas independentes na mesma
+    // cena, sem relação mecânica entre si: (1) Admitir/Mentir, que só afeta
+    // a sanidade da Carla (a Neoseeker confirma explicitamente "no real
+    // consequences" além do valor de sanidade); e (2) Sair/Ficar com a
+    // polícia (Tyler + Sam), que decide se Tyler deixa a força e vai pra
+    // Flórida — mas todas as fontes concordam que, de qualquer forma, essa
+    // é a ÚLTIMA cena em que Tyler aparece na história.
+    //
+    // ATENÇÃO — conflito com troféu já cadastrado: o troféu #37 "Carma"
+    // já está registrado com "how": "Escolha a opção de Carla mentir para
+    // Tyler nesta cena, levando-o a pedir demissão e partir para a
+    // Flórida" — ou seja, atribui o desfecho de Tyler ir pra Flórida à
+    // escolha Mentir/Admitir da Carla. Nenhuma das cinco fontes aqui
+    // consultadas confirma essa ligação: elas descrevem o desfecho
+    // Flórida/polícia como resultado exclusivo da escolha separada
+    // Sair/Ficar (Tyler + Sam), não da escolha Mentir/Admitir. Não toquei
+    // no texto do troféu #37 (fora do escopo pedido) nem vinculei o campo
+    // trophy a nenhum node aqui por falta de confirmação — fica sinalizado
+    // pro Lucas revisar essa possível inconsistência.
+    //
+    // ATENÇÃO — valor de sanidade: a perda de Tyler ao escolher "Ficar" tem
+    // três fontes concordando qualitativamente (resta só ~5 pontos de
+    // sanidade), mas só a fonte tabular FH.04.39 dá o número exato: -85.
+    // Usei esse valor por ser o mais granular disponível.
+    //
+    // NUMERAÇÃO: "Congelado até os Ossos" não estava na lista de capítulos
+    // reservados — inserido como capítulo 37 (logo após "Jade"), empurrando
+    // os antigos 37–38 ("Bogart", "Capítulo Final") pra 38–39.
+    const CM_TREE_CONGELADO_OSSOS = {
+      level1: [
+        {
+          id: "start",
+          title: "1. Delegacia com o Rádio Ligado",
+          text: "Carla e Tyler estão na delegacia — está congelante lá dentro, dando nome ao capítulo. Tyler desliga o rádio (a mesma coisa de sempre tocando) e confronta Carla, sentindo que ela está escondendo algo dele.",
+          delta: 0,
+          options: [
+            { label: "Admitir que está escondendo algo (\"Admit\")", target: "admitir" },
+            { label: "Mentir e negar (\"Lie\")", target: "mentir" }
+          ]
+        }
+      ],
+      level2: [
+        {
+          id: "admitir",
+          title: "Admitir (\"Admit\")",
+          text: "Carla admite que está escondendo algo — as fontes concordam: +10 de sanidade pra ela.",
+          delta: 10,
+          converge: true,
+          options: [
+            { label: "Continuar — Sam chega", target: "sam_chega" }
+          ]
+        },
+        {
+          id: "mentir",
+          title: "Mentir (\"Lie\")",
+          text: "Carla nega e mente pra Tyler — as fontes concordam: -10 de sanidade pra ela. A Neoseeker confirma explicitamente que, fora esse valor, a escolha não tem nenhuma outra consequência narrativa documentada nesta cena.",
+          delta: -10,
+          converge: true,
+          options: [
+            { label: "Continuar — Sam chega", target: "sam_chega" }
+          ]
+        }
+      ],
+      level3: [
+        {
+          id: "sam_chega",
+          title: "2. Sam Aparece",
+          text: "Sam chega à delegacia e o controle passa pra Tyler. Ele vai até ela conversar — as cinco fontes concordam que essa é a última cena em que Tyler aparece na história, independente da escolha a seguir.",
+          delta: 0,
+          converge: true,
+          options: [
+            { label: "Escolher SAIR com Sam, rumo à Flórida (\"Leave\")", target: "sair_sam" },
+            { label: "Escolher FICAR na força policial (\"Stay\")", target: "ficar_policia" }
+          ]
+        }
+      ],
+      level4: [
+        {
+          id: "sair_sam",
+          title: "Sair com Sam (\"Leave\")",
+          text: "Tyler decide sair com Sam, deixando a força policial rumo à Flórida — as fontes concordam: +20 de sanidade pra ele.",
+          delta: 20,
+          converge: true,
+          options: [
+            { label: "Continuar até o fim do capítulo", target: "maquina_cafe" }
+          ]
+        },
+        {
+          id: "ficar_policia",
+          title: "Ficar na Força Policial (\"Stay\")",
+          text: "Tyler opta por ficar na força — as fontes concordam qualitativamente que ele praticamente zera a sanidade, restando só uns 5 pontos; a fonte GameFAQs em formato tabular (FH.04.39) é a mais granular e dá o número exato: -85. Todas as fontes concordam que essa escolha não muda o fato de Tyler sumir da história de qualquer jeito.",
+          delta: -85,
+          converge: true,
+          options: [
+            { label: "Continuar até o fim do capítulo", target: "maquina_cafe" }
+          ]
+        }
+      ],
+      level5: [
+        {
+          id: "maquina_cafe",
+          title: "3. Máquina de Café (Opcional)",
+          text: "Antes de encerrar, dá pra Tyler passar na máquina de venda e tomar um café — ação totalmente opcional, sem afetar a trama. Só o GameFAQs \"chapbone1\" documenta um bônus de sanidade por isso (+5); as outras quatro fontes não mencionam essa etapa.",
+          delta: 0,
+          converge: true,
+          options: [
+            { label: "Tomar o café", target: "tomar_cafe" },
+            { label: "Ir direto falar com Carla", target: "falar_carla" }
+          ]
+        }
+      ],
+      level6: [
+        {
+          id: "tomar_cafe",
+          title: "Café na Máquina",
+          text: "Tyler toma o café — rende +5 de sanidade segundo o GameFAQs \"chapbone1\".",
+          delta: 5,
+          converge: true,
+          options: [
+            { label: "Falar com Carla pra encerrar o capítulo", target: "falar_carla" }
+          ]
+        }
+      ],
+      level7: [
+        {
+          id: "falar_carla",
+          title: "4. Despedida (Fim do Capítulo)",
+          text: "Tyler volta e fala com Carla, encerrando o capítulo — segundo todas as cinco fontes, essa é a última vez que ele aparece na história, independente de todas as escolhas feitas na cena.",
+          type: "victory",
+          delta: 0,
+          converge: true
+        }
+      ]
+    };
+
+    // ─── Capítulo 38: Onde Está Jade (Lucas) ───
+    // Fontes: Omikrongame, dois guias GameFAQs (um com texto quase idêntico
+    // ao Omikrongame; outro em formato "chapwhere" mais detalhado, com
+    // seção de resumo numérico separada; um terceiro em formato tabular
+    // FH.04.40) e Neoseeker (formato WHE5) — cinco fontes cruzadas. As
+    // fontes numéricas (GameFAQs "chapwhere", FH.04.40 e Neoseeker)
+    // concordam integralmente nos quatro valores de sanidade documentados,
+    // sem conflito: +10 achar/carregar Jade, +10 recusar entregá-la, -10
+    // perdê-la pro Oráculo, -10 entregá-la à Agatha Morta.
+    //
+    // Capítulo distinto do "Jade" (cap. 36, a visão curta do Oráculo) —
+    // esse aqui é o resgate de verdade, no orfanato.
+    //
+    // ATENÇÃO — troféu já cadastrado com detalhe não confirmado: o troféu
+    // #38 "Voto de Confiança" já está registrado com "how": "Complete toda
+    // a sequência de fuga (Oráculo + helicópteros da polícia) sem falhar
+    // nenhuma QTE que custe uma vida." Nenhuma das cinco fontes aqui
+    // consultadas menciona helicópteros — todas descrevem só o confronto
+    // com o Oráculo no telhado (Simon Says + eventos L-R) seguido de correr
+    // até a polícia/se esconder numa salinha. Não modelei uma sequência de
+    // helicópteros por falta de confirmação, e não vinculei o campo trophy
+    // a nenhum node — fica sinalizado pro Lucas confirmar a fonte certa
+    // desse trecho específico (pode ser um capítulo posterior, ou detalhe
+    // de uma sexta fonte que eu não tenho aqui).
+    //
+    // NOTA DE ESTRUTURA: a escolha final (entregar/recusar Jade à Agatha
+    // Morta) só existe de fato se Lucas tiver recuperado Jade antes; se ela
+    // foi perdida pro Oráculo (rota "perder_jade"), a Agatha cobra a perda
+    // e não há decisão real — o node "recusar_jade" cobre os dois casos
+    // (recusa explícita OU já não ter Jade pra entregar), como as fontes
+    // descrevem.
+    //
+    // NUMERAÇÃO: "Onde Está Jade" não estava na lista de capítulos
+    // reservados — inserido como capítulo 38 (logo após "Congelado até os
+    // Ossos"), empurrando os antigos 38–39 ("Bogart", "Capítulo Final") pra
+    // 39–40. A ordem bate com o gancho pro próximo capítulo: mais de uma
+    // fonte descreve Lucas fugindo "seguindo um mendigo, junto com Carla"
+    // logo no final — provavelmente o Bogart do capítulo seguinte.
+    const CM_TREE_ONDE_ESTA_JADE = {
+      level1: [
+        {
+          id: "start",
+          title: "1. Chegada ao Orfanato",
+          text: "Carla leva Lucas de carro até o orfanato mostrado na visão do capítulo \"Jade\". Lucas entra, ignora a freira no caminho e chega a um corredor com portas dos dois lados — inclusive a saída de emergência, na metade do corredor à direita, que será usada mais tarde. Um cronômetro na tela mostra quanto tempo falta até o Oráculo chegar e tentar levar Jade embora, mas as fontes garantem que sobra tempo de sobra, sem necessidade de pressa.",
+          delta: 0,
+          options: [
+            { label: "Explorar as portas opcionais do corredor", target: "explorar_corredor" },
+            { label: "Ir direto até a última porta à esquerda", target: "encontrar_jade" },
+            { label: "Ficar parado até o cronômetro se esgotar", target: "perder_jade" }
+          ]
+        }
+      ],
+      level2: [
+        {
+          id: "explorar_corredor",
+          title: "2. Explorar o Corredor (Opcional)",
+          text: "Duas portas opcionais valem a pena: a segunda porta à esquerda tem um Cartão Bônus entre a cama e a janela; a última porta à direita tem um crucifixo de vida extra em cima do banco. Nenhuma das duas é obrigatória pra continuar.",
+          delta: 0,
+          converge: true,
+          options: [
+            { label: "Ir até a última porta à esquerda", target: "encontrar_jade" }
+          ]
+        }
+      ],
+      level3: [
+        {
+          id: "encontrar_jade",
+          title: "3. Quarto de Jade",
+          text: "No fim do corredor, um quadro na parede é igual ao da visão do Oráculo — sinal de que a Criança Índigo está na última porta à esquerda. Lá dentro, Lucas olha a ficha médica dela na parede e descobre oficialmente o nome: Jade. Pega ela no colo. Três fontes concordam: encontrar e carregar Jade rende +10 de sanidade.",
+          delta: 10,
+          converge: true,
+          options: [
+            { label: "Sair do quarto rumo à saída de emergência", target: "fuga_emergencia" }
+          ]
+        },
+        {
+          id: "perder_jade",
+          title: "Deixar o Cronômetro Zerar (Fracasso Opcional)",
+          text: "É possível simplesmente não pegar Jade — ficar parado no corredor até o cronômetro se esgotar. O Oráculo chega do mesmo jeito e a fuga pela saída de emergência acontece igual, mas as fontes concordam: falhar em achar Jade antes do Oráculo custa -10 de sanidade, e muda o encontro com a Agatha Morta mais adiante (ela cobra a perda de Jade, e não sobra decisão real de entregar ou recusar).",
+          delta: -10,
+          converge: true,
+          options: [
+            { label: "Sair pela saída de emergência", target: "fuga_emergencia" }
+          ]
+        }
+      ],
+      level4: [
+        {
+          id: "fuga_emergencia",
+          title: "4. Fuga pela Saída de Emergência",
+          text: "Não importa quanto tempo restava no cronômetro: o Oráculo aparece assim que Lucas sai do quarto. Ele corre pra frente e escapa pela porta de saída de emergência notada antes no corredor, indo parar no telhado, cara a cara com o Oráculo.",
+          delta: 0,
+          converge: true,
+          options: [
+            { label: "Enfrentar o Oráculo no telhado", target: "luta_oraculo" }
+          ]
+        }
+      ],
+      level5: [
+        {
+          id: "luta_oraculo",
+          title: "5. Confronto com o Oráculo (Telhado)",
+          text: "Uma sequência longa de Simon Says e eventos L-R — as fontes recomendam mudar pra gráficos baixos (dica dada no início do jogo) pra facilitar a leitura dos comandos. Depois de vencer, ainda não acabou: é preciso correr até a polícia antes de se esconder numa salinha pequena.",
+          delta: 0,
+          converge: true,
+          options: [
+            { label: "Chegar à salinha e encontrar Agatha", target: "agatha_morta" }
+          ]
+        }
+      ],
+      level6: [
+        {
+          id: "agatha_morta",
+          title: "6. Agatha Morta",
+          text: "Na salinha, Lucas encontra Agatha — só que ela está morta, e uma conversa curta revela que quem está ali não é exatamente ela (é a Inteligência Artificial usando a forma dela). Passar num pequeno evento Simon Says durante a conversa revela mais detalhes sobre o que ela realmente é.",
+          delta: 0,
+          converge: true,
+          options: [
+            { label: "Entregar Jade pra Agatha Morta (só disponível se você a recuperou)", target: "entregar_jade" },
+            { label: "Recusar entregar Jade (ou já não ter Jade pra entregar)", target: "recusar_jade" }
+          ]
+        }
+      ],
+      level7: [
+        {
+          id: "entregar_jade",
+          title: "7. Entregar Jade pra Agatha Morta (Fim do Capítulo)",
+          text: "Lucas entrega Jade pra essa entidade que só parece a Agatha. As fontes concordam: essa escolha custa -10 de sanidade. Não muda os próximos capítulos nem o final do jogo em si, mas afeta o capítulo interativo final — é a principal fonte de replay do jogo, com uma cutscene diferente aparecendo bem no fim se essa opção for escolhida.",
+          type: "victory",
+          delta: -10,
+          converge: true
+        },
+        {
+          id: "recusar_jade",
+          title: "Recusar Entregar Jade",
+          text: "Lucas recusa entregar Jade (ou já não tem ela pra entregar, se foi perdida pro Oráculo antes) — as fontes concordam: +10 de sanidade por recusar. Isso faz a Inteligência Artificial tentar possuir Lucas em seguida.",
+          delta: 10,
+          converge: true,
+          options: [
+            { label: "Escapar da tentativa de possessão (evento L-R)", target: "escapar_possessao" }
+          ]
+        }
+      ],
+      level8: [
+        {
+          id: "escapar_possessao",
+          title: "8. Escapar da Possessão (Fim do Capítulo)",
+          text: "Um evento L-R relativamente simples pra evitar que a IA possua Lucas — passar nele encerra o capítulo. Lucas foge correndo, seguindo um mendigo, junto com Carla.",
+          type: "victory",
+          delta: 0,
+          converge: true
+        }
+      ]
+    };
+
+    // ─── Capítulo 39: Bogart (Lucas → Carla) ───
+    // Slot já reservado em CM_CHAPTERS (id "bogart") — só ativei
+    // available:true e montei a árvore, sem renumerar nada.
+    // Fontes: Omikrongame, GameFAQs (texto quase idêntico ao Omikrongame),
+    // um terceiro guia GameFAQs em formato "chapgart" mais detalhado, com
+    // resumo numérico separado, um quarto em formato tabular FH.04.41, e
+    // Neoseeker (formato PAC5) — cinco fontes cruzadas.
+    //
+    // Valores de sanidade, sem conflito real entre as três fontes
+    // numéricas (chapgart, FH.04.41, Neoseeker): ver Markus vivo +10 Lucas;
+    // sexo no vagão +10 Lucas / +20 Carla; consertar o rádio e ouvir as
+    // notícias -5 Carla. A única aparente divergência é a Neoseeker
+    // dividindo o bônus da fogueira em dois incrementos de +5 (no resumo
+    // ela lista só +5, mas o texto da caminhada fala em "restaurar cinco
+    // pontos, mais outros cinco"), enquanto chapgart e FH.04.41 tratam como
+    // uma ação só valendo +10 — mantive +10 como valor único, que bate com
+    // a soma dos dois incrementos da Neoseeker.
+    //
+    // Troféu #39 "Previsão do Tempo" já cadastrado bate exatamente com o
+    // node de consertar o rádio (mesma condição, mesmo capítulo) — linkei
+    // o campo trophy nele.
+    const CM_TREE_BOGART = {
+      level1: [
+        {
+          id: "start",
+          title: "1. Seguindo Bogart pelo Metrô",
+          text: "Lucas segue um mendigo (o mesmo cara do beco lá no começo do jogo) por um bom trecho dos túneis do metrô, entra num elevador e chega a um grupo de sem-teto conversando com Carla antes mesmo dele chegar lá. No caminho dá pra fazer um desvio rápido e pegar um Cartão Bônus, visível nos trilhos perto de uma rampa que sobe pra plataforma.",
+          delta: 0,
+          options: [
+            { label: "Chegar à fogueira", target: "chegada_fogueira" }
+          ]
+        }
+      ],
+      level2: [
+        {
+          id: "chegada_fogueira",
+          title: "2. Fogueira do Acampamento",
+          text: "Lucas se aproxima da fogueira. Se ele salvou Markus do Oráculo antes no jogo (em \"Perigo e Onipresença\"), tem um reencontro breve e tranquilo com ele aqui. Se Markus não foi salvo, essa parte simplesmente não acontece, sem penalidade.",
+          delta: 0,
+          options: [
+            { label: "Você salvou Markus antes (reencontro na fogueira)", target: "ver_markus" },
+            { label: "Você não salvou Markus (pular direto pra conversa)", target: "sentar_bogart" }
+          ]
+        }
+      ],
+      level3: [
+        {
+          id: "ver_markus",
+          title: "Reencontro com Markus",
+          text: "Um interlúdio curto e tranquilo com Markus junto à fogueira — as fontes concordam: +10 de sanidade pra Lucas por ele estar vivo e bem.",
+          delta: 10,
+          converge: true,
+          options: [
+            { label: "Sentar com Bogart", target: "sentar_bogart" }
+          ]
+        }
+      ],
+      level4: [
+        {
+          id: "sentar_bogart",
+          title: "3. Conversa com Bogart",
+          text: "O homem manda Lucas sentar, e dá pra bater papo sobre o que quiser — as fontes concordam que as escolhas de diálogo não mudam nada, só é bom saber que escolher \"E AGORA\" encerra a conversa. Bogart conta que o próximo plano é ir até a base militar de Wichita — levar Jade lá se Lucas a tiver, ou resgatá-la lá se não tiver. Depois disso, Lucas vai tirar um cochilo num vagão do metrô, e o controle passa pra Carla.",
+          delta: 0,
+          converge: true,
+          options: [
+            { label: "Assumir o controle da Carla", target: "carla_acampamento" }
+          ]
+        }
+      ],
+      level5: [
+        {
+          id: "carla_acampamento",
+          title: "4. Carla no Acampamento",
+          text: "Com o controle na Carla, dá pra esquentar as mãos na fogueira por uns pontos de sanidade extra — as fontes concordam num valor de +10. Também dá pra explorar os vagões do metrô: um tem uma lanterna que pode ser aberta pra tirar as pilhas de dentro, outro tem um crucifixo de vida extra.",
+          delta: 10,
+          converge: true,
+          options: [
+            { label: "Consertar o rádio quebrado (opcional)", target: "consertar_radio" },
+            { label: "Ir direto deitar com Lucas", target: "cena_final" }
+          ]
+        }
+      ],
+      level6: [
+        {
+          id: "consertar_radio",
+          title: "5. Consertar o Rádio",
+          text: "No fim da plataforma, perto da barricada, tem um rádio quebrado — falta pilha e antena. As pilhas vêm da lanterna encontrada num dos vagões; a antena é um pedaço quebrado de uma moldura (ou placa de metal, segundo a Neoseeker) perto da entrada. Encaixando as duas peças e ligando o rádio, dá pra ouvir a sequência completa de notícias — o que deixa Carla um pouco deprimida. As fontes concordam: -5 de sanidade pra ela por isso, e a notícia ruim vem automaticamente na sequência assim que o rádio liga.",
+          delta: -5,
+          converge: true,
+          trophy: "🏆 \"Previsão do Tempo\"",
+          options: [
+            { label: "Voltar ao vagão e deitar com Lucas", target: "cena_final" }
+          ]
+        }
+      ],
+      level7: [
+        {
+          id: "cena_final",
+          title: "6. Cena Final no Vagão (Fim do Capítulo)",
+          text: "Carla volta ao vagão do fim da plataforma, deita ao lado de Lucas, e os dois têm uma cena de sexo longa e não-interativa (uma das fontes GameFAQs nota que a versão europeia mostra a cena sem cortes, enquanto a americana censura a nudez, mas passar por ela é obrigatório pra fechar o capítulo). As fontes concordam: +10 de sanidade pra Lucas e +20 pra Carla.",
+          type: "victory",
+          delta: 20,
+          converge: true
+        }
+      ]
+    };
+
+    // ─── Capítulo 40: Revelação (Lucas Criança) ───
+    // Fontes: Omikrongame, GameFAQs (texto idêntico ao Omikrongame), um
+    // terceiro guia GameFAQs em formato "chaprevelation", um quarto em
+    // formato tabular FH.04.42, e Neoseeker (formato REV5) — cinco fontes
+    // cruzadas, todas concordando: capítulo 100% linear, sem escolha real,
+    // sem personagem jogável adulto ("Playable Characters: Lucas (Kid)") e
+    // sem nenhum valor de sanidade documentado ("Points: None").
+    //
+    // NUMERAÇÃO: "Revelação" não estava na lista de capítulos reservados —
+    // inserido como capítulo 40 (logo após "Bogart"), empurrando o antigo
+    // 40 ("Capítulo Final") pra 41.
+    const CM_TREE_REVELACAO = {
+      level1: [
+        {
+          id: "start",
+          title: "1. Levantar e Seguir pelo Corredor",
+          text: "Flashback final da infância de Lucas — dessa vez dá pra fazer bem pouca coisa: ele desce da beliche, anda até a porta do quarto, abre e segue pelo corredor enquanto os pais discutem alguma coisa ao fundo o tempo todo.",
+          delta: 0,
+          options: [
+            { label: "Escutar na porta do fim do corredor", target: "escutar_porta" }
+          ]
+        }
+      ],
+      level2: [
+        {
+          id: "escutar_porta",
+          title: "2. Escutar Atrás da Porta (Fim do Capítulo)",
+          text: "Lucas escuta a conversa dos pais e descobre muito mais sobre si mesmo: a mãe estava perto do artefato quando estava grávida dele, e ele recebeu algum tipo de radiação estranha — é isso que explica as visões dele. O pai abre a porta e não fica nada feliz, flagrando Lucas escutando escondido.",
+          type: "victory",
+          delta: 0,
+          converge: true
+        }
+      ]
+    };
+
+    // ─── Capítulo 41: Contagem Regressiva Final (Lucas → Carla) ───
+    // Slot já reservado em CM_CHAPTERS (id "final") — só ativei
+    // available:true e montei a árvore, sem renumerar nada. Troquei o nome
+    // genérico "Capítulo Final" pelo título real do capítulo, "Contagem
+    // Regressiva Final", agora que o conteúdo confirma qual é.
+    //
+    // Fontes: Omikrongame, GameFAQs (texto idêntico ao Omikrongame), um
+    // terceiro guia GameFAQs em formato "chapdown" (bem resumido, só
+    // aponta pro apêndice de finais), um quarto em formato tabular
+    // FH.04.43 (com a estrutura mais limpa: Final 1/2/3), e Neoseeker
+    // (formato FIN5, também resumido) — cinco fontes cruzadas. Nenhuma
+    // documenta valor de sanidade pra esse capítulo ("Points: None" no
+    // FH.04.43) — delta 0 em toda a árvore.
+    //
+    // DUAS ROTAS DE ENTRADA, decididas pela escolha em "Onde Está Jade":
+    // (1) ROTA PRINCIPAL — Lucas manteve Jade (recusou entregá-la): é a
+    // rota detalhada de verdade no Omikrongame/GameFAQs e bate exatamente
+    // com a estrutura "Ending 1/2/3" do FH.04.43. (2) ROTA ALTERNATIVA —
+    // Lucas entregou Jade à Agatha Morta: só o Omikrongame/GameFAQs cobrem
+    // essa variante, e de forma resumida — o próprio texto credita o
+    // levantamento dela a um colaborador da comunidade ("Thanks to
+    // entranced for picking up this additional storyline"), então tratei
+    // com mais cautela textual que a rota principal.
+    //
+    // TRÊS FINAIS, já cadastrados como troféus mutuamente exclusivos (ver
+    // alerta "TODOS OS FINAIS" na Visão Geral) — linkei o campo trophy nos
+    // três, sem nenhuma invenção, direto pelas condições que os próprios
+    // troféus já descrevem:
+    // - 🏆 "Um Futuro Brilhante" (prata): Lucas vence Oráculo + soldados +
+    //   Criatura Ciborgue, entrega Jade ele mesmo.
+    // - 🏆 "Um Futuro Frio" (bronze): Lucas vence o Oráculo, mas falha de
+    //   propósito contra a Criatura Ciborgue — ela entrega Jade.
+    // - 🏆 "Um Futuro Incerto" (bronze): Lucas perde pro Oráculo E a
+    //   virada de Carla não dá certo — o próprio Oráculo entrega Jade.
+    //
+    // NOTA: a rota alternativa (Jade já com o Clã Índigo) também converge
+    // nesses mesmos três troféus, segundo as fontes — não é um quarto
+    // final à parte.
+    const CM_TREE_CONTAGEM_REGRESSIVA_FINAL = {
+      level1: [
+        {
+          id: "start",
+          title: "1. Chegada à Base de Wichita",
+          text: "Lucas e Carla chegam de carro na base militar de Wichita. Tudo daqui pra frente depende diretamente da escolha feita em \"Onde Está Jade\": se você manteve Jade com você (recusou entregá-la à Agatha Morta) ou se entregou ela ao Clã Índigo naquela cena.",
+          delta: 0,
+          options: [
+            { label: "Você manteve Jade com você (rota principal, detalhada nas fontes)", target: "neve_com_jade" },
+            { label: "Você entregou Jade à Agatha Morta (rota alternativa, resumida nas fontes)", target: "indigo_ai_possessao" }
+          ]
+        }
+      ],
+      level2: [
+        {
+          id: "neve_com_jade",
+          title: "2. Pela Neve até o Hangar",
+          text: "De carro já lá, o primeiro passo é forçar caminho pelos montes de neve até as portas do hangar, via o clássico evento L-R. Abra a porta, carregue Jade até a próxima porta, abra essa também.",
+          delta: 0,
+          converge: true,
+          options: [
+            { label: "Chegar ao chão principal do hangar", target: "chao_principal" }
+          ]
+        },
+        {
+          id: "indigo_ai_possessao",
+          title: "Rota Alternativa: Jade Já Está com o Clã Índigo",
+          text: "Se você entregou Jade à Agatha Morta no capítulo anterior, ao chegar no hangar encontra Jade e a Inteligência Artificial do Clã Índigo já esperando — ela tenta possuir Lucas pra fazê-lo pegar Jade e colocá-la na Chroma, um evento L-R de possessão.",
+          delta: 0,
+          converge: true,
+          options: [
+            { label: "Passar no evento de possessão", target: "luta_ia_indigo" },
+            { label: "Falhar no evento de possessão", target: "falha_possessao_indigo" }
+          ]
+        }
+      ],
+      level3: [
+        {
+          id: "chao_principal",
+          title: "3. Chão Principal: Soldados do Clã Laranja",
+          text: "Ao chegar no chão principal, soldados do Clã Laranja estão espalhados por todo lado, com o Oráculo esperando. Ponha Jade no chão e enfrente o Oráculo numa combinação de Simon Says e eventos L-R.",
+          delta: 0,
+          converge: true,
+          options: [
+            { label: "Vencer o Oráculo", target: "venceu_oraculo" },
+            { label: "Perder pro Oráculo (ficar sem vidas)", target: "perdeu_oraculo" }
+          ]
+        },
+        {
+          id: "luta_ia_indigo",
+          title: "Enfrentar a IA do Clã Índigo",
+          text: "Passando na possessão, Lucas enfrenta a Inteligência Artificial num teste de Simon Says relativamente simples. No meio disso, o Oráculo aparece com a arma na cabeça de Carla: entregue a criança ou ela se ferra.",
+          delta: 0,
+          converge: true,
+          options: [
+            { label: "Entregar a criança ao Oráculo", target: "entrega_oraculo_indigo" },
+            { label: "Recusar entregar a criança", target: "recusa_oraculo_indigo" }
+          ]
+        },
+        {
+          id: "falha_possessao_indigo",
+          title: "Falhar na Possessão",
+          text: "Falhando o evento, Lucas acaba colocando Jade na Chroma a mando do Clã Índigo — a menos que, mais adiante, você passe por outro teste de possessão controlando a Carla, que precisa correr pro hangar e resolver a situação do Lucas.",
+          delta: 0,
+          converge: true,
+          options: [
+            { label: "Carla resolve a situação (segundo teste de possessão)", target: "recusa_oraculo_indigo" },
+            { label: "Carla não consegue resolver", target: "vitoria_indigo_direta" }
+          ]
+        }
+      ],
+      level4: [
+        {
+          id: "venceu_oraculo",
+          title: "Venceu o Oráculo",
+          text: "Com o Oráculo derrotado, ainda sobram os soldados do Clã Laranja pra lidar. É preciso passar pelos eventos seguintes (leva um tiro se falhar) pra vencer os soldados — só que agora a Criatura Ciborgue (a Inteligência Artificial) aparece, e ela termina o serviço com os soldados se você tiver levado tiro antes.",
+          delta: 0,
+          converge: true,
+          options: [
+            { label: "Vencer a Criatura Ciborgue", target: "venceu_ia" },
+            { label: "Perder de propósito pra Criatura Ciborgue", target: "perdeu_ia" }
+          ]
+        },
+        {
+          id: "perdeu_oraculo",
+          title: "Perdeu Todas as Vidas pro Oráculo",
+          text: "Perder todas as vidas na luta contra o Oráculo não é game over de cara: Lucas é aprisionado, e o controle passa pra Carla. Ela precisa fazer o evento L-R pra atravessar a neve e entrar no hangar — só que tem um soldado do Clã Laranja no caminho.",
+          delta: 0,
+          converge: true,
+          options: [
+            { label: "Carla nocauteia o soldado com a barra de metal", target: "carla_resgate" },
+            { label: "Carla é pega (não nocauteia o soldado, ou falha em terminar o Oráculo)", target: "carla_falha" }
+          ]
+        },
+        {
+          id: "entrega_oraculo_indigo",
+          title: "Entregar a Criança ao Oráculo (Fim do Capítulo)",
+          text: "Lucas e Carla sobrevivem; o Oráculo coloca Jade na Chroma. As fontes chamam isso de \"final Laranja\" — bate com o troféu já cadastrado \"Um Futuro Incerto\" (é o Oráculo quem entrega Jade ao altar).",
+          type: "victory",
+          trophy: "🏆 \"Um Futuro Incerto\"",
+          delta: 0,
+          converge: true
+        },
+        {
+          id: "recusa_oraculo_indigo",
+          title: "Recusar Entregar a Criança (Fim do Capítulo)",
+          text: "Carla vira o jogo contra o Oráculo e Lucas mesmo coloca a criança na Chroma — vitória dos mocinhos. Bate com o troféu já cadastrado \"Um Futuro Brilhante\".",
+          type: "victory",
+          trophy: "🏆 \"Um Futuro Brilhante\"",
+          delta: 0,
+          converge: true
+        },
+        {
+          id: "vitoria_indigo_direta",
+          title: "Vitória do Clã Índigo (Fim do Capítulo)",
+          text: "Sem a virada de Carla, Jade acaba na Chroma a mando do Clã Índigo — vitória deles. Bate com o troféu já cadastrado \"Um Futuro Frio\" (a Criatura Ciborgue entrega Jade ao altar).",
+          type: "victory",
+          trophy: "🏆 \"Um Futuro Frio\"",
+          delta: 0,
+          converge: true
+        }
+      ],
+      level5: [
+        {
+          id: "venceu_ia",
+          title: "Vencer a Criatura Ciborgue (Fim do Capítulo)",
+          text: "Mais uma rodada de Simon Says e eventos L-R pra derrotar a Criatura Ciborgue. Vencendo, Lucas pega Jade, leva ela até a Chroma e coloca lá mesmo — o final bom. Bate exatamente com o troféu já cadastrado \"Um Futuro Brilhante\".",
+          type: "victory",
+          trophy: "🏆 \"Um Futuro Brilhante\"",
+          delta: 0,
+          converge: true
+        },
+        {
+          id: "perdeu_ia",
+          title: "Perder de Propósito pra Criatura Ciborgue (Fim do Capítulo)",
+          text: "Falhando essas QTEs (de propósito, se for o objetivo), a Criatura Ciborgue leva Jade até a Chroma no lugar de Lucas. Bate exatamente com o troféu já cadastrado \"Um Futuro Frio\".",
+          type: "victory",
+          trophy: "🏆 \"Um Futuro Frio\"",
+          delta: 0,
+          converge: true
+        },
+        {
+          id: "carla_resgate",
+          title: "Carla Resgata Lucas",
+          text: "Carla pega a barra de metal do chão e nocauteia o soldado, pega a arma dele e atira no Oráculo, acordando Lucas — que agora assume de volta o controle pra lidar com os soldados do Clã Laranja e a Criatura Ciborgue, do mesmo jeito descrito acima.",
+          delta: 0,
+          converge: true,
+          options: [
+            { label: "Vencer a Criatura Ciborgue", target: "venceu_ia" },
+            { label: "Perder de propósito pra Criatura Ciborgue", target: "perdeu_ia" }
+          ]
+        },
+        {
+          id: "carla_falha",
+          title: "Carla é Pega (Fim do Capítulo)",
+          text: "Se Carla não conseguir nocautear o soldado ou falhar em terminar o Oráculo, é vitória do Clã Laranja — o próprio Oráculo acaba levando Jade até o altar. Bate exatamente com o troféu já cadastrado \"Um Futuro Incerto\".",
+          type: "victory",
+          trophy: "🏆 \"Um Futuro Incerto\"",
+          delta: 0,
+          converge: true
+        }
+      ]
+    };
+
+    // ─── Capítulo 42: Epílogo ───
+    // Fontes: Omikrongame, GameFAQs (texto idêntico ao Omikrongame), um
+    // terceiro guia GameFAQs em formato "chapfinale", um quarto em formato
+    // tabular FH.04.44, e Neoseeker (formato EPI5, que é o encerramento do
+    // próprio guia, sem conteúdo de jogo adicional) — cinco fontes
+    // cruzadas, todas concordando: capítulo 100% passivo ("Playable
+    // Characters: None"), sem nenhum valor de sanidade ("Points: None"),
+    // só a cutscene de encerramento correspondente ao final que você
+    // conseguiu no capítulo anterior, seguida da liberação de 200 pontos de
+    // bônus (cenas, minijogos, faixas de música ou imagens no menu de
+    // extras) e da opção de refazer capítulos livremente.
+    //
+    // NUMERAÇÃO: último capítulo do jogo — inserido como capítulo 42, logo
+    // após "Contagem Regressiva Final". Não há nada depois pra empurrar.
+    const CM_TREE_EPILOGO = {
+      level1: [
+        {
+          id: "start",
+          title: "1. Epílogo (Fim do Jogo)",
+          text: "A sequência final do jogo — mostra o desfecho correspondente ao final que você conseguiu em \"Contagem Regressiva Final\". Depois dela, o jogo libera 200 pontos de bônus (usados no menu de extras pra desbloquear cenas, minijogos, faixas de música ou imagens) e dá pra refazer qualquer capítulo livremente (lembrando de marcar \"não salvar\") pra tentar outras escolhas — principalmente refazer \"Contagem Regressiva Final\" pra ver os outros dois finais.",
+          type: "victory",
+          delta: 0
+        }
+      ]
+    };
+
     const CM_TREES = {
       murder: CM_NARRATIVE_TREE,
       investigacao: CM_TREE_INVESTIGACAO,
@@ -6002,7 +7322,22 @@
       anjos_caidos: CM_TREE_ANJOS_CAIDOS,
       sabao_sangue_pistas: CM_TREE_SABAO_SANGUE_PISTAS,
       fugitiva: CM_TREE_FUGITIVA,
-      janos: CM_TREE_JANOS
+      janos: CM_TREE_JANOS,
+      kuriakin: CM_TREE_KURIAKIN,
+      segredos_maias: CM_TREE_SEGREDOS_MAIAS,
+      cla: CM_TREE_CLA,
+      perigo_onipresenca: CM_TREE_PERIGO_ONIPRESENCA,
+      colinas_russas: CM_TREE_COLINAS_RUSSAS,
+      brincadeira_crianca: CM_TREE_BRINCADEIRA_CRIANCA,
+      xeque_mate: CM_TREE_XEQUE_MATE,
+      o_pacto: CM_TREE_O_PACTO,
+      jade: CM_TREE_JADE,
+      congelado_ossos: CM_TREE_CONGELADO_OSSOS,
+      onde_esta_jade: CM_TREE_ONDE_ESTA_JADE,
+      bogart: CM_TREE_BOGART,
+      revelacao: CM_TREE_REVELACAO,
+      final: CM_TREE_CONTAGEM_REGRESSIVA_FINAL,
+      epilogo: CM_TREE_EPILOGO
     };
 
     // Lista de capítulos pra navegação futura — cada um com available:true tem
@@ -6034,6 +7369,59 @@
     // resgata ele na varanda) também tinha ficado de fora, mesmo já citado
     // no troféu #23 ("Amor Fraterno"). Inserido como capítulo 16 (logo após
     // "Dobrar ou Desistir"), empurrando os antigos 16–26 pra 17–27.
+    // ATUALIZAÇÃO: "Segredos Maias" (Lucas encontra o Oráculo, foge da pantera
+    // negra e é salvo por Agatha morta, que revela o gancho da "jovem pura")
+    // também não estava na lista, mesmo sendo a ponte direta entre "Encontro
+    // com Kuriakin" e "Onde Está Jade". Inserido como capítulo 29 (logo após
+    // "Encontro com Kuriakin"), empurrando os antigos 29–31 pra 30–32.
+    // ATUALIZAÇÃO: "O Clã" (visão curta do Oráculo se reportando aos mestres,
+    // gancho do Clã Laranja) também não estava na lista, mesmo já citado no
+    // troféu #34 ("Outro Clã?"). Inserido como capítulo 30 (logo após
+    // "Segredos Maias"), empurrando os antigos 30–32 pra 31–33.
+    // ATUALIZAÇÃO: "Perigo e Onipresença" (capítulo de três personagens —
+    // Lucas, Markus e Carla/Tyler — já citado no troféu #35 "Por Pouco")
+    // também não estava na lista. Inserido como capítulo 31 (logo após
+    // "O Clã"), empurrando os antigos 31–33 pra 32–34.
+    // ATUALIZAÇÃO: "Destino nas Colinas Russas" (resgate de Tiffany no parque
+    // de diversões, já citado na lista de pontos bônus como "[Cap. 35]")
+    // também não estava na lista. Inserido como capítulo 32 (logo após
+    // "Perigo e Onipresença"), empurrando os antigos 32–34 pra 33–35.
+    // ATUALIZAÇÃO: "Brincadeira de Criança" (segundo flashback de infância na
+    // base de Wichita, dessa vez com refletores, sem nenhum valor de sanidade
+    // documentado) também não estava na lista. Inserido como capítulo 33
+    // (logo após "Destino nas Colinas Russas"), empurrando os antigos 33–35
+    // pra 34–36.
+    // ATUALIZAÇÃO: "Xeque-mate!" (novo relatório curto do Oráculo, mesmo
+    // molde de "O Clã", sem personagem jogável nem sanidade em jogo) também
+    // não estava na lista. Inserido como capítulo 34 (logo após "Brincadeira
+    // de Criança"), empurrando os antigos 34–36 pra 35–37.
+    // ATUALIZAÇÃO: "O Pacto" (Carla confronta Lucas cara a cara no cemitério
+    // de Tiffany, cena Trusting/Wary + Simon Says que sela a aliança entre
+    // os dois) também não estava na lista, mesmo já citado no troféu #36
+    // ("Um Aliado Confiável"). Inserido como capítulo 35 (logo após
+    // "Xeque-mate!"), empurrando os antigos 35–37 ("Jade",
+    // "Bogart", "Capítulo Final") pra 36–38.
+    // ATUALIZAÇÃO: "Congelado até os Ossos" (Carla + Tyler na delegacia,
+    // escolha Admitir/Mentir seguida de Sair/Ficar com Sam — última cena de
+    // Tyler na história) também não estava na lista, mesmo já citado no
+    // troféu #37 ("Carma"). Inserido como capítulo 37 (logo após "Jade"),
+    // empurrando os antigos 37–38 ("Bogart", "Capítulo Final") pra 38–39.
+    // ATUALIZAÇÃO: "Onde Está Jade" (resgate de Jade no orfanato, confronto
+    // com o Oráculo no telhado e escolha final entregar/recusar Jade à
+    // Agatha Morta) também não estava na lista, mesmo já citado no troféu
+    // #38 ("Voto de Confiança"). Inserido como capítulo 38 (logo após
+    // "Congelado até os Ossos"), empurrando os antigos 38–39 ("Bogart",
+    // "Capítulo Final") pra 39–40. Não confundir com o capítulo "Jade"
+    // (cap. 36), que é só a visão curta do Oráculo.
+    // ATUALIZAÇÃO: "Revelação" (flashback final da infância de Lucas na
+    // base de Wichita, sem escolha real nem valor de sanidade) também não
+    // estava na lista. Inserido como capítulo 40 (logo após "Bogart"),
+    // empurrando o antigo 40 ("Capítulo Final") pra 41.
+    // ATUALIZAÇÃO: "Epílogo" (cutscene final passiva, sem escolha nem
+    // sanidade — mostra o desfecho do final conseguido e libera 200 pontos
+    // de bônus) também não estava na lista. Inserido como capítulo 42, logo
+    // após "Contagem Regressiva Final" — é o último capítulo do jogo, não
+    // há nada depois pra empurrar.
     const CM_CHAPTERS = [
       { id: "murder", name: "1. O Assassinato", available: true },
       { id: "investigacao", name: "2. Investigação", available: true },
@@ -6062,11 +7450,23 @@
       { id: "sabao_sangue_pistas", name: "25. Sabão, Sangue e Pistas", available: true },
       { id: "fugitiva", name: "26. A Fugitiva", available: true },
       { id: "janos", name: "27. Janos", available: true },
-      { id: "kuriakin", name: "28. Encontro com Kuriakin", available: false },
-      { id: "jade", name: "29. Onde Está Jade", available: false },
-      { id: "bogart", name: "30. Bogart", available: false },
-      { id: "final", name: "31. Capítulo Final", available: false }
+      { id: "kuriakin", name: "28. Encontro com Kuriakin", available: true },
+      { id: "segredos_maias", name: "29. Segredos Maias", available: true },
+      { id: "cla", name: "30. O Clã", available: true },
+      { id: "perigo_onipresenca", name: "31. Perigo e Onipresença", available: true },
+      { id: "colinas_russas", name: "32. Destino nas Colinas Russas", available: true },
+      { id: "brincadeira_crianca", name: "33. Brincadeira de Criança", available: true },
+      { id: "xeque_mate", name: "34. Xeque-mate!", available: true },
+      { id: "o_pacto", name: "35. O Pacto", available: true },
+      { id: "jade", name: "36. Jade", available: true },
+      { id: "congelado_ossos", name: "37. Congelado até os Ossos", available: true },
+      { id: "onde_esta_jade", name: "38. Onde Está Jade", available: true },
+      { id: "bogart", name: "39. Bogart", available: true },
+      { id: "revelacao", name: "40. Revelação", available: true },
+      { id: "final", name: "41. Contagem Regressiva Final", available: true },
+      { id: "epilogo", name: "42. Epílogo", available: true }
     ];
+
 
     // ═══════════════════════════════════════════════
     //  STATE
