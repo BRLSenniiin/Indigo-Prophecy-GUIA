@@ -6482,15 +6482,12 @@
     // que é a CARLA quem ganha os +10 ao escolher "Trusting", e foi esse o
     // valor usado.
     //
-    // ATENÇÃO — troféu já cadastrado sem confirmação de fonte: o troféu #36
-    // "Um Aliado Confiável" ("Carla não sacou a arma contra Lucas e formou
-    // uma aliança durante 'O Pacto'") já está cadastrado com capítulo "O
-    // Pacto", mas NENHUMA das cinco fontes consultadas aqui menciona uma
-    // opção de sacar arma nessa cena — todas descrevem só a escolha
-    // Trusting/Wary seguida de Simon Says. Não fabriquei esse ramo por falta
-    // de confirmação; o campo trophy não foi vinculado a nenhum node deste
-    // capítulo. Fica sinalizado — confirme a fonte certa desse mecanismo
-    // antes de eu linkar o troféu a um node específico.
+    // ATUALIZAÇÃO: o troféu #36 "Um Aliado Confiável" foi confirmado e
+    // linkado no node "confiante" — playstationtrophies.org e a Fahrenheit
+    // Fandom Wiki mostram que a condição é simplesmente escolher "Trusting"
+    // como Carla; a menção a "não sacar a arma" na descrição do troféu é só
+    // o jeito de narrar essa escolha, não uma mecânica de QTE separada
+    // (aviso anterior sobre isso, abaixo, ficou obsoleto e resolvido).
     //
     // NUMERAÇÃO: "O Pacto" não estava na lista de capítulos reservados —
     // inserido como capítulo 35 (logo após "Xeque-mate!"), empurrando os
@@ -6524,9 +6521,10 @@
         {
           id: "confiante",
           title: "Reação Confiante (\"Trusting\")",
-          text: "Carla escolhe confiar em Lucas — as fontes que detalham essa escolha (GameFAQs \"chapact\" e Neoseeker) concordam: +10 de sanidade pra Carla.",
+          text: "Carla escolhe confiar em Lucas — as fontes que detalham essa escolha (GameFAQs \"chapact\" e Neoseeker) concordam: +10 de sanidade pra Carla. Confirmado via playstationtrophies.org e Fahrenheit Fandom Wiki: essa é exatamente a condição do troféu \"Um Aliado Confiável\" — a descrição \"Carla não sacou a arma\" é só o jeito de descrever essa escolha na cutscene, não um QTE separado (correção do que eu tinha sinalizado antes como não confirmado).",
           delta: 10,
           converge: true,
+          trophy: "🏆 \"Um Aliado Confiável\"",
           options: [
             { label: "Simon Says: dizer \"POR QUÊ\" e depois \"ORÁCULO\"", target: "simon1" }
           ]
@@ -6643,17 +6641,18 @@
     // Flórida — mas todas as fontes concordam que, de qualquer forma, essa
     // é a ÚLTIMA cena em que Tyler aparece na história.
     //
-    // ATENÇÃO — conflito com troféu já cadastrado: o troféu #37 "Carma"
-    // já está registrado com "how": "Escolha a opção de Carla mentir para
-    // Tyler nesta cena, levando-o a pedir demissão e partir para a
-    // Flórida" — ou seja, atribui o desfecho de Tyler ir pra Flórida à
-    // escolha Mentir/Admitir da Carla. Nenhuma das cinco fontes aqui
-    // consultadas confirma essa ligação: elas descrevem o desfecho
-    // Flórida/polícia como resultado exclusivo da escolha separada
-    // Sair/Ficar (Tyler + Sam), não da escolha Mentir/Admitir. Não toquei
-    // no texto do troféu #37 (fora do escopo pedido) nem vinculei o campo
-    // trophy a nenhum node aqui por falta de confirmação — fica sinalizado
-    // pro Lucas revisar essa possível inconsistência.
+    // ATUALIZAÇÃO: o troféu #37 "Carma" foi confirmado — playstationtrophies.org
+    // e a Fahrenheit Fandom Wiki mostram que ele EXIGE a combinação Mentir
+    // (Carla) + Sair com Sam (Tyler), duas escolhas em pontos diferentes da
+    // mesma cena. Isso contradiz o que as cinco fontes originais desta
+    // árvore sugeriam (que as duas escolhas eram independentes) — o aviso
+    // antigo abaixo ficou obsoleto. Como o node "sam_chega" converge as
+    // duas rotas de Admitir/Mentir antes de oferecer Sair/Ficar, a
+    // combinação não dá pra virar um node fixo com campo trophy (viraria
+    // ambíguo); rastreei ela via popup de convergência
+    // (cmGetConvergenceData, entrada "sam_chega") — mesmo padrão já usado
+    // pra outros troféus de combinação no site, tipo "Comer sem Pagar" e
+    // "Contraterrorista".
     //
     // ATENÇÃO — valor de sanidade: a perda de Tyler ao escolher "Ficar" tem
     // três fontes concordando qualitativamente (resta só ~5 pontos de
@@ -6783,17 +6782,14 @@
     // Capítulo distinto do "Jade" (cap. 36, a visão curta do Oráculo) —
     // esse aqui é o resgate de verdade, no orfanato.
     //
-    // ATENÇÃO — troféu já cadastrado com detalhe não confirmado: o troféu
-    // #38 "Voto de Confiança" já está registrado com "how": "Complete toda
-    // a sequência de fuga (Oráculo + helicópteros da polícia) sem falhar
-    // nenhuma QTE que custe uma vida." Nenhuma das cinco fontes aqui
-    // consultadas menciona helicópteros — todas descrevem só o confronto
-    // com o Oráculo no telhado (Simon Says + eventos L-R) seguido de correr
-    // até a polícia/se esconder numa salinha. Não modelei uma sequência de
-    // helicópteros por falta de confirmação, e não vinculei o campo trophy
-    // a nenhum node — fica sinalizado pro Lucas confirmar a fonte certa
-    // desse trecho específico (pode ser um capítulo posterior, ou detalhe
-    // de uma sexta fonte que eu não tenho aqui).
+    // ATUALIZAÇÃO: o troféu #38 "Voto de Confiança" foi confirmado — o
+    // aviso anterior (abaixo) achava que os helicópteros não apareciam em
+    // nenhuma fonte, mas playstationtrophies.org e PSNProfiles.com (fontes
+    // que eu não tinha na consulta original desta árvore) confirmam: depois
+    // do confronto com o Oráculo tem sim uma sequência extra de fuga dos
+    // helicópteros da polícia (botão L1/R1 alternado), e é aí que a cena
+    // termina no "apartamento abandonado" onde Agatha Morta está. Adicionei
+    // o node "fuga_helicopteros" pra essa etapa e linkei o troféu nele.
     //
     // NOTA DE ESTRUTURA: a escolha final (entregar/recusar Jade à Agatha
     // Morta) só existe de fato se Lucas tiver recuperado Jade antes; se ela
@@ -6872,11 +6868,22 @@
         {
           id: "luta_oraculo",
           title: "5. Confronto com o Oráculo (Telhado)",
-          text: "Uma sequência longa de Simon Says e eventos L-R — as fontes recomendam mudar pra gráficos baixos (dica dada no início do jogo) pra facilitar a leitura dos comandos. Depois de vencer, ainda não acabou: é preciso correr até a polícia antes de se esconder numa salinha pequena.",
+          text: "Uma sequência longa de Simon Says e eventos L-R contra o Oráculo — as fontes recomendam mudar pra gráficos baixos (dica dada no início do jogo) pra facilitar a leitura dos comandos.",
           delta: 0,
           converge: true,
           options: [
-            { label: "Chegar à salinha e encontrar Agatha", target: "agatha_morta" }
+            { label: "Fugir dos helicópteros da polícia", target: "fuga_helicopteros" }
+          ]
+        },
+        {
+          id: "fuga_helicopteros",
+          title: "5b. Fuga dos Helicópteros da Polícia",
+          text: "Depois de vencer o Oráculo, ainda não acabou: uma sequência extensa de L1/R1 alternado pra escapar dos helicópteros da polícia que aparecem em seguida (confirmado via playstationtrophies.org e PSNProfiles.com), até Lucas entrar num apartamento abandonado. O troféu \"Voto de Confiança\" pede pra completar Oráculo + helicópteros inteiros sem perder nenhuma vida.",
+          delta: 0,
+          converge: true,
+          trophy: "🏆 \"Voto de Confiança\"",
+          options: [
+            { label: "Entrar no apartamento e encontrar Agatha", target: "agatha_morta" }
           ]
         }
       ],
@@ -6884,7 +6891,7 @@
         {
           id: "agatha_morta",
           title: "6. Agatha Morta",
-          text: "Na salinha, Lucas encontra Agatha — só que ela está morta, e uma conversa curta revela que quem está ali não é exatamente ela (é a Inteligência Artificial usando a forma dela). Passar num pequeno evento Simon Says durante a conversa revela mais detalhes sobre o que ela realmente é.",
+          text: "No apartamento abandonado, Lucas encontra Agatha — só que ela está morta, e uma conversa curta revela que quem está ali não é exatamente ela (é a Inteligência Artificial usando a forma dela). Passar num pequeno evento Simon Says durante a conversa revela mais detalhes sobre o que ela realmente é.",
           delta: 0,
           converge: true,
           options: [
@@ -8065,6 +8072,19 @@
           seguindo.push('🏆 "Introspecção" (fechado — sequência de hipnose completada sem errar nenhum comando)');
         } else if (cmActivePath.includes("hipnose_falha")) {
           travados.push('🏆 "Introspecção" (perdido nesta run — pelo menos um comando errado na hipnose)');
+        }
+
+        return { seguindo, travados };
+      }
+
+      if (node.id === "sam_chega") {
+        const seguindo = [];
+        const travados = [];
+
+        if (cmActivePath.includes("mentir")) {
+          seguindo.push('🏆 "Carma" (ainda em aberto — só fecha se você escolher SAIR com Sam a seguir; a combinação confirmada é Mentir + Sair, segundo playstationtrophies.org e a Fahrenheit Fandom Wiki)');
+        } else if (cmActivePath.includes("admitir")) {
+          travados.push('🏆 "Carma" (perdido nesta run — esse troféu exige ter MENTIDO antes; aqui você admitiu)');
         }
 
         return { seguindo, travados };
