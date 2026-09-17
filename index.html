@@ -654,9 +654,8 @@
       <div style="font-size: 12px; color: var(--text-dim); margin-bottom: 14px; line-height: 1.6">
         Explore como cada escolha dentro de um capítulo afeta o estado mental de Lucas e quais troféus
         cada rota prepara, trava ou conquista — em <strong class="indigo">tempo real</strong>, sem precisar
-        alternar entre guias de texto separados. Comece pelo capítulo <strong class="cyan">"O Assassinato"</strong>;
-        os demais capítulos no seletor ainda estão sendo montados e aparecem marcados como
-        <strong class="gold">🔒 Em breve</strong>.
+        alternar entre guias de texto separados. Os 42 capítulos da campanha estão disponíveis no
+        seletor abaixo, do <strong class="cyan">"O Assassinato"</strong> ao <strong class="cyan">"Epílogo"</strong>.
       </div>
 
       <div class="caminhos-app">
@@ -760,56 +759,56 @@
     //  e classificação confirmados; a REDAÇÃO em si não é a string oficial do Exophase-BR).
     // ═══════════════════════════════════════════════
     const TROFEUS = [
-      { id: 1, nome: 'Mestre em Indigo Prophecy', desc: 'Desbloqueie todos os troféus (o uso de trapaças desativa todos os troféus).', tipo: 'platina', icon: '🔮', capitulo: 'Final do jogo', how: 'Desbloqueia automaticamente assim que todos os outros 48 troféus forem conquistados, sem uso de cheats/trainers em nenhum momento da conta.', tip: 'Deixe por último — não precisa "buscar" ele diretamente.' },
+      { id: 1, nome: 'Mestre em Indigo Prophecy', desc: 'Desbloqueie todos os troféus (o uso de trapaças desativa todos os troféus).', tipo: 'platina', icon: '🔮', img: 'https://m.exophase.com/psn/awards/s/6g03ee.png?27850ff6c805edbd4ad9b7c13f9e9090', capitulo: 'Final do jogo', how: 'Desbloqueia automaticamente assim que todos os outros 48 troféus forem conquistados, sem uso de cheats/trainers em nenhum momento da conta.', tip: 'Deixe por último — não precisa "buscar" ele diretamente.' },
 
-      { id: 2, nome: 'Da Morte, Surge a Vida', desc: 'Adquira um crucifixo para ganhar uma vida extra.', tipo: 'bronze', icon: '✝️', capitulo: '"Confissão" (ou qualquer capítulo com crucifixo)', how: 'Markus tenta lhe dar um crucifixo durante "Confissão" — basta aceitar. Há vários outros pelo jogo (ex: gaveta da mesa de Lucas em "Realidade Alternativa").', tip: 'Praticamente impossível de perder — aparece cedo e em vários pontos.' },
-      { id: 3, nome: 'Paredes Acolchoadas', desc: 'Lucas foi enviado ao hospício.', tipo: 'bronze', icon: '🏥', capitulo: 'Estado mental de Lucas', how: 'Deixe o estado mental de Lucas cair até "Destruído" ao longo da história (evite atividades que restauram sanidade). É o oposto de "Não Há Escapatória".', tip: 'Faça isso numa run separada de "Não Há Escapatória" — os dois exigem decisões opostas.' },
-      { id: 4, nome: 'Não Há Escapatória', desc: 'Lucas se entregou à polícia.', tipo: 'bronze', icon: '🚔', capitulo: '"O Dia Seguinte" / "Confissão"', how: 'Mantenha o estado mental de Lucas estável/saudável ao longo da história para que ele decida se entregar em vez de surtar.', tip: 'É o resultado "padrão" da maioria das runs cuidadosas.' },
-      { id: 5, nome: 'Resignação', desc: 'Carla devolveu sua arma e seu distintivo.', tipo: 'bronze', icon: '🎖️', capitulo: '"Prestação de Contas"', how: 'Leve o estado mental de Carla a "Destruído". O jeito mais rápido é entrar e sair repetidamente do arquivo em "Prestação de Contas", falhando de propósito a QTE de respiração — cada falha reduz bastante a sanidade.', tip: 'Uma vez destruída, a cena de Carla pedindo demissão dispara sozinha.' },
-      { id: 6, nome: 'Em Busca de Temperaturas Mais Quentes', desc: 'Tyler saiu do emprego e partiu para a Flórida com Samantha.', tipo: 'bronze', icon: '🌴', capitulo: 'Setup em "O Assassinato"/"Investigação", conclui em "Trabalho Policial"', how: 'Não esconda a faca como Lucas em "O Assassinato" e reduza o estado mental de Tyler durante "Investigação"; o desfecho acontece em "Trabalho Policial".', tip: 'Conflita narrativamente com "Carma" — são estados diferentes do arco de Tyler.' },
-      { id: 7, nome: 'Trânsito Público', desc: 'Lucas fugiu da cena do crime no metrô.', tipo: 'bronze', icon: '🚇', capitulo: '"O Assassinato"', how: 'Depois de lidar com a cena do crime na lanchonete, saia e siga até a entrada do metrô — descer as escadas dispara o troféu.', tip: null },
-      { id: 8, nome: 'A Intuição de uma Mulher', desc: 'Carla encontrou uma faca no banheiro e sangue do lado de fora da lanchonete durante "Investigação".', tipo: 'bronze', icon: '🔎', capitulo: '"Investigação"', how: 'Como Carla, vá ao banheiro e examine a faca no chão. Depois saia pela porta da frente e examine a poça de sangue entre a porta e o carro.', tip: null },
-      { id: 9, nome: 'Encobrir', desc: 'Lucas convenceu o policial a não revistar o quarto depois de falhar em esconder os lençóis ensanguentados durante "O Dia Seguinte".', tipo: 'bronze', icon: '🛏️', capitulo: '"O Dia Seguinte"', how: 'Falhe deliberadamente a QTE de esconder os lençóis e, na conversa seguinte com o policial, escolha as falas que o convencem a não revistar o quarto.', tip: null },
-      { id: 10, nome: 'Ao Resgate', desc: 'Lucas salvou a criança durante "Confissão".', tipo: 'bronze', icon: '🧊', capitulo: '"Confissão"', how: 'Após a conversa com Markus, Lucas tem uma visão de uma criança se afogando no gelo — corra e mergulhe, complete a QTE de resgate e depois a de RCP.', tip: null },
-      { id: 11, nome: 'Para Cima, Para Baixo e Para os Lados', desc: 'Carla fez 5 manobras de ioiô "volta ao mundo" sem errar a sequência durante "Trabalho Policial".', tipo: 'bronze', icon: '🪀', capitulo: '"Trabalho Policial"', how: 'Interaja com o ioiô na mesa de Carla e complete a sequência de QTE "around-the-world" 5 vezes seguidas sem errar.', tip: null },
-      { id: 12, nome: 'Pane', desc: 'Lucas fugiu dos ácaros e chegou ao elevador sem perder nenhum movimento em tela durante "Realidade Alternativa".', tipo: 'bronze', icon: '🐜', capitulo: '"Realidade Alternativa"', how: 'Durante a sequência de fuga dos ácaros gigantes, acerte todos os comandos de movimento exibidos na tela sem errar nenhum até chegar ao elevador.', tip: null },
-      { id: 13, nome: 'Testemunho Confiável', desc: 'Kate fez um retrato falado muito parecido com Lucas durante "Tyler & Kate".', tipo: 'bronze', icon: '🖼️', capitulo: '"Tyler & Kate"', how: 'Durante a montagem do retrato falado, escolha as opções de características que mais se aproximam da aparência real de Lucas.', tip: null },
-      { id: 14, nome: 'Preparação Mental', desc: 'A saúde mental de Lucas subiu para 55 antes de Tiffany chegar durante "Amor Perdido".', tipo: 'bronze', icon: '🧠', capitulo: '"Amor Perdido"', how: 'Antes de Tiffany chegar, use o saco de pancadas, toque violão/amplificador, ouça música no som, use o banheiro e beba leite/tome o remédio no quarto para somar pontos de saúde mental.', tip: 'Faça o máximo de atividades possível — cada uma soma alguns pontos.' },
-      { id: 15, nome: 'Boa Jogada', desc: 'Lucas convenceu Tiffany a passar a noite durante "Amor Perdido".', tipo: 'bronze', icon: '💜', capitulo: '"Amor Perdido"', how: 'Escolha as falas mais receptivas/positivas na conversa com Tiffany ao longo do encontro para convencê-la a ficar.', tip: null },
-      { id: 16, nome: 'Fim de Jogo', desc: 'Lucas salvou os três garotos escondidos antes que o tempo acabasse durante "Esconde-Esconde".', tipo: 'bronze', icon: '🏭', capitulo: '"Esconde-Esconde" (flashback)', how: 'No flashback do hangar em chamas, encontre e salve os três garotos escondidos antes que o cronômetro se esgote, evitando os guardas pelo caminho.', tip: null },
-      { id: 17, nome: 'Já Teve o Suficiente?', desc: 'Carla venceu a revanche contra Tyler durante "Combate Amistoso".', tipo: 'bronze', icon: '🥊', capitulo: '"Combate Amistoso"', how: 'Vença a sequência de QTEs da revanche de luta contra Tyler nesta cena.', tip: null },
-      { id: 18, nome: 'Respiração Calma', desc: 'Carla encontrou o arquivo de Kirsten sem entrar em pânico durante "Prestação de Contas".', tipo: 'bronze', icon: '📁', capitulo: '"Prestação de Contas"', how: 'No arquivo, complete a QTE de controle de respiração sem falhar nenhuma vez enquanto procura o arquivo de Kirsten.', tip: 'É o oposto do que você faz de propósito para "Resignação" — não misture as duas runs.' },
-      { id: 19, nome: 'Só Estava Tentando Ajudar', desc: 'Tyler encontrou o livro para Takeo, mas não revelou sua profissão.', tipo: 'bronze', icon: '📚', capitulo: '"Prestação de Contas" (trecho de Tyler)', how: 'Na livraria, escolha as falas que evitam revelar que Tyler é policial, depois examine o livro na mesa sob a escada para descobrir o nome do autor e localizar o livro pedido.', tip: null },
-      { id: 20, nome: 'Introspecção', desc: 'Lucas resistiu à sessão de hipnose de Agatha durante "Agatha".', tipo: 'bronze', icon: '🌀', capitulo: '"Agatha"', how: 'Complete toda a sequência de QTE da hipnose de Agatha sem errar nenhum comando.', tip: null },
-      { id: 21, nome: 'Contraterrorista', desc: 'Carla durou 100 segundos no estande de tiro com pelo menos 80% de precisão durante "Perguntas e Balas".', tipo: 'bronze', icon: '🎯', capitulo: '"Perguntas e Balas"', how: 'No estande de tiro, mantenha pelo menos 80% de acerto pelos 100 segundos completos da sequência.', tip: null },
-      { id: 22, nome: 'Faça o Que Eu Digo, Mas Não Faça o Que Eu Faço', desc: 'Tyler provocou Jeffrey e venceu o jogo de basquete durante "Dobrar ou Desistir".', tipo: 'bronze', icon: '🏀', capitulo: '"Dobrar ou Desistir"', how: 'Escolha as falas de provocação disponíveis contra Jeffrey e depois vença a sequência de QTE do jogo de basquete.', tip: null },
-      { id: 23, nome: 'Amor Fraterno', desc: 'Marcus puxou Lucas de volta da sacada durante "A Tempestade".', tipo: 'bronze', icon: '🌩️', capitulo: '"A Tempestade"', how: 'Depois das QTEs com Lucas na sacada, controlando Markus, force a porta (3 tentativas) e complete a QTE de L1/R1 para puxar Lucas de volta.', tip: null },
-      { id: 24, nome: 'Siga o Mestre', desc: 'Carla descobriu a origem do marcador de páginas na internet e foi ao banco durante "Mau Presságio".', tipo: 'bronze', icon: '💻', capitulo: '"Mau Presságio" (trecho de Carla)', how: 'Como Carla, pesquise a origem do marcador de páginas na internet e depois vá até o banco indicado.', tip: null },
-      { id: 25, nome: 'Preto no Branco', desc: 'Tyler descobriu a origem do marcador de páginas ao examinar o jornal e foi ao banco durante "Mau Presságio".', tipo: 'bronze', icon: '📰', capitulo: '"Mau Presságio" (trecho de Tyler)', how: 'Como Tyler, examine o jornal para achar a origem do marcador de páginas e siga até o banco.', tip: 'Este e "Siga o Mestre" são de personagens diferentes na mesma cena — dá pra pegar os dois na mesma run.' },
-      { id: 26, nome: 'Criminoso Sutil', desc: 'Lucas escondeu as provas sem levantar suspeita durante "Cara a Cara".', tipo: 'bronze', icon: '🕵️', capitulo: '"Cara a Cara"', how: 'Esconda todas as evidências comprometedoras nesta cena sem que nenhuma ação levante suspeita.', tip: null },
-      { id: 27, nome: 'Quem Não Tem Chave, Abre com Faca', desc: 'Lucas forçou a gaiola com uma faca durante "De Volta a Agatha".', tipo: 'bronze', icon: '🔓', capitulo: '"De Volta a Agatha"', how: 'Use a faca para forçar a abertura da gaiola de pássaros nesta cena.', tip: null },
-      { id: 28, nome: 'Lendo nas Entrelinhas', desc: 'Carla ligou "A Tempestade" (peça de Shakespeare) a duas provas diferentes durante "Feliz Aniversário".', tipo: 'bronze', icon: '📜', capitulo: '"Feliz Aniversário"', how: 'Nesta mesma cena, conecte a referência à peça "A Tempestade" a duas evidências diferentes coletadas ao longo da investigação.', tip: null },
-      { id: 29, nome: 'Comer sem Pagar', desc: 'Carla usou a lista telefônica e a lista de táxis para incriminar Lucas no assassinato durante "Feliz Aniversário".', tipo: 'bronze', icon: '☎️', capitulo: '"Feliz Aniversário"', how: 'Cruze as informações da lista telefônica com a lista de corridas de táxi para identificar Lucas como suspeito nesta cena.', tip: 'Requer setup específico feito em capítulos anteriores — mais confiável numa run única do que via seleção de capítulo.' },
-      { id: 30, nome: 'Fuga Impecável', desc: 'Lucas escapou da polícia sem falhar em nenhuma sequência de ação durante "Confronto".', tipo: 'bronze', icon: '🏃', capitulo: '"Confronto"', how: 'Complete toda a sequência de fuga da polícia sem falhar nenhuma QTE.', tip: null },
-      { id: 31, nome: 'Calma e Tranquilidade', desc: 'Lucas abriu a janela de Tiffany sem quebrar o vidro e não alertou Tyler sobre seu esconderijo durante "A Fugitiva".', tipo: 'bronze', icon: '🤫', capitulo: '"A Fugitiva"', how: 'Abra a janela do banheiro de Tiffany com cuidado (entre a pia e o chuveiro) sem quebrar o vidro, e evite ações que alertem Tyler sobre onde Lucas está escondido.', tip: null },
-      { id: 32, nome: 'Falta de Energia', desc: 'Carla chegou à sala de controle sem entrar em pânico durante "Janos".', tipo: 'bronze', icon: '🔌', capitulo: '"Janos"', how: 'Chegue à sala de controle desta cena sem falhar as QTEs de tensão/pânico ao longo do caminho.', tip: null },
-      { id: 33, nome: 'Poderes Sobrenaturais', desc: 'O Dr. Kuriakin ensinou Lucas sobre os Oráculos antes de sua morte durante "Encontro com Kuriakin".', tipo: 'bronze', icon: '📖', capitulo: '"Encontro com Kuriakin"', how: 'Converse com o Dr. Kuriakin explorando os tópicos sobre os Oráculos antes de a cena avançar para o desfecho dele.', tip: null },
-      { id: 34, nome: 'Outro Clã?', desc: 'Lucas viu toda a visão do Oráculo durante "O Clã".', tipo: 'bronze', icon: '👁️', capitulo: '"O Clã"', how: 'Deixe a visão do Oráculo se desenrolar por completo nesta cena, sem interrompê-la.', tip: null },
-      { id: 35, nome: 'Por Pouco', desc: 'Marcus sobreviveu durante "Perigo e Onipresença".', tipo: 'bronze', icon: '⚠️', capitulo: '"Perigo e Onipresença"', how: 'Complete as QTEs desta cena com sucesso para que Markus sobreviva ao perigo apresentado.', tip: null },
-      { id: 36, nome: 'Um Aliado Confiável', desc: 'Carla não sacou a arma contra Lucas e formou uma aliança durante "O Pacto".', tipo: 'bronze', icon: '🤝', capitulo: '"O Pacto"', how: 'Nas escolhas de diálogo/ação desta cena, opte por não sacar a arma contra Lucas, levando à formação da aliança entre os dois.', tip: null },
-      { id: 37, nome: 'Carma', desc: 'Tyler deixou a força policial e foi para a Flórida depois que Carla mentiu para ele durante "Congelado até os Ossos".', tipo: 'bronze', icon: '❄️', capitulo: '"Congelado até os Ossos"', how: 'Escolha a opção de Carla mentir para Tyler nesta cena, levando-o a pedir demissão e partir para a Flórida.', tip: 'Estado alternativo ao de "Em Busca de Temperaturas Mais Quentes" — exige uma run separada com escolha oposta.' },
-      { id: 38, nome: 'Voto de Confiança', desc: 'Lucas escapou do Oráculo e dos helicópteros da polícia sem perder nenhuma vida durante "Onde Está Jade".', tipo: 'prata', icon: '🚁', capitulo: '"Onde Está Jade"', how: 'Complete toda a sequência de fuga (Oráculo + helicópteros da polícia) sem falhar nenhuma QTE que custe uma vida.', tip: 'Tenha crucifixos extras guardados como margem de segurança antes de começar esta cena.' },
-      { id: 39, nome: 'Previsão do Tempo', desc: 'Carla consertou o rádio quebrado, mas recebeu más notícias durante "Bogart".', tipo: 'bronze', icon: '📻', capitulo: '"Bogart"', how: 'Conserte o rádio quebrado nesta cena interagindo com os componentes corretos — a notícia ruim vem automaticamente na sequência.', tip: null },
-      { id: 40, nome: 'Um Futuro Brilhante', desc: 'Lucas entregou Jade ao altar.', tipo: 'prata', icon: '🌅', capitulo: 'Capítulo final (final "bom")', how: 'No capítulo final, complete com sucesso as QTEs contra o Oráculo e os atiradores, e leve Jade até o altar você mesmo como Lucas.', tip: 'Um dos 3 finais possíveis — mutuamente exclusivo com os outros dois na mesma run.' },
-      { id: 41, nome: 'Um Futuro Frio', desc: 'A Criatura Ciborgue entregou Jade ao altar.', tipo: 'bronze', icon: '🥶', capitulo: 'Capítulo final (final alternativo)', how: 'Passe as QTEs do Oráculo, mas falhe propositalmente as QTEs seguintes — a Criatura Ciborgue assume e leva Jade ao altar.', tip: 'Refaça o capítulo final via seleção de capítulo para ver este desfecho depois de já ter visto outro.' },
-      { id: 42, nome: 'Um Futuro Incerto', desc: 'O Oráculo entregou Jade ao altar.', tipo: 'bronze', icon: '🌫️', capitulo: 'Capítulo final (final alternativo)', how: 'Falhe as QTEs contra o Oráculo e não troque para Carla durante a sequência cronometrada com opção de troca — o próprio Oráculo leva Jade ao altar.', tip: null },
-      { id: 43, nome: 'A Via Menos Usada', desc: 'Complete todos os capítulos no modo Difícil.', tipo: 'ouro', icon: '🥇', capitulo: 'Campanha inteira no Difícil', how: 'Selecione o modo Difícil no início e jogue a campanha completa do começo ao fim nessa dificuldade, sem trocar de dificuldade no meio do caminho.', tip: 'Evite depender de seleção de capítulo para este — prefira uma run contínua e genuína.' },
-      { id: 44, nome: 'Saideira', desc: 'Colete a carta de Tarô bônus após os créditos.', tipo: 'bronze', icon: '🎴', capitulo: 'Após os créditos finais', how: 'Depois de ver os créditos rolarem uma vez, uma carta de Tarô bônus fica disponível para coleta.', tip: null },
-      { id: 45, nome: 'Obsessivo', desc: 'Colecione todas as Cartas de Tarô.', tipo: 'prata', icon: '🃏', capitulo: 'Espalhadas pela campanha', how: 'Procure e colete as Cartas de Tarô escondidas em cenários ao longo de toda a campanha, de preferência numa única run.', tip: 'Quantidade exata não confirmada nas fontes consultadas — ver aviso "NÃO VERIFICADO" na Visão Geral.' },
-      { id: 46, nome: 'Venda de Arte', desc: 'Desbloqueie toda a arte da Galeria.', tipo: 'prata', icon: '🖼️', capitulo: 'Menu de bônus', how: 'Use os pontos de bônus obtidos ao coletar Cartas de Tarô para desbloquear todas as artes da Galeria no menu de extras.', tip: null },
-      { id: 47, nome: 'Audiófilo', desc: 'Desbloqueie todas as trilhas sonoras.', tipo: 'prata', icon: '🎵', capitulo: 'Menu de bônus', how: 'Use os pontos de bônus das Cartas de Tarô para desbloquear todas as faixas de trilha sonora no menu de extras.', tip: null },
-      { id: 48, nome: 'Cinemática', desc: 'Desbloqueie todos os vídeos/filmes bônus.', tipo: 'prata', icon: '🎥', capitulo: 'Menu de bônus', how: 'Use os pontos de bônus das Cartas de Tarô para desbloquear todos os vídeos bônus no menu de extras.', tip: 'Colete o máximo de cartas possível para garantir pontos suficientes para os quatro troféus de bônus (Arte, Trilha, Vídeos e Obsessivo).' },
-      { id: 49, nome: 'Todos os Finais', desc: 'Veja todos os finais.', tipo: 'ouro', icon: '🎬', capitulo: 'Após ver os 3 finais', how: 'Desbloqueia automaticamente depois de ver "Um Futuro Brilhante", "Um Futuro Frio" e "Um Futuro Incerto" — não precisa assistir aos finais "ruins" adicionais, só esses três.', tip: 'Salve no mesmo perfil a cada replay do capítulo final para o jogo registrar os três.' },
+      { id: 2, nome: 'Da Morte, Surge a Vida', desc: 'Adquira um crucifixo para ganhar uma vida extra.', tipo: 'bronze', icon: '✝️', img: 'https://m.exophase.com/psn/awards/s/b374b0.png?27850ff6c805edbd4ad9b7c13f9e9090', capitulo: '"Confissão" (ou qualquer capítulo com crucifixo)', how: 'Markus tenta lhe dar um crucifixo durante "Confissão" — basta aceitar. Há vários outros pelo jogo (ex: gaveta da mesa de Lucas em "Realidade Alternativa").', tip: 'Praticamente impossível de perder — aparece cedo e em vários pontos.' },
+      { id: 3, nome: 'Paredes Acolchoadas', desc: 'Lucas foi enviado ao hospício.', tipo: 'bronze', icon: '🏥', img: 'https://m.exophase.com/psn/awards/s/g70586.png?27850ff6c805edbd4ad9b7c13f9e9090', capitulo: 'Estado mental de Lucas', how: 'Deixe o estado mental de Lucas cair até "Destruído" ao longo da história (evite atividades que restauram sanidade). É o oposto de "Não Há Escapatória".', tip: 'Faça isso numa run separada de "Não Há Escapatória" — os dois exigem decisões opostas.' },
+      { id: 4, nome: 'Não Há Escapatória', desc: 'Lucas se entregou à polícia.', tipo: 'bronze', icon: '🚔', img: 'https://m.exophase.com/psn/awards/s/d8jbd6.png?27850ff6c805edbd4ad9b7c13f9e9090', capitulo: '"O Dia Seguinte" / "Confissão"', how: 'Mantenha o estado mental de Lucas estável/saudável ao longo da história para que ele decida se entregar em vez de surtar.', tip: 'É o resultado "padrão" da maioria das runs cuidadosas.' },
+      { id: 5, nome: 'Resignação', desc: 'Carla devolveu sua arma e seu distintivo.', tipo: 'bronze', icon: '🎖️', img: 'https://m.exophase.com/psn/awards/s/j1be8g.png?27850ff6c805edbd4ad9b7c13f9e9090', capitulo: '"Prestação de Contas"', how: 'Leve o estado mental de Carla a "Destruído". O jeito mais rápido é entrar e sair repetidamente do arquivo em "Prestação de Contas", falhando de propósito a QTE de respiração — cada falha reduz bastante a sanidade.', tip: 'Uma vez destruída, a cena de Carla pedindo demissão dispara sozinha.' },
+      { id: 6, nome: 'Em Busca de Temperaturas Mais Quentes', desc: 'Tyler saiu do emprego e partiu para a Flórida com Samantha.', tipo: 'bronze', icon: '🌴', img: 'https://m.exophase.com/psn/awards/s/115jeb.png?27850ff6c805edbd4ad9b7c13f9e9090', capitulo: 'Setup em "O Assassinato"/"Investigação", conclui em "Trabalho Policial"', how: 'Não esconda a faca como Lucas em "O Assassinato" e reduza o estado mental de Tyler durante "Investigação"; o desfecho acontece em "Trabalho Policial".', tip: 'Conflita narrativamente com "Carma" — são estados diferentes do arco de Tyler.' },
+      { id: 7, nome: 'Trânsito Público', desc: 'Lucas fugiu da cena do crime no metrô.', tipo: 'bronze', icon: '🚇', img: 'https://m.exophase.com/psn/awards/s/3436e3.png?27850ff6c805edbd4ad9b7c13f9e9090', capitulo: '"O Assassinato"', how: 'Depois de lidar com a cena do crime na lanchonete, saia e siga até a entrada do metrô — descer as escadas dispara o troféu.', tip: null },
+      { id: 8, nome: 'A Intuição de uma Mulher', desc: 'Carla encontrou uma faca no banheiro e sangue do lado de fora da lanchonete durante "Investigação".', tipo: 'bronze', icon: '🔎', img: 'https://m.exophase.com/psn/awards/s/7dj5e7.png?27850ff6c805edbd4ad9b7c13f9e9090', capitulo: '"Investigação"', how: 'Como Carla, vá ao banheiro e examine a faca no chão. Depois saia pela porta da frente e examine a poça de sangue entre a porta e o carro.', tip: null },
+      { id: 9, nome: 'Encobrir', desc: 'Lucas convenceu o policial a não revistar o quarto depois de falhar em esconder os lençóis ensanguentados durante "O Dia Seguinte".', tipo: 'bronze', icon: '🛏️', img: 'https://m.exophase.com/psn/awards/s/5beg47.png?27850ff6c805edbd4ad9b7c13f9e9090', capitulo: '"O Dia Seguinte"', how: 'Falhe deliberadamente a QTE de esconder os lençóis e, na conversa seguinte com o policial, escolha as falas que o convencem a não revistar o quarto.', tip: null },
+      { id: 10, nome: 'Ao Resgate', desc: 'Lucas salvou a criança durante "Confissão".', tipo: 'bronze', icon: '🧊', img: 'https://m.exophase.com/psn/awards/s/017jgd.png?27850ff6c805edbd4ad9b7c13f9e9090', capitulo: '"Confissão"', how: 'Após a conversa com Markus, Lucas tem uma visão de uma criança se afogando no gelo — corra e mergulhe, complete a QTE de resgate e depois a de RCP.', tip: null },
+      { id: 11, nome: 'Para Cima, Para Baixo e Para os Lados', desc: 'Carla fez 5 manobras de ioiô "volta ao mundo" sem errar a sequência durante "Trabalho Policial".', tipo: 'bronze', icon: '🪀', img: 'https://m.exophase.com/psn/awards/s/8410g0.png?27850ff6c805edbd4ad9b7c13f9e9090', capitulo: '"Trabalho Policial"', how: 'Interaja com o ioiô na mesa de Carla e complete a sequência de QTE "around-the-world" 5 vezes seguidas sem errar.', tip: null },
+      { id: 12, nome: 'Pane', desc: 'Lucas fugiu dos ácaros e chegou ao elevador sem perder nenhum movimento em tela durante "Realidade Alternativa".', tipo: 'bronze', icon: '🐜', img: 'https://m.exophase.com/psn/awards/s/e8dg48.png?27850ff6c805edbd4ad9b7c13f9e9090', capitulo: '"Realidade Alternativa"', how: 'Durante a sequência de fuga dos ácaros gigantes, acerte todos os comandos de movimento exibidos na tela sem errar nenhum até chegar ao elevador.', tip: null },
+      { id: 13, nome: 'Testemunho Confiável', desc: 'Kate fez um retrato falado muito parecido com Lucas durante "Tyler & Kate".', tipo: 'bronze', icon: '🖼️', img: 'https://m.exophase.com/psn/awards/s/465b34.png?27850ff6c805edbd4ad9b7c13f9e9090', capitulo: '"Tyler & Kate"', how: 'Durante a montagem do retrato falado, escolha as opções de características que mais se aproximam da aparência real de Lucas.', tip: null },
+      { id: 14, nome: 'Preparação Mental', desc: 'A saúde mental de Lucas subiu para 55 antes de Tiffany chegar durante "Amor Perdido".', tipo: 'bronze', icon: '🧠', img: 'https://m.exophase.com/psn/awards/s/6g036e.png?27850ff6c805edbd4ad9b7c13f9e9090', capitulo: '"Amor Perdido"', how: 'Antes de Tiffany chegar, use o saco de pancadas, toque violão/amplificador, ouça música no som, use o banheiro e beba leite/tome o remédio no quarto para somar pontos de saúde mental.', tip: 'Faça o máximo de atividades possível — cada uma soma alguns pontos.' },
+      { id: 15, nome: 'Boa Jogada', desc: 'Lucas convenceu Tiffany a passar a noite durante "Amor Perdido".', tipo: 'bronze', icon: '💜', img: 'https://m.exophase.com/psn/awards/s/b37400.png?27850ff6c805edbd4ad9b7c13f9e9090', capitulo: '"Amor Perdido"', how: 'Escolha as falas mais receptivas/positivas na conversa com Tiffany ao longo do encontro para convencê-la a ficar.', tip: null },
+      { id: 16, nome: 'Fim de Jogo', desc: 'Lucas salvou os três garotos escondidos antes que o tempo acabasse durante "Esconde-Esconde".', tipo: 'bronze', icon: '🏭', img: 'https://m.exophase.com/psn/awards/s/g705e6.png?27850ff6c805edbd4ad9b7c13f9e9090', capitulo: '"Esconde-Esconde" (flashback)', how: 'No flashback do hangar em chamas, encontre e salve os três garotos escondidos antes que o cronômetro se esgote, evitando os guardas pelo caminho.', tip: null },
+      { id: 17, nome: 'Já Teve o Suficiente?', desc: 'Carla venceu a revanche contra Tyler durante "Combate Amistoso".', tipo: 'bronze', icon: '🥊', img: 'https://m.exophase.com/psn/awards/s/d8jb56.png?27850ff6c805edbd4ad9b7c13f9e9090', capitulo: '"Combate Amistoso"', how: 'Vença a sequência de QTEs da revanche de luta contra Tyler nesta cena.', tip: null },
+      { id: 18, nome: 'Respiração Calma', desc: 'Carla encontrou o arquivo de Kirsten sem entrar em pânico durante "Prestação de Contas".', tipo: 'bronze', icon: '📁', img: 'https://m.exophase.com/psn/awards/s/j1bejg.png?27850ff6c805edbd4ad9b7c13f9e9090', capitulo: '"Prestação de Contas"', how: 'No arquivo, complete a QTE de controle de respiração sem falhar nenhuma vez enquanto procura o arquivo de Kirsten.', tip: 'É o oposto do que você faz de propósito para "Resignação" — não misture as duas runs.' },
+      { id: 19, nome: 'Só Estava Tentando Ajudar', desc: 'Tyler encontrou o livro para Takeo, mas não revelou sua profissão.', tipo: 'bronze', icon: '📚', img: 'https://m.exophase.com/psn/awards/s/115jdb.png?27850ff6c805edbd4ad9b7c13f9e9090', capitulo: '"Prestação de Contas" (trecho de Tyler)', how: 'Na livraria, escolha as falas que evitam revelar que Tyler é policial, depois examine o livro na mesa sob a escada para descobrir o nome do autor e localizar o livro pedido.', tip: null },
+      { id: 20, nome: 'Introspecção', desc: 'Lucas resistiu à sessão de hipnose de Agatha durante "Agatha".', tipo: 'bronze', icon: '🌀', img: 'https://m.exophase.com/psn/awards/s/343683.png?27850ff6c805edbd4ad9b7c13f9e9090', capitulo: '"Agatha"', how: 'Complete toda a sequência de QTE da hipnose de Agatha sem errar nenhum comando.', tip: null },
+      { id: 21, nome: 'Contraterrorista', desc: 'Carla durou 100 segundos no estande de tiro com pelo menos 80% de precisão durante "Perguntas e Balas".', tipo: 'bronze', icon: '🎯', img: 'https://m.exophase.com/psn/awards/s/7dj587.png?27850ff6c805edbd4ad9b7c13f9e9090', capitulo: '"Perguntas e Balas"', how: 'No estande de tiro, mantenha pelo menos 80% de acerto pelos 100 segundos completos da sequência.', tip: null },
+      { id: 22, nome: 'Faça o Que Eu Digo, Mas Não Faça o Que Eu Faço', desc: 'Tyler provocou Jeffrey e venceu o jogo de basquete durante "Dobrar ou Desistir".', tipo: 'bronze', icon: '🏀', img: 'https://m.exophase.com/psn/awards/s/465b8e.png?27850ff6c805edbd4ad9b7c13f9e9090', capitulo: '"Dobrar ou Desistir"', how: 'Escolha as falas de provocação disponíveis contra Jeffrey e depois vença a sequência de QTE do jogo de basquete.', tip: null },
+      { id: 23, nome: 'Amor Fraterno', desc: 'Marcus puxou Lucas de volta da sacada durante "A Tempestade".', tipo: 'bronze', icon: '🌩️', img: 'https://m.exophase.com/psn/awards/s/6g0385.png?27850ff6c805edbd4ad9b7c13f9e9090', capitulo: '"A Tempestade"', how: 'Depois das QTEs com Lucas na sacada, controlando Markus, force a porta (3 tentativas) e complete a QTE de L1/R1 para puxar Lucas de volta.', tip: null },
+      { id: 24, nome: 'Siga o Mestre', desc: 'Carla descobriu a origem do marcador de páginas na internet e foi ao banco durante "Mau Presságio".', tipo: 'bronze', icon: '💻', img: 'https://m.exophase.com/psn/awards/s/b374j4.png?27850ff6c805edbd4ad9b7c13f9e9090', capitulo: '"Mau Presságio" (trecho de Carla)', how: 'Como Carla, pesquise a origem do marcador de páginas na internet e depois vá até o banco indicado.', tip: null },
+      { id: 25, nome: 'Preto no Branco', desc: 'Tyler descobriu a origem do marcador de páginas ao examinar o jornal e foi ao banco durante "Mau Presságio".', tipo: 'bronze', icon: '📰', img: 'https://m.exophase.com/psn/awards/s/g70567.png?27850ff6c805edbd4ad9b7c13f9e9090', capitulo: '"Mau Presságio" (trecho de Tyler)', how: 'Como Tyler, examine o jornal para achar a origem do marcador de páginas e siga até o banco.', tip: 'Este e "Siga o Mestre" são de personagens diferentes na mesma cena — dá pra pegar os dois na mesma run.' },
+      { id: 26, nome: 'Criminoso Sutil', desc: 'Lucas escondeu as provas sem levantar suspeita durante "Cara a Cara".', tipo: 'bronze', icon: '🕵️', img: 'https://m.exophase.com/psn/awards/s/d8jb34.png?27850ff6c805edbd4ad9b7c13f9e9090', capitulo: '"Cara a Cara"', how: 'Esconda todas as evidências comprometedoras nesta cena sem que nenhuma ação levante suspeita.', tip: null },
+      { id: 27, nome: 'Quem Não Tem Chave, Abre com Faca', desc: 'Lucas forçou a gaiola com uma faca durante "De Volta a Agatha".', tipo: 'bronze', icon: '🔓', img: 'https://m.exophase.com/psn/awards/s/j1bed8.png?27850ff6c805edbd4ad9b7c13f9e9090', capitulo: '"De Volta a Agatha"', how: 'Use a faca para forçar a abertura da gaiola de pássaros nesta cena.', tip: null },
+      { id: 28, nome: 'Lendo nas Entrelinhas', desc: 'Carla ligou "A Tempestade" (peça de Shakespeare) a duas provas diferentes durante "Feliz Aniversário".', tipo: 'bronze', icon: '📜', img: 'https://m.exophase.com/psn/awards/s/115j8d.png?27850ff6c805edbd4ad9b7c13f9e9090', capitulo: '"Feliz Aniversário"', how: 'Nesta mesma cena, conecte a referência à peça "A Tempestade" a duas evidências diferentes coletadas ao longo da investigação.', tip: null },
+      { id: 29, nome: 'Comer sem Pagar', desc: 'Carla usou a lista telefônica e a lista de táxis para incriminar Lucas no assassinato durante "Feliz Aniversário".', tipo: 'bronze', icon: '☎️', img: 'https://m.exophase.com/psn/awards/s/343688.png?27850ff6c805edbd4ad9b7c13f9e9090', capitulo: '"Feliz Aniversário"', how: 'Cruze as informações da lista telefônica com a lista de corridas de táxi para identificar Lucas como suspeito nesta cena.', tip: 'Requer setup específico feito em capítulos anteriores — mais confiável numa run única do que via seleção de capítulo.' },
+      { id: 30, nome: 'Fuga Impecável', desc: 'Lucas escapou da polícia sem falhar em nenhuma sequência de ação durante "Confronto".', tipo: 'bronze', icon: '🏃', img: 'https://m.exophase.com/psn/awards/s/7dj581.png?27850ff6c805edbd4ad9b7c13f9e9090', capitulo: '"Confronto"', how: 'Complete toda a sequência de fuga da polícia sem falhar nenhuma QTE.', tip: null },
+      { id: 31, nome: 'Calma e Tranquilidade', desc: 'Lucas abriu a janela de Tiffany sem quebrar o vidro e não alertou Tyler sobre seu esconderijo durante "A Fugitiva".', tipo: 'bronze', icon: '🤫', img: 'https://m.exophase.com/psn/awards/s/5beg8j.png?27850ff6c805edbd4ad9b7c13f9e9090', capitulo: '"A Fugitiva"', how: 'Abra a janela do banheiro de Tiffany com cuidado (entre a pia e o chuveiro) sem quebrar o vidro. Depois, quando Tyler bater na porta, esconda-se em qualquer lugar EXCETO debaixo da cama ou no box do banheiro, e passe todas as sequências de ação sem falhar nenhuma (confirmado via Fahrenheit Fandom Wiki).', tip: null },
+      { id: 32, nome: 'Falta de Energia', desc: 'Carla chegou à sala de controle sem entrar em pânico durante "Janos".', tipo: 'bronze', icon: '🔌', img: 'https://m.exophase.com/psn/awards/s/017j84.png?27850ff6c805edbd4ad9b7c13f9e9090', capitulo: '"Janos"', how: 'Chegue à sala de controle desta cena sem falhar as QTEs de tensão/pânico ao longo do caminho.', tip: null },
+      { id: 33, nome: 'Poderes Sobrenaturais', desc: 'O Dr. Kuriakin ensinou Lucas sobre os Oráculos antes de sua morte durante "Encontro com Kuriakin".', tipo: 'bronze', icon: '📖', img: 'https://m.exophase.com/psn/awards/s/841031.png?27850ff6c805edbd4ad9b7c13f9e9090', capitulo: '"Encontro com Kuriakin"', how: 'Converse com o Dr. Kuriakin explorando os tópicos sobre os Oráculos antes de a cena avançar para o desfecho dele.', tip: null },
+      { id: 34, nome: 'Outro Clã?', desc: 'Lucas viu toda a visão do Oráculo durante "O Clã".', tipo: 'bronze', icon: '👁️', img: 'https://m.exophase.com/psn/awards/s/e8dgbe.png?27850ff6c805edbd4ad9b7c13f9e9090', capitulo: '"O Clã"', how: 'Deixe a visão do Oráculo se desenrolar por completo nesta cena, sem interrompê-la.', tip: null },
+      { id: 35, nome: 'Por Pouco', desc: 'Marcus sobreviveu durante "Perigo e Onipresença".', tipo: 'bronze', icon: '⚠️', img: 'https://m.exophase.com/psn/awards/s/465bge.png?27850ff6c805edbd4ad9b7c13f9e9090', capitulo: '"Perigo e Onipresença"', how: 'Complete as QTEs desta cena com sucesso para que Markus sobreviva ao perigo apresentado.', tip: null },
+      { id: 36, nome: 'Um Aliado Confiável', desc: 'Carla não sacou a arma contra Lucas e formou uma aliança durante "O Pacto".', tipo: 'bronze', icon: '🤝', img: 'https://m.exophase.com/psn/awards/s/6g03j5.png?27850ff6c805edbd4ad9b7c13f9e9090', capitulo: '"O Pacto"', how: 'Nas escolhas de diálogo/ação desta cena, opte por não sacar a arma contra Lucas, levando à formação da aliança entre os dois.', tip: null },
+      { id: 37, nome: 'Carma', desc: 'Tyler deixou a força policial e foi para a Flórida depois que Carla mentiu para ele durante "Congelado até os Ossos".', tipo: 'bronze', icon: '❄️', img: 'https://m.exophase.com/psn/awards/s/b37454.png?27850ff6c805edbd4ad9b7c13f9e9090', capitulo: '"Congelado até os Ossos"', how: 'Escolha a opção de Carla mentir para Tyler nesta cena, levando-o a pedir demissão e partir para a Flórida.', tip: 'Estado alternativo ao de "Em Busca de Temperaturas Mais Quentes" — exige uma run separada com escolha oposta.' },
+      { id: 38, nome: 'Voto de Confiança', desc: 'Lucas escapou do Oráculo e dos helicópteros da polícia sem perder nenhuma vida durante "Onde Está Jade".', tipo: 'prata', icon: '🚁', img: 'https://m.exophase.com/psn/awards/s/g705d7.png?27850ff6c805edbd4ad9b7c13f9e9090', capitulo: '"Onde Está Jade"', how: 'Complete toda a sequência de fuga (Oráculo + helicópteros da polícia) sem falhar nenhuma QTE que custe uma vida.', tip: 'Tenha crucifixos extras guardados como margem de segurança antes de começar esta cena.' },
+      { id: 39, nome: 'Previsão do Tempo', desc: 'Carla consertou o rádio quebrado, mas recebeu más notícias durante "Bogart".', tipo: 'bronze', icon: '📻', img: 'https://m.exophase.com/psn/awards/s/d8jb64.png?27850ff6c805edbd4ad9b7c13f9e9090', capitulo: '"Bogart"', how: 'Conserte o rádio quebrado nesta cena interagindo com os componentes corretos — a notícia ruim vem automaticamente na sequência.', tip: null },
+      { id: 40, nome: 'Um Futuro Brilhante', desc: 'Lucas entregou Jade ao altar.', tipo: 'prata', icon: '🌅', img: 'https://m.exophase.com/psn/awards/s/j1be38.png?27850ff6c805edbd4ad9b7c13f9e9090', capitulo: 'Capítulo final (final "bom")', how: 'No capítulo final, complete com sucesso as QTEs contra o Oráculo e os atiradores, e leve Jade até o altar você mesmo como Lucas.', tip: 'Um dos 3 finais possíveis — mutuamente exclusivo com os outros dois na mesma run.' },
+      { id: 41, nome: 'Um Futuro Frio', desc: 'A Criatura Ciborgue entregou Jade ao altar.', tipo: 'bronze', icon: '🥶', img: 'https://m.exophase.com/psn/awards/s/115j4d.png?27850ff6c805edbd4ad9b7c13f9e9090', capitulo: 'Capítulo final (final alternativo)', how: 'Passe as QTEs do Oráculo, mas falhe propositalmente as QTEs seguintes — a Criatura Ciborgue assume e leva Jade ao altar.', tip: 'Refaça o capítulo final via seleção de capítulo para ver este desfecho depois de já ter visto outro.' },
+      { id: 42, nome: 'Um Futuro Incerto', desc: 'O Oráculo entregou Jade ao altar.', tipo: 'bronze', icon: '🌫️', img: 'https://m.exophase.com/psn/awards/s/3436b8.png?27850ff6c805edbd4ad9b7c13f9e9090', capitulo: 'Capítulo final (final alternativo)', how: 'Falhe as QTEs contra o Oráculo e não troque para Carla durante a sequência cronometrada com opção de troca — o próprio Oráculo leva Jade ao altar.', tip: null },
+      { id: 43, nome: 'A Via Menos Usada', desc: 'Complete todos os capítulos no modo Difícil.', tipo: 'ouro', icon: '🥇', img: 'https://m.exophase.com/psn/awards/s/7dj511.png?27850ff6c805edbd4ad9b7c13f9e9090', capitulo: 'Campanha inteira no Difícil', how: 'Selecione o modo Difícil no início e jogue a campanha completa do começo ao fim nessa dificuldade, sem trocar de dificuldade no meio do caminho.', tip: 'Evite depender de seleção de capítulo para este — prefira uma run contínua e genuína.' },
+      { id: 44, nome: 'Saideira', desc: 'Colete a carta de Tarô bônus após os créditos.', tipo: 'bronze', icon: '🎴', img: 'https://m.exophase.com/psn/awards/s/5begdj.png?27850ff6c805edbd4ad9b7c13f9e9090', capitulo: 'Após os créditos finais', how: 'Depois de ver os créditos rolarem uma vez, uma carta de Tarô bônus fica disponível para coleta.', tip: null },
+      { id: 45, nome: 'Obsessivo', desc: 'Colecione todas as Cartas de Tarô.', tipo: 'prata', icon: '🃏', img: 'https://m.exophase.com/psn/awards/s/017j54.png?27850ff6c805edbd4ad9b7c13f9e9090', capitulo: 'Espalhadas pela campanha', how: 'Procure e colete as Cartas de Tarô escondidas em cenários ao longo de toda a campanha, de preferência numa única run.', tip: 'Quantidade exata não confirmada nas fontes consultadas — ver aviso "NÃO VERIFICADO" na Visão Geral.' },
+      { id: 46, nome: 'Venda de Arte', desc: 'Desbloqueie toda a arte da Galeria.', tipo: 'prata', icon: '🖼️', img: 'https://m.exophase.com/psn/awards/s/841071.png?27850ff6c805edbd4ad9b7c13f9e9090', capitulo: 'Menu de bônus', how: 'Use os pontos de bônus obtidos ao coletar Cartas de Tarô para desbloquear todas as artes da Galeria no menu de extras.', tip: null },
+      { id: 47, nome: 'Audiófilo', desc: 'Desbloqueie todas as trilhas sonoras.', tipo: 'prata', icon: '🎵', img: 'https://m.exophase.com/psn/awards/s/e8dg5e.png?27850ff6c805edbd4ad9b7c13f9e9090', capitulo: 'Menu de bônus', how: 'Use os pontos de bônus das Cartas de Tarô para desbloquear todas as faixas de trilha sonora no menu de extras.', tip: null },
+      { id: 48, nome: 'Cinemática', desc: 'Desbloqueie todos os vídeos/filmes bônus.', tipo: 'prata', icon: '🎥', img: 'https://m.exophase.com/psn/awards/s/465bde.png?27850ff6c805edbd4ad9b7c13f9e9090', capitulo: 'Menu de bônus', how: 'Use os pontos de bônus das Cartas de Tarô para desbloquear todos os vídeos bônus no menu de extras.', tip: 'Colete o máximo de cartas possível para garantir pontos suficientes para os quatro troféus de bônus (Arte, Trilha, Vídeos e Obsessivo).' },
+      { id: 49, nome: 'Todos os Finais', desc: 'Veja todos os finais.', tipo: 'ouro', icon: '🎬', img: 'https://m.exophase.com/psn/awards/s/6g0315.png?27850ff6c805edbd4ad9b7c13f9e9090', capitulo: 'Após ver os 3 finais', how: 'Desbloqueia automaticamente depois de ver "Um Futuro Brilhante", "Um Futuro Frio" e "Um Futuro Incerto" — não precisa assistir aos finais "ruins" adicionais, só esses três.', tip: 'Salve no mesmo perfil a cada replay do capítulo final para o jogo registrar os três.' },
     ];
 
     const TIPO_STYLE = {
@@ -966,7 +965,7 @@
         {
           id: "faca_moeda",
           title: "5. Evidências & Moeda",
-          text: "Joga a faca na lixeira (perto do mictório) e recolhe a moeda da cabine telefônica quebrada. Escondê-la assim faz o JOGO escolher sozinho, sem te mostrar, um esconderijo pra ela — pode ser a lixeira, a caixa de descarga do vaso da direita, atrás da janela, ou o vaso da cabine da esquerda (4 lugares possíveis; só uma dessas opções vale de cada vez). Isso é o que \"Investigação\" vai checar depois (prepara 🔗 \"Intuição Feminina\"). Atenção: esconder a faca também TRAVA 🏆 \"Em Busca de Temperaturas Mais Quentes\" nesta run (esse troféu exige justamente NÃO escondê-la — deixar a faca largada no chão).",
+          text: "Joga a faca na lixeira (perto do mictório) e recolhe a moeda da cabine telefônica quebrada. Escondê-la assim faz o JOGO escolher sozinho, sem te mostrar, um esconderijo pra ela — pode ser a lixeira, a caixa de descarga do vaso da direita, atrás da janela, ou o vaso da cabine da esquerda (4 lugares possíveis; só uma dessas opções vale de cada vez). Isso é o que \"Investigação\" vai checar depois (prepara 🔗 \"A Intuição de uma Mulher\"). Atenção: esconder a faca também TRAVA 🏆 \"Em Busca de Temperaturas Mais Quentes\" nesta run (esse troféu exige justamente NÃO escondê-la — deixar a faca largada no chão).",
           delta: 10,
           options: [
             { label: "Ir para o salão", target: "salao" }
@@ -1287,7 +1286,7 @@
         {
           id: "carla_faca",
           title: "Carla Acha a Faca",
-          text: "Carla examina o sangue no chão da cabine da esquerda (+5) e encontra a faca ali mesmo (+10) — se foi esse o esconderijo sorteado depois de \"O Assassinato\". Achar a arma sendo ELA quem procura é a condição-chave pro troféu 🏆 \"Intuição Feminina\".",
+          text: "Carla examina o sangue no chão da cabine da esquerda (+5) e encontra a faca ali mesmo (+10) — se foi esse o esconderijo sorteado depois de \"O Assassinato\". Achar a arma sendo ELA quem procura é a condição-chave pro troféu 🏆 \"A Intuição de uma Mulher\".",
           delta: 15,
           options: [
             { label: "Chamar Kate pra depoimento", target: "kate" }
@@ -1296,7 +1295,7 @@
         {
           id: "tyler_faca",
           title: "Tyler Assume a Busca",
-          text: "Tyler acaba sendo quem encontra a faca (na lixeira ou na caixa de descarga da cabine da direita, dependendo de onde ela foi parar). Rende um bom ponto de sanidade, mas como não foi Carla quem achou, essa run perde a chance de fechar 🏆 \"Intuição Feminina\" por aqui.",
+          text: "Tyler acaba sendo quem encontra a faca (na lixeira ou na caixa de descarga da cabine da direita, dependendo de onde ela foi parar). Rende um bom ponto de sanidade, mas como não foi Carla quem achou, essa run perde a chance de fechar 🏆 \"A Intuição de uma Mulher\" por aqui.",
           delta: 10,
           options: [
             { label: "Chamar Kate pra depoimento", target: "kate" }
@@ -1318,6 +1317,7 @@
           title: "8. Depoimento da Kate",
           text: "Carla senta de frente pra Kate, a garçonete, ainda abalada, e colhe o depoimento dela — etapa obrigatória pra fechar o capítulo, sem valor de sanidade associado nas fontes consultadas.",
           delta: 0,
+          converge: true,
           options: [
             { label: "Encerrar e voltar pro carro", target: "saida_inv" }
           ]
@@ -1327,9 +1327,10 @@
         {
           id: "saida_inv",
           title: "Volta pro Carro",
-          text: "Carla e Tyler encerram a investigação na lanchonete e voltam pro carro, prontos pro próximo passo do caso. (As fontes confirmam que o sangue na calçada lá fora aparece nessa cena, mas não afeta a sanidade — é só ambientação.)",
+          text: "Antes de ir embora, dá pra sair pela porta da frente e examinar uma poça de sangue no chão, entre a porta e o carro — confirmado via playstationtrophies.org como uma ação ativa, não só ambientação. Se foi a Carla quem achou a faca no banheiro (node \"Carla Acha a Faca\"), examinar essa poça aqui fecha o troféu \"A Intuição de uma Mulher\".",
           type: "victory",
-          delta: 10
+          delta: 10,
+          converge: true
         }
       ]
     };
@@ -1338,6 +1339,11 @@
     // Lucas acorda no próprio apartamento com o corpo dolorido, uma dor de
     // cabeça e evidências (lençol e camisa manchados) que precisam sumir
     // antes que o policial que bateu na porta ao lado desconfie de algo.
+    //
+    // ATUALIZAÇÃO: confirmado via PSNProfiles — acumular bastante sanidade
+    // negativa aqui (bebida, ignorar o lençol, etc.) é o setup 🔗 pro
+    // troféu "Não Há Escapatória", que fecha de fato só mais tarde, no node
+    // "Sair do Parque sem Salvar" de "Confissão".
     const CM_TREE_DIA_SEGUINTE = {
       level1: [
         {
@@ -1761,9 +1767,10 @@
         {
           id: "ignorar_crianca",
           title: "Sair do Parque sem Salvar",
-          text: "Lucas dá as costas e vai embora sem tentar salvar a criança — o remorso pesa sobre ele.",
+          text: "Lucas dá as costas e vai embora sem tentar salvar a criança — o remorso pesa sobre ele. Confirmado via PSNProfiles/playstationtrophies.org: esse -30 é justamente o que costuma bastar pra levar o estado mental de Lucas a \"Arrasado\" (supondo que ele já tenha drenado bastante sanidade antes, em \"O Dia Seguinte\"), fechando o troféu \"Não Há Escapatória\" — Lucas se entrega à polícia em vez de surtar sozinho. Se a sanidade dele ainda estiver alta o bastante nesse ponto, esse -30 pode não ser suficiente; não modelei um limiar exato por falta de fonte que documente o número certo.",
           type: "victory",
-          delta: -30
+          delta: -30,
+          trophy: "🏆 \"Não Há Escapatória\""
         },
         {
           id: "gameover_hesitar",
@@ -4065,14 +4072,16 @@
     // dois guias GameFAQs (um narra dois "métodos"/ordens diferentes de trocar
     // de personagem, outro no formato FH.04.19) e Neoseeker OME5.
     //
-    // ATENÇÃO — troféus #24/#25 x fontes desta cena: as fontes consultadas
-    // aqui mostram TYLER descobrindo a origem do marcador (via aba "Mundo" no
-    // computador OU examinando o jornal na própria mesa — os dois métodos
-    // documentados rendem os mesmos +10 e nenhuma fonte atribui essa
-    // descoberta à Carla usando internet). O texto atual do troféu #24 diz
-    // "Carla descobriu a origem do marcador de páginas na internet" — isso
-    // não bate com nenhuma das 5 fontes cruzadas pra este capítulo. Não mexi
-    // no troféu (fora do escopo pedido), só fica o alerta pra conferir depois.
+    // ATUALIZAÇÃO — troféus #24/#25 resolvidos: as 5 fontes originais desta
+    // cena mostravam só o Tyler descobrindo a origem do marcador (via aba
+    // "Mundo" no computador OU examinando o jornal, tratados como
+    // equivalentes). Uma consulta posterior a playstationtrophies.org achou
+    // o mecanismo real: é a CARLA quem precisa descobrir pela web (troféu
+    // "Siga o Mestre") e o TYLER quem precisa descobrir pelo jornal (troféu
+    // "Preto no Branco") — duas ações distintas, não intercambiáveis. A
+    // árvore abaixo já foi reestruturada pra refletir isso (nodes
+    // "carla_web_descobre" e "tyler_jornal_descobre", rastreados via popup
+    // de convergência em "vitoria_carla"/"vitoria_tyler").
     //
     // Duas ordens possíveis (\"Método 1\"/\"Método 2\" nas fontes) levam ao
     // mesmo final, mas mudam quanto de sanidade dá pra recuperar com Carla
@@ -4258,9 +4267,20 @@
       level10: [
         {
           id: "tyler_web",
-          title: "6. Tyler Descobre a Origem (rota Método 1)",
-          text: "Com Tyler, sentado à mesa: usa o computador, abre a aba \"Mundo\" na internet (ou, como alternativa equivalente documentada, examina o jornal na própria mesa) e percebe que o marcador de páginas é, na verdade, de uma lista de cotações da bolsa.",
+          title: "6. Tyler Pega o Marcador (rota Método 1)",
+          text: "Com Tyler, sentado à mesa: pega o marcador de páginas. Aqui as duas fontes de troféu (playstationtrophies.org) divergem no procedimento: pra \"Preto no Branco\", Tyler precisa ler o jornal na própria mesa e descobrir a origem sozinho; pra \"Siga o Mestre\", ele NÃO pode ler o jornal — só manda o fax, e é a CARLA quem descobre a origem depois, pela internet.",
+          delta: 0,
+          options: [
+            { label: "Ler o jornal e descobrir sozinho (rota \"Preto no Branco\")", target: "tyler_jornal_descobre" },
+            { label: "Não ler o jornal, só mandar o fax (deixa Carla descobrir depois)", target: "fax_m1" }
+          ]
+        },
+        {
+          id: "tyler_jornal_descobre",
+          title: "Tyler Lê o Jornal e Descobre Sozinho",
+          text: "Tyler examina o jornal na própria mesa e percebe que o marcador de páginas é, na verdade, de uma lista de cotações da bolsa. Confirmado via playstationtrophies.org: LER o jornal (em vez de deixar Carla achar pela web) é a condição do troféu \"Preto no Branco\".",
           delta: 10,
+          converge: true,
           options: [
             { label: "Ligar pra Carla e mandar o fax", target: "fax_m1" }
           ]
@@ -4346,10 +4366,21 @@
         {
           id: "carla_pega_fax",
           title: "8. Carla Pega o Fax (rota Método 1)",
-          text: "Carla vai até a máquina de fax perto do computador dela e pega a cópia que Tyler mandou.",
+          text: "Carla vai até a máquina de fax perto do computador dela e pega a cópia que Tyler mandou. Se Tyler não leu o jornal antes, é aqui que ela pode descobrir a origem sozinha, pela internet.",
           delta: 0,
           options: [
+            { label: "Sentar no computador, aba \"Web\" → \"Mundo\" (rota \"Siga o Mestre\")", target: "carla_web_descobre" },
             { label: "Atravessar o corredor e perguntar ao Tommy sobre a marca d'água", target: "pergunta_tommy_m1" }
+          ]
+        },
+        {
+          id: "carla_web_descobre",
+          title: "Carla Descobre pela Web",
+          text: "Carla senta no computador dela, escolhe \"Web\" e depois a aba \"Mundo\", e descobre sozinha que o marcador vem de uma lista de cotações da bolsa. Confirmado via playstationtrophies.org: essa é a condição do troféu \"Siga o Mestre\".",
+          delta: 10,
+          converge: true,
+          options: [
+            { label: "Ligar pro Tyler", target: "tyler_lamp" }
           ]
         }
       ],
@@ -4384,14 +4415,16 @@
           title: "ROTA: Carla Vai ao Banco",
           text: "A escolha de quem vai ao banco no dia seguinte não muda a sanidade — só troca quem aparece interrogando Lucas no próximo capítulo. Aqui, é Carla quem vai.",
           type: "victory",
-          delta: 0
+          delta: 0,
+          converge: true
         },
         {
           id: "vitoria_tyler",
           title: "ROTA: Tyler Vai ao Banco",
           text: "A escolha de quem vai ao banco no dia seguinte não muda a sanidade — só troca quem aparece interrogando Lucas no próximo capítulo. Aqui, é Tyler quem vai.",
           type: "victory",
-          delta: 0
+          delta: 0,
+          converge: true
         }
       ]
     };
@@ -4431,7 +4464,7 @@
         {
           id: "start",
           title: "1. Escritório do Banco",
-          text: "Lucas tem uma premonição de que a detetive (Carla ou Tyler, dependendo da escolha feita no fim de \"Mau Presságio\") está a caminho do escritório. O Cartão Bônus da gaveta direita da mesa (+10) já está catalogado na aba Cartas de Tarô. As fontes recomendam esconder o impresso de computador (lado direito da mesa) e o livro de Shakespeare (lado esquerdo) antes que ela chegue — embora uma das fontes (o guia formato FAC5) diga que isso é \"completamente inútil\", já que a busca de evidências mais tarde encontra os itens em locais aleatórios de qualquer jeito. Nenhuma fonte documenta diferença de sanidade entre esconder ou não.",
+          text: "Lucas tem uma premonição de que a detetive (Carla ou Tyler, dependendo da escolha feita no fim de \"Mau Presságio\") está a caminho do escritório. O Cartão Bônus da gaveta direita da mesa (+10) já está catalogado na aba Cartas de Tarô. As fontes recomendam esconder o impresso de computador (lado direito da mesa) e o livro de Shakespeare (lado esquerdo) antes que ela chegue — embora uma das fontes (o guia formato FAC5) diga que isso é \"completamente inútil\" pra investigação em si, já que a busca de evidências mais tarde encontra os itens em locais aleatórios de qualquer jeito. Confirmado via playstationtrophies.org, TrueTrophies e PSNProfiles: esconder os dois itens aqui é justamente o primeiro passo do troféu \"Criminoso Sutil\" — o segundo passo é não levantar suspeita durante o interrogatório a seguir.",
           delta: 0,
           options: [
             { label: "A detetive entra e o interrogatório começa", target: "asm1" }
@@ -4670,7 +4703,8 @@
           title: "10. Lucas Volta, Detetive Sai",
           text: "Lucas volta do banheiro e a detetive vai embora — encerra o capítulo. As evidências coletadas aqui (caneta, livro, e as ligações entre foto/impresso/livro) ajudam mais pra frente na investigação.",
           type: "victory",
-          delta: 0
+          delta: 0,
+          converge: true
         }
       ]
     };
@@ -4760,9 +4794,10 @@
         {
           id: "faca_gaiola",
           title: "Abrir a Gaiola com a Faca",
-          text: "Alternativa: Lucas vai até a cozinha (do outro lado do corredor, mesmo lugar onde a caixa de fósforos foi encontrada antes), pega a faca em cima da mesa e força a fechadura da gaiola com ela.",
+          text: "Alternativa: Lucas vai até a cozinha (do outro lado do corredor, mesmo lugar onde a caixa de fósforos foi encontrada antes), pega a faca em cima da mesa e força a fechadura da gaiola com ela. Confirmado via playstationtrophies.org: essa ação exata fecha o troféu \"Quem Não Tem Chave, Abre com Faca\".",
           delta: 0,
           converge: true,
+          trophy: "🏆 \"Quem Não Tem Chave, Abre com Faca\"",
           options: [
             { label: "Pegar o bilhete dentro da gaiola", target: "ler_bilhete" }
           ]
@@ -5219,9 +5254,10 @@
         {
           id: "fuga_tanque",
           title: "8. Fuga pelo Petroleiro (Fim do Capítulo)",
-          text: "Lucas cai do helicóptero em cima de um petroleiro (tanker) — falta só mais um evento Simon Says pra escapar por completo e encerrar o capítulo.",
+          text: "Lucas cai do helicóptero em cima de um petroleiro (tanker) — falta só mais um evento Simon Says pra escapar por completo e encerrar o capítulo. Confirmado via playstationtrophies.org e Fahrenheit Fandom Wiki: completar essa sequência de ação inteira (helicóptero + L-R + petroleiro) sem falhar fecha o troféu \"Fuga Impecável\".",
           type: "victory",
-          delta: 0
+          delta: 0,
+          trophy: "🏆 \"Fuga Impecável\""
         }
       ]
     };
@@ -5822,7 +5858,7 @@
         {
           id: "batida_porta",
           title: "13. Tyler Bate na Porta",
-          text: "A polícia chega; é o Tyler batendo na porta. Lucas precisa se esconder rápido — o closet da sala é o esconderijo recomendado pelas fontes (evitar debaixo da cama, já usado na visão anterior).",
+          text: "A polícia chega; é o Tyler batendo na porta. Lucas precisa se esconder rápido — o closet da sala é o esconderijo recomendado pelas fontes. Confirmado via Fahrenheit Fandom Wiki: os dois esconderijos que NÃO funcionam pro troféu \"Calma e Tranquilidade\" são debaixo da cama (já usado na visão anterior) e o box do banheiro — qualquer outro lugar, incluindo o closet, serve.",
           delta: 0,
           converge: true,
           options: [
@@ -5848,7 +5884,8 @@
           title: "15. Tyler Vai Embora (Fim do Capítulo)",
           text: "Lucas não é encontrado — +10 de sanidade documentado assim que o Tyler sai. O capítulo termina com o nome do Professor Kuriakin como gancho pro próximo capítulo da fila.",
           type: "victory",
-          delta: 10
+          delta: 10,
+          converge: true
         },
         {
           id: "falha_simon_esconderijo",
@@ -5961,9 +5998,10 @@
         {
           id: "luzes_voltam",
           title: "7. As Luzes Voltam — Corrida até a Porta (Fim do Capítulo)",
-          text: "As luzes finalmente voltam. Carla corre até a porta de vidro antes que os internos a alcancem, e Barney a resgata do outro lado.",
+          text: "As luzes finalmente voltam. Carla corre até a porta de vidro antes que os internos a alcancem, e Barney a resgata do outro lado. Confirmado via playstationtrophies.org: completar essa fuga no escuro (controle de respiração L-R + parar diante dos dois internos) sem ser flagrada fecha o troféu \"Falta de Energia\".",
           type: "victory",
-          delta: 0
+          delta: 0,
+          trophy: "🏆 \"Falta de Energia\""
         },
         {
           id: "gameover_interno2",
@@ -7569,7 +7607,10 @@
       <div class="t-card">
         <button class="t-header${isOpen ? ' open' : ''}" data-id="${t.id}"
           style="${isOpen ? `background:${ts.border}14;border-color:${ts.border};` : ''}">
-          <span style="font-size:18px;flex-shrink:0;">${t.icon}</span>
+          <span class="t-icon-wrap" style="position:relative;width:32px;height:32px;flex-shrink:0;display:inline-flex;align-items:center;justify-content:center;">
+            <img src="${t.img}" alt="" width="32" height="32" loading="lazy" style="border-radius:6px;object-fit:contain;" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';" />
+            <span style="display:none;font-size:18px;">${t.icon}</span>
+          </span>
           <div style="flex:1;min-width:0;">
             <div style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:2px;align-items:center;">
               <img src="${ts.iconUrl}" alt="${ts.label}" width="16" height="16" style="display:inline-block;flex-shrink:0;" onerror="this.style.display='none';" />
@@ -7821,7 +7862,7 @@
         { id: "paredes", label: "🏥 Paredes Acolchoadas", path: ["start", "corpo", "mopa", "pia_direita", "faca_moeda", "salao", "riscos_extras", "fundo_poco", "paredes_acolchoadas"] }
       ],
       investigacao: [
-        { id: "intuicao", label: "🔎 Intuição Feminina", path: ["start", "martin", "taxi", "mesa_lucas", "cafe_balcao", "telefone_carla", "ir_tyler", "frank_garret", "telefone_tyler", "banheiro_entrada", "carla_faca", "kate", "saida_inv"] }
+        { id: "intuicao", label: "🔎 A Intuição de uma Mulher", path: ["start", "martin", "taxi", "mesa_lucas", "cafe_balcao", "telefone_carla", "ir_tyler", "frank_garret", "telefone_tyler", "banheiro_entrada", "carla_faca", "kate", "saida_inv"] }
       ],
       dia_seguinte: [
         { id: "seguro", label: "🛡️ Rota Segura (sem risco)", path: ["start", "tomar_remedio", "quarto", "cobrir_lencol", "telefone", "cozinha", "varanda", "ligar_radio", "camisa", "mictorio", "chave", "espera_policial", "abrir_a_tempo", "banho", "bandagem", "vestir", "deixar_policial_entrar", "resposta_calma", "revista_quarto", "policial_sai", "saida_apartamento"] },
@@ -7970,11 +8011,51 @@
     function cmGetConvergenceData(node) {
       if (!node.converge) return null;
 
+      if (node.id === "tyler_vai_embora") {
+        const seguindo = [];
+        const travados = [];
+
+        if (!cmActivePath.includes("falha_simon_esconderijo")) {
+          seguindo.push('🏆 "Calma e Tranquilidade" (fechado — nenhuma falha na sequência escondido, escondendo em lugar diferente de debaixo da cama ou do box do banheiro)');
+        } else {
+          travados.push('🏆 "Calma e Tranquilidade" (perdido nesta run — a Fahrenheit Fandom Wiki confirma que é preciso passar TODAS as sequências sem falhar nenhuma)');
+        }
+
+        return { seguindo, travados };
+      }
+
+      if (node.id === "fim_interrogatorio") {
+        const seguindo = [];
+        const travados = [];
+
+        const passouAlguma = cmActivePath.includes("asm1_passou") || cmActivePath.includes("asm2_passou") || cmActivePath.includes("asm3_passou");
+        if (!passouAlguma) {
+          seguindo.push('🏆 "Criminoso Sutil" (fechado, supondo que você escondeu o livro e o impresso no início — nenhuma sequência de bicho foi passada, sem suspeita levantada)');
+        } else {
+          travados.push('🏆 "Criminoso Sutil" (perdido nesta run — pelo menos uma sequência de bicho foi passada, levantando suspeita)');
+        }
+
+        return { seguindo, travados };
+      }
+
+      if (node.id === "saida_inv") {
+        const seguindo = [];
+        const travados = [];
+
+        if (cmActivePath.includes("carla_faca")) {
+          seguindo.push('🏆 "A Intuição de uma Mulher" (fechado — Carla achou a faca no banheiro; examine a poça de sangue lá fora pra confirmar)');
+        } else {
+          travados.push('🏆 "A Intuição de uma Mulher" (perdido nesta run — exige que tenha sido a CARLA a achar a faca no banheiro)');
+        }
+
+        return { seguindo, travados };
+      }
+
       if (node.id === "jukebox") {
         const seguindo = [];
         const travados = [];
 
-        seguindo.push('🔗 "Intuição Feminina" (setup já garantido — resolve em "Investigação")');
+        seguindo.push('🔗 "A Intuição de uma Mulher" (setup já garantido — resolve em "Investigação")');
 
         if (cmActivePath.includes("telefone")) {
           seguindo.push('🔗 "Comer sem Pagar" (lembre-se: precisa sair de TÁXI lá na frente)');
@@ -8072,6 +8153,32 @@
           seguindo.push('🏆 "Introspecção" (fechado — sequência de hipnose completada sem errar nenhum comando)');
         } else if (cmActivePath.includes("hipnose_falha")) {
           travados.push('🏆 "Introspecção" (perdido nesta run — pelo menos um comando errado na hipnose)');
+        }
+
+        return { seguindo, travados };
+      }
+
+      if (node.id === "vitoria_carla") {
+        const seguindo = [];
+        const travados = [];
+
+        if (cmActivePath.includes("carla_web_descobre")) {
+          seguindo.push('🏆 "Siga o Mestre" (a condição confirmada é Carla descobrir pela web; não está claro se ir ao banco também precisa ser ela — o troféu já cadastrado diz que dá pra pegar junto com "Preto no Branco" na mesma run, o que sugere que não)');
+        } else {
+          travados.push('🏆 "Siga o Mestre" (perdido nesta run — exige que tenha sido a Carla, pela web, a descobrir a origem antes)');
+        }
+
+        return { seguindo, travados };
+      }
+
+      if (node.id === "vitoria_tyler") {
+        const seguindo = [];
+        const travados = [];
+
+        if (cmActivePath.includes("tyler_jornal_descobre")) {
+          seguindo.push('🏆 "Preto no Branco" (a condição confirmada é Tyler ler o jornal sozinho; não está claro se ir ao banco também precisa ser ele — o troféu já cadastrado diz que dá pra pegar junto com "Siga o Mestre" na mesma run, o que sugere que não)');
+        } else {
+          travados.push('🏆 "Preto no Branco" (perdido nesta run — exige que tenha sido o Tyler, pelo jornal, a descobrir a origem antes)');
         }
 
         return { seguindo, travados };
