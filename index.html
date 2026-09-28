@@ -351,7 +351,6 @@
   path.cm-connection.tier-green { stroke: var(--green); filter: drop-shadow(0px 0px 3px var(--green)); }
   path.cm-connection.tier-yellow { stroke: var(--gold); filter: drop-shadow(0px 0px 3px var(--gold)); }
   path.cm-connection.tier-orange { stroke: var(--bronze); filter: drop-shadow(0px 0px 3px var(--bronze)); }
-  path.cm-connection.tier-red { stroke: var(--red); filter: drop-shadow(0px 0px 3px var(--red)); }
   path.cm-connection.gameover { stroke: var(--red); stroke-width: 2.5; }
   path.cm-connection.victory { stroke: var(--gold); stroke-width: 2.5; }
   path.cm-connection.asylum { stroke: var(--indigo-light); stroke-width: 2.5; }
@@ -1221,7 +1220,7 @@
         {
           id: "ir_tyler",
           title: "Trocar pra Tyler",
-          text: "Do lado de dentro, Tyler segue com a própria parte da investigação.",
+          text: "Do lado de dentro, Tyler segue com a própria parte da investigação. Para o troféu \"Em Busca de Temperaturas Mais Quentes\" (além de não esconder a faca no Cap. 1), o PSNProfiles pede: Tyler falar com o mendigo atrás da lanchonete (-5), Carla achar a faca no banheiro e tocar uma música na jukebox.",
           delta: 0,
           options: [
             { label: "Falar com Frank e Garret", target: "frank_garret" }
@@ -2451,7 +2450,7 @@
         {
           id: "start",
           title: "1. De Volta ao Apartamento",
-          text: "Lucas está de volta em casa, esperando a visita da Tiffany à noite. Há bastante coisa opcional pra fazer no apartamento antes dela chegar — cada atividade soma sanidade e ajuda a aproximar do patamar de 55 pontos exigido pelo troféu \"Preparação Mental\" (que é medido pela sanidade acumulada geral de Lucas, não só pelos pontos ganhos nesta cena).",
+          text: "Lucas está de volta em casa, esperando a visita da Tiffany à noite. Há bastante coisa opcional pra fazer no apartamento antes dela chegar — cada atividade soma sanidade e ajuda a aproximar do patamar de 55 pontos exigido pelo troféu \"Preparação Mental\" — o troféu conta os +55 GANHOS nesta cena, então a soma tem que chegar a 55 antes da Tiffany chegar: nada de olhar a foto (-5) nem de beber o álcool (só +5). Se a sanidade de Lucas já estiver alta ao entrar no capítulo, o teto de 100 pode cortar esse ganho (hipótese não confirmada nas fontes); se o troféu não sair, tente entrar no capítulo com a sanidade baixa. Há relatos de que este troféu falha mesmo seguindo tudo certo.",
           delta: 0,
           options: [
             { label: "Tomar um copo de leite na geladeira", target: "leite" }
@@ -2496,7 +2495,7 @@
         {
           id: "foto_mesa",
           title: "Foto na Mesa",
-          text: "Lucas olha a foto na própria mesa, perto do computador — a lembrança reduz sua sanidade.",
+          text: "Lucas olha a foto na própria mesa, perto do computador — a lembrança reduz sua sanidade. Atenção: esta ação NÃO consta na lista do troféu \"Preparação Mental\" e deixa a soma em 50; evite se quiser o troféu.",
           delta: -5,
           options: [
             { label: "Ir até o saco de pancadas", target: "saco_pancadas" }
@@ -2563,7 +2562,7 @@
         {
           id: "alcool",
           title: "Álcool",
-          text: "Lucas bebe da garrafa na prateleira da cozinha (sem ter tomado comprimido). Beber mais de uma vez custa 20 pontos de sanidade a cada dose extra — repetível até zerar a sanidade e resultar em Game Over —, então uma única dose já garante o bônus documentado sem correr esse risco.",
+          text: "Lucas bebe da garrafa na prateleira da cozinha (sem ter tomado comprimido). Beber mais de uma vez custa 20 pontos de sanidade a cada dose extra — repetível até zerar a sanidade e resultar em Game Over —, então evite repetir. Atenção: sem tomar o comprimido, o álcool rende só +5 e a soma do capítulo fica em 50, abaixo dos 55 do troféu \"Preparação Mental\" — não beba se quiser o troféu.",
           delta: 5,
           options: [
             { label: "Ir dormir na cama", target: "dormir" }
@@ -2590,7 +2589,7 @@
         {
           id: "dormir",
           title: "Dormir na Cama",
-          text: "Lucas escolhe a segunda opção de cama pra dormir — é uma AÇÃO OBRIGATÓRIA antes de Tiffany aparecer (ela bate na porta e o acorda; mesmo se ele não dormir, ela aparece de qualquer jeito mais cedo ou mais tarde).",
+          text: "Lucas escolhe a segunda opção de cama pra dormir — é uma AÇÃO OBRIGATÓRIA antes de Tiffany aparecer (ela bate na porta e o acorda). Para o troféu \"Preparação Mental\", deitar e fechar os olhos deve ser a ÚLTIMA ação, pois costuma disparar a chegada da Tiffany: tudo o que soma os +55 precisa estar feito antes de deitar.",
           delta: 10,
           converge: true,
           options: [
@@ -2967,7 +2966,7 @@
         {
           id: "dentro_hangar",
           title: "8. Dentro do Hangar",
-          text: "Depois de uma breve conversa, Lucas manda Markus embora e fica encarregado de achar os três garotos escondidos: um atrás de um pedaço de avião, outro escondido perto de umas coisas contra a parede (subindo a escada), e o terceiro dentro de um caixote aberto no meio, entre duas fileiras de caixotes no chão principal.",
+          text: "Depois de uma breve conversa, Lucas manda Markus embora e fica encarregado de achar os três garotos escondidos: um atrás de um pedaço de avião, outro escondido perto de umas coisas contra a parede (subindo a escada), e o terceiro dentro de um caixote aberto no meio, entre duas fileiras de caixotes no chão principal. Ao convencer o garoto do avião a sair, o PSNProfiles manda escolher \"Ameaçar\" e depois \"Mentir\" (o guia Steam FR cita só \"Mentir\").",
           delta: 0,
           options: [
             { label: "Salvar os três garotos a tempo", target: "salvou_todos" },
@@ -4096,7 +4095,7 @@
         {
           id: "start",
           title: "1. Chuveiro & Telefonema",
-          text: "A cena abre com Carla no chuveiro (sem nudez explícita) — depois disso o telefone toca sem parar. Carla atende e encontra Tyler emperrado no caso; ela sugere que ele mande o fragmento de papel por fax. (O Cartão Bônus do canto do banheiro, +10, já está catalogado na aba Cartas de Tarô, [Cap. 19].) A partir daqui as fontes descrevem duas ordens possíveis pra passar o capítulo — ambas levam ao mesmo final, mas rendem sanidade diferente pela Carla.",
+          text: "A cena abre com Carla no chuveiro (sem nudez explícita) — depois disso o telefone toca sem parar. Carla atende e encontra Tyler emperrado no caso; ela sugere que ele mande o fragmento de papel por fax. (O Cartão Bônus do canto do banheiro, +10, já está catalogado na aba Cartas de Tarô, [Cap. 19].) A partir daqui as fontes descrevem duas ordens possíveis pra passar o capítulo — ambas levam ao mesmo final, mas rendem sanidade diferente pela Carla. Aviso do PSNProfiles: os troféus \"Siga o Mestre\" (Carla descobre pela web e vai ao banco) e \"Preto no Branco\" (Tyler descobre pelo jornal e vai ao banco) não podem ser feitos na mesma jogada — faça um por vez, usando o seletor de capítulos.",
           delta: 0,
           options: [
             { label: "Ficar com Carla e aproveitar o apê antes do Tommy chegar (\"Método 1\")", target: "carla_hub" },
@@ -4497,7 +4496,7 @@
         {
           id: "pergunta_lista",
           title: "2. Perguntas sobre a Lista de Cotações",
-          text: "As três primeiras perguntas giram em torno da mesma lista de cotações (se veio deste banco, de onde vem, onde foi impressa) — as fontes concordam que a resposta certa nas três é sempre \"Verdade\"; mentir aqui é descrito como especialmente arriscado.",
+          text: "As três primeiras perguntas giram em torno da mesma lista de cotações (se veio deste banco, de onde vem, onde foi impressa) — a sequência documentada no PSNProfiles e no guia Steam FR é \"Verdade\" nas duas primeiras e \"Não\" na terceira; mentir aqui é descrito como especialmente arriscado.",
           delta: 0,
           converge: true,
           options: [
@@ -4531,7 +4530,7 @@
         {
           id: "pergunta_esboco",
           title: "3. Retrato Falado",
-          text: "A detetive mostra o retrato falado do assassino (o mesmo que Lucas ajudou a desenhar). A resposta segura documentada é \"Piada\" — não levanta suspeita.",
+          text: "A detetive mostra o retrato falado do assassino (o mesmo que Lucas ajudou a desenhar). A resposta segura documentada é \"Piada\" (que o PSNProfiles chama de \"Esquivar\") — não levanta suspeita.",
           delta: 0,
           converge: true,
           options: [
@@ -4634,7 +4633,7 @@
         {
           id: "busca_provas",
           title: "9. Busca de Provas",
-          text: "Com a detetive (Carla ou Tyler), dá pra vasculhar a mesa de Lucas — os itens principais (caneta e livro) valem sanidade; os outros são só de investigação, sem valor documentado. As fontes concordam que a localização exata de cada item é meio aleatória (pode variar de gaveta pra gaveta), mas os itens em si aparecem sempre.",
+          text: "Com a detetive (Carla ou Tyler), dá pra vasculhar a mesa de Lucas — mas, para o troféu \"Criminoso Sutil\", o PSNProfiles manda NÃO interagir com nada enquanto Lucas está fora (o guia Steam FR diz que isso não muda o resultado; na dúvida, fique parado). Pegar o livro aqui serve ao troféu \"Lendo nas Entrelinhas\", que exige justamente não esconder o livro: faça os dois em rodadas separadas. os itens principais (caneta e livro) valem sanidade; os outros são só de investigação, sem valor documentado. As fontes concordam que a localização exata de cada item é meio aleatória (pode variar de gaveta pra gaveta), mas os itens em si aparecem sempre.",
           delta: 0,
           converge: true,
           options: [
@@ -6029,7 +6028,7 @@
         {
           id: "apresentacao",
           title: "2. Apresentação como Jornalista",
-          text: "Lucas se apresenta como jornalista (as fontes variam entre \"The New York Times\" e \"Freelance\" como respostas aceitas). Quando o professor pergunta se o reconhece, surge um evento Simon Says a pouco aviso — o Omikrongame e uma das versões do GameFAQs indicam EVITANDO como a escolha ideal na sequência de diálogo; a Neoseeker acrescenta que, se esse mini-evento falhar, responder de forma descontraída evita levantar suspeita. Nenhuma fonte cita valor numérico de sanidade pra esse trecho.",
+          text: "Lucas se apresenta como jornalista (as fontes variam entre \"The New York Times\" e \"Freelance\" como respostas aceitas; a sequência do PSNProfiles é: New York Times, Piada, Serpente, Oráculos, Oráculo Mata, Executor, Verdade, Mostrar antebraços). Quando o professor pergunta se o reconhece, surge um evento Simon Says a pouco aviso — o Omikrongame e uma das versões do GameFAQs indicam EVITANDO como a escolha ideal na sequência de diálogo; a Neoseeker acrescenta que, se esse mini-evento falhar, responder de forma descontraída evita levantar suspeita. Nenhuma fonte cita valor numérico de sanidade pra esse trecho.",
           delta: 0,
           options: [
             { label: "Seguir o professor pela exposição", target: "exposicao_serpente" }
@@ -7056,7 +7055,7 @@
         {
           id: "consertar_radio",
           title: "5. Consertar o Rádio",
-          text: "No fim da plataforma, perto da barricada, tem um rádio quebrado — falta pilha e antena. As pilhas vêm da lanterna encontrada num dos vagões; a antena é um pedaço quebrado de uma moldura (ou placa de metal, segundo a Neoseeker) perto da entrada. Encaixando as duas peças e ligando o rádio, dá pra ouvir a sequência completa de notícias — o que deixa Carla um pouco deprimida. As fontes concordam: -5 de sanidade pra ela por isso, e a notícia ruim vem automaticamente na sequência assim que o rádio liga.",
+          text: "No fim da plataforma, perto da barricada, tem um rádio quebrado — falta pilha e antena. As pilhas vêm da lanterna encontrada num dos vagões; a antena é um pedaço quebrado de uma moldura (ou placa de metal, segundo a Neoseeker) perto da entrada. Encaixando as duas peças e ligando o rádio, dá pra ouvir a sequência completa de notícias — o que deixa Carla um pouco deprimida. As fontes concordam: -5 de sanidade pra ela por isso, e a notícia ruim vem automaticamente na sequência assim que o rádio liga. Para o troféu, ouça todas as transmissões sem desligar o rádio. O PSNProfiles descreve as peças de outro jeito: as pilhas estão na lanterna do vagão mais próximo do rádio, e a antena é um pedaço de chapa de metal lá no fundo, depois da fogueira.",
           delta: -5,
           converge: true,
           trophy: "🏆 \"Previsão do Tempo\"",
@@ -7924,6 +7923,42 @@
       ],
       janos: [
         { id: "sobrevivendo_ao_escuro", label: "🌙 Sobrevivendo ao Escuro (parar nos dois internos)", path: ["start", "corredor_cela", "conversa_janos", "luzes_apagam", "fuga_escuro_1", "fuga_escuro_2", "luzes_voltam"] }
+      ],
+      perigo_onipresenca: [
+        { id: "por_pouco", label: "☎️ Por Pouco (Markus atende o telefone e tranca a porta)", path: ["acordar_lucas", "lucas_liga_markus", "markus_escolha_oraculo", "markus_corre_escritorio", "lucas_sem_tempo", "markus_tranca_porta", "carla_corredor"] }
+      ],
+      kuriakin: [
+        { id: "poderes_sobrenaturais", label: "🔮 Poderes Sobrenaturais (tópicos certos com o professor)", path: ["start", "apresentacao", "exposicao_serpente", "pintura_sacrificio", "confronto_verdade", "convencer_professor", "estacionamento_professor"] }
+      ],
+      mau_pressagio: [
+        { id: "siga_o_mestre", label: "🌐 Siga o Mestre (Carla descobre pela web)", path: ["start", "carla_hub", "tommy_chega", "taca_brinde", "escolha_tommy_carla", "resp_carla", "escolha_diferenca_trabalho", "tarot", "tyler_web", "fax_m1", "recarga_tyler", "carla_pega_fax", "carla_web_descobre", "tyler_lamp", "vitoria_carla"] },
+        { id: "preto_no_branco", label: "📰 Preto no Branco (Tyler descobre pelo jornal)", path: ["start", "carla_hub", "tommy_chega", "taca_brinde", "escolha_tommy_carla", "resp_tommy", "escolha_diferenca_trabalho", "tarot", "tyler_web", "tyler_jornal_descobre", "fax_m1", "recarga_tyler", "carla_pega_fax", "pergunta_tommy_m1", "tyler_lamp", "vitoria_tyler"] }
+      ],
+      cara_a_cara: [
+        { id: "criminoso_sutil", label: "🕵️ Criminoso Sutil (sem levantar suspeita)", path: ["start", "asm1", "pergunta_lista", "asm2", "pergunta_esboco", "pergunta_banco_estranho", "asm3", "pergunta_bracos", "pergunta_suspeita", "pergunta_foto", "lucas_banheiro", "busca_provas", "fim_interrogatorio"] }
+      ],
+      volta_agatha: [
+        { id: "quem_nao_tem_chave", label: "🔪 Quem Não Tem Chave, Abre com Faca", path: ["start", "sala_sessao", "corredor", "quarto_corvos", "faca_gaiola", "ler_bilhete", "escape"] }
+      ],
+      confronto: [
+        { id: "fuga_impecavel", label: "🏃 Fuga Impecável (sem falhar nenhum QTE)", path: ["start", "abrir_porta", "checar_quarto", "checar_banheiro", "troca_lucas", "perseguicao_asm", "helicoptero", "fuga_tanque"] }
+      ],
+      o_pacto: [
+        { id: "um_aliado_confiavel", label: "🤝 Um Aliado Confiável (Trusting)", path: ["start", "lucas_aparece", "confiante", "simon1", "simon2", "dialogo_livre", "simon3", "aperto_maos"] }
+      ],
+      congelado_ossos: [
+        { id: "carma", label: "☯️ Carma (Mentir + Sair com Sam)", path: ["start", "mentir", "sam_chega", "sair_sam", "maquina_cafe", "falar_carla"] }
+      ],
+      onde_esta_jade: [
+        { id: "voto_de_confianca", label: "🚁 Voto de Confiança (Oráculo + helicópteros sem perder vida)", path: ["start", "encontrar_jade", "fuga_emergencia", "luta_oraculo", "fuga_helicopteros", "agatha_morta", "recusar_jade", "escapar_possessao"] }
+      ],
+      bogart: [
+        { id: "previsao_do_tempo", label: "📻 Previsão do Tempo (conserte o rádio)", path: ["start", "chegada_fogueira", "sentar_bogart", "carla_acampamento", "consertar_radio", "cena_final"] }
+      ],
+      final: [
+        { id: "futuro_brilhante", label: "☀️ Um Futuro Brilhante (vença tudo)", path: ["start", "neve_com_jade", "chao_principal", "venceu_oraculo", "venceu_ia"] },
+        { id: "futuro_frio", label: "🥶 Um Futuro Frio (vença o Oráculo, falhe de propósito contra a IA)", path: ["start", "neve_com_jade", "chao_principal", "venceu_oraculo", "perdeu_ia"] },
+        { id: "futuro_incerto", label: "❓ Um Futuro Incerto (perca pro Oráculo e não vire o jogo com a Carla)", path: ["start", "neve_com_jade", "chao_principal", "perdeu_oraculo", "carla_falha"] }
       ]
     };
 
@@ -7971,8 +8006,7 @@
     function cmSanityTierClass(sanity) {
       if (sanity >= 70) return "tier-green";
       if (sanity >= 40) return "tier-yellow";
-      if (sanity >= 16) return "tier-orange";
-      return "tier-red";
+      return "tier-orange";
     }
 
     function cmUpdateHUD() {
